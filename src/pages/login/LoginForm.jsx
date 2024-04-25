@@ -11,6 +11,9 @@ import COOKIES from "../../assets/enum/cookies.js";
 
 export default function LoginForm() {
     const [values, setValues] = useState()
+    /**
+     * @link https://www.npmjs.com/package/react-cookie
+     */
     const [cookies, setCookie, removeCookie] = useCookies()
 
     const onSubmit = (data, event) => {

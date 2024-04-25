@@ -92,7 +92,7 @@ function ForgotPassword() {
     return (
         <Grid container spacing={2}>
             <Grid item xs>
-                <Link href="/forgot-passowrd" variant="body2">
+                <Link href="/forgot-login" variant="body2">
                     Forgot id or password?
                 </Link>
             </Grid>

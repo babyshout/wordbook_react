@@ -9,6 +9,11 @@ import {useCookies} from "react-cookie";
 import COOKIES from "../../assets/enum/cookies.js";
 
 
+/**
+ * TODO 아직 손 안댐
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export default function LoginForm() {
     const [values, setValues] = useState()
     /**
@@ -22,9 +27,6 @@ export default function LoginForm() {
         console.log('event : ', event);
         setValues(data)
         console.log('data : ', data)
-        setCookie(COOKIES.loginInfo.name,
-            "cookie test",
-            {path: '/'})
 
         // TODO login request here
         axios.post(REQUEST_URL.student.postLogin,
@@ -52,10 +54,9 @@ export default function LoginForm() {
     return (
         <>
             <FormContainer
-                defaultValues={{studentId: '', password: ''}}
+                defaultValues={{studentId: '123', password: ''}}
                 onSuccess={onSubmit}
                 onError={onError}
-
             >
                 <Stack direction={'column'}>
                     <TextFieldElement

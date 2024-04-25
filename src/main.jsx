@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 
 /**
  * Roboto font
@@ -12,18 +11,30 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+
+/**
+ * settings for react-router
+ */
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 import Login from './pages/login/Login.jsx'
 import Signup from "./pages/signup/Signup.jsx";
 import ErrorPage from "./pages/error-page/error-page.jsx";
+import App from './App.jsx'
+
+// react cookie
 import {CookiesProvider} from "react-cookie";
+import ForgotLogin from "./pages/forgot-login/ForgotLogin.jsx";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <div>Hello World!</div>,
+        element: <App />,
         errorElement: <ErrorPage/>,
+    },
+    {
+        path: '/hello-world',
+        element: <h1>HELLO WORLD!!!!</h1>
     },
     {
         path: '/login',
@@ -36,6 +47,10 @@ const router = createBrowserRouter([
     {
         path: '/default-app',
         element: <App/>
+    },
+    {
+        path: '/forgot-login',
+        element: <ForgotLogin/>,
     }
 ])
 

@@ -3,16 +3,21 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import './index.css'
+import {useCookies} from "react-cookie";
 
 
 
 
 function App() {
   const [count, setCount] = useState(0)
+   const [cookie, setCookie, removeCookie] = useCookies()
+    console.log(cookie);
+  console.log(Object.entries(cookie))
 
   return (
     <>
         {/*<SignUp />*/}
+        <h1>{Object.entries(cookie)}</h1>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />

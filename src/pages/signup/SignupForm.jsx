@@ -11,9 +11,18 @@ import REQUEST_URL from "../../assets/serverUrl.js";
 
 const mockEmailVerificationCode = '123123'
 
+
+/**
+ * 전반적으로 더러운 회원가입 로직 처리.. 정리 필요
+ * FIXME Redux 또는 useReducer 사용!
+ * @
+ * @param props
+ * @returns {Element}
+ * @constructor
+ */
 export default function SignupForm(props) {
     const [values, setValues] = React.useState([]);
-    const [emailVerified, setEmailVerified] = React.useState(false);
+    const [isEmailVerified, setIsEmailVerified] = React.useState(false);
     const [emailVerificationCode, setEmailVerificationCode] = React.useState('');
     const [isEmailVerificationCodeSent, setEmailVerificationCodeSent] = React.useState(false);
 
@@ -24,7 +33,7 @@ export default function SignupForm(props) {
         console.log('event : ', event);
         console.log('emailVerificationCode : ', emailVerificationCode);
 
-        if (!emailVerified) {
+        if (!isEmailVerified) {
             alert("Please check your email verification code");
             document.getElementById('emailVerificationCode').focus();
             return
@@ -45,7 +54,7 @@ export default function SignupForm(props) {
             }
         ).then(function (response) {
             console.log(response);
-            alert(response)
+            alert(response.data.data.message)
         })
     }
 
@@ -91,10 +100,12 @@ export default function SignupForm(props) {
 
         if (emailVerificationCode === '') {
             handleEmailVerificationCodeSending()
+            alert("이메일 인증코드가 발송되었습니다!")
             return
         }
         if (confirm('다시 이메일 확인코드를 보내시겠습니까?')) {
             handleEmailVerificationCodeSending()
+            alert("이메일 인증코드가 재발송되었습니다!")
             return
         }
 
@@ -105,7 +116,7 @@ export default function SignupForm(props) {
         if (isEmailVerificationCodeSent &&
             emailVerificationCode === event.target.value) {
             alert('email verification complete!!!');
-            setEmailVerified(true);
+            setIsEmailVerified(true);
         }
     }
 

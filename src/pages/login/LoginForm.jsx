@@ -3,16 +3,39 @@ import {Button, Stack} from '@mui/material'
 import {useState} from 'react'
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import REQUEST_URL from "../../assets/enum/serverUrl.js";
+import axios from "axios";
+import {useCookies} from "react-cookie";
+import COOKIES from "../../assets/enum/cookies.js";
 
 
 export default function LoginForm() {
     const [values, setValues] = useState()
+    const [cookies, setCookie, removeCookie] = useCookies()
+
     const onSubmit = (data, event) => {
-        event.preventDefault();
+        // event.preventDefault();
+        console.log('Login Form submit START!!')
+        console.log('event : ', event);
         setValues(data)
-        console.log(data)
+        console.log('data : ', data)
 
         // TODO login request here
+        axios.post(REQUEST_URL.student.postLogin,
+            JSON.stringify(data), {
+                headers: {"Content-Type": "application/json"},
+            }).then(function (response) {
+            console.log(response);
+            alert(response.data.data.message)
+            if (response.data.data.isLogin === true) {
+                setCookie(COOKIES.loginInfo.name,
+                    response.data.data, {
+                        path: '/',
+
+                    })
+                location.href = "/";
+            }
+        })
     }
 
     const onError = (errors, event) => {

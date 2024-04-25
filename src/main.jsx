@@ -17,30 +17,34 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Login from './pages/login/Login.jsx'
 import Signup from "./pages/signup/Signup.jsx";
 import ErrorPage from "./pages/error-page/error-page.jsx";
+import {CookiesProvider} from "react-cookie";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <div>Hello World!</div>,
-        errorElement: <ErrorPage />,
+        errorElement: <ErrorPage/>,
     },
     {
         path: '/login',
-        element: <Login />
+        element: <Login/>
     },
     {
         path: '/signup',
-        element: <Signup />
+        element: <Signup/>
     },
     {
         path: '/default-app',
-        element: <App />
+        element: <App/>
     }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-    {/*<App />*/}
-  </React.StrictMode>,
+    <React.StrictMode>
+        <CookiesProvider>
+
+            <RouterProvider router={router}/>
+            {/*<App />*/}
+        </CookiesProvider>
+    </React.StrictMode>,
 )

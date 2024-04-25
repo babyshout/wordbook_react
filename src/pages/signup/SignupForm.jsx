@@ -6,8 +6,8 @@ import Box from "@mui/material/Box";
 import * as React from "react";
 import {FormContainer, TextFieldElement} from "react-hook-form-mui";
 import axios from "axios";
-import ServerUrl from "../../assets/serverUrl.js";
-import REQUEST_URL from "../../assets/serverUrl.js";
+import ServerUrl from "../../assets/enum/serverUrl.js";
+import REQUEST_URL from "../../assets/enum/serverUrl.js";
 
 const mockEmailVerificationCode = '123123'
 
@@ -16,11 +16,10 @@ const mockEmailVerificationCode = '123123'
  * 전반적으로 더러운 회원가입 로직 처리.. 정리 필요
  * FIXME Redux 또는 useReducer 사용!
  * @
- * @param props
  * @returns {Element}
  * @constructor
  */
-export default function SignupForm(props) {
+export default function SignupForm() {
     const [values, setValues] = React.useState([]);
     const [isEmailVerified, setIsEmailVerified] = React.useState(false);
     const [emailVerificationCode, setEmailVerificationCode] = React.useState('');

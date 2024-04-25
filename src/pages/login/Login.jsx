@@ -38,14 +38,7 @@ function Copyright(props) {
  * @constructor
  */
 export default function Login() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+
 
     return (
         // <ThemeProvider theme={defaultTheme}>
@@ -82,7 +75,7 @@ export default function Login() {
     );
 }
 
-function TypographyAndAvatar(props) {
+function TypographyAndAvatar() {
     return (
         <>
             <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
@@ -100,7 +93,7 @@ function ForgotPassword() {
         <Grid container spacing={2}>
             <Grid item xs>
                 <Link href="/forgot-passowrd" variant="body2">
-                    Forgot password?
+                    Forgot id or password?
                 </Link>
             </Grid>
             <Grid item>

@@ -25,6 +25,7 @@ import App from './App.jsx'
 // react cookie
 import {CookiesProvider} from "react-cookie";
 import ForgotLogin from "./pages/forgot-login/ForgotLogin.jsx";
+import ButtonGroupContainedWhenClickDemo from "./pages/demo/buttongroup-demo/ButtonGroupContainedWhenClickDemo.jsx";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
     {
         path: '/forgot-login',
         element: <ForgotLogin/>,
+    },
+    {
+        path: '/demo/button-group-click-demo',
+        element: <ButtonGroupContainedWhenClickDemo/>,
     }
 ])
 

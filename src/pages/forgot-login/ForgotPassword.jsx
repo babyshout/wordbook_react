@@ -14,7 +14,7 @@ import COOKIES from "../../assets/enum/cookies.js";
  * @returns {JSX.Element}
  * @constructor
  */
-export default function LoginForm() {
+export default function ForgotPassword() {
     const [values, setValues] = useState()
     /**
      * @link https://www.npmjs.com/package/react-cookie

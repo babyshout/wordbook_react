@@ -26,7 +26,6 @@ export default function ButtonGroupContainedWhenClickDemo() {
                 <Button
                     key="one"
                     id="one"
-                    onClick={() => setSelectedButton('one')}
                     onClick={(event) => {
                         console.log(event);
                         setSelectedButton('one');
@@ -38,7 +37,6 @@ export default function ButtonGroupContainedWhenClickDemo() {
                 <Button
                     key="two"
                     id="two"
-                    onClick={() => setSelectedButton('one')}
                     onClick={(event) => {
                         console.log(event);
                         setSelectedButton('two');

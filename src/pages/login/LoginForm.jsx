@@ -22,9 +22,11 @@ export default function LoginForm() {
         console.log('event : ', event);
         setValues(data)
         console.log('data : ', data)
-        setCookie(COOKIES.loginInfo.name,
-            "cookie test",
-            {path: '/'})
+
+
+        // setCookie(COOKIES.loginInfo.name,
+        //     "cookie test",
+        //     {path: '/'})
 
         // TODO login request here
         axios.post(REQUEST_URL.student.postLogin,

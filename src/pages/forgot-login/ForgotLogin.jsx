@@ -9,6 +9,8 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import * as React from "react";
 import {useState} from "react";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 
 export default function ForgotLogin() {
@@ -26,12 +28,15 @@ export default function ForgotLogin() {
                     alignItems: 'center',
                 }}
             >
+                <SelectWhichButton />
+
                 <TypographyAndAvatar
                 />
                 {/*login Form box start*/}
                 <Box
                     sx={{mt: 1}}
                 >
+
 
                     <LoginForm
 
@@ -62,6 +67,69 @@ function Copyright(props) {
     );
 }
 
+function SelectWhichButton() {
+
+    const buttons = [
+        <Button key="one">One</Button>,
+        <Button key="two">Two</Button>,
+        <Button key="three">Three</Button>,
+    ];
+        const [selectedButton, setSelectedButton] = React.useState('one');
+                return (
+
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    '& > *': {
+                        m: 1,
+                    },
+                }}
+            >
+                <ButtonGroup size="large" aria-label="Large button group">
+                    <Button
+                        key="one"
+                        id="one"
+                        onClick={() => setSelectedButton('one')}
+                        onClick={(event) => {
+                            console.log(event);
+                            setSelectedButton('one');
+                        }}
+                        variant={selectedButton === 'one' ? 'contained' : 'outlined'}
+                    >
+                        One
+                    </Button>
+                    <Button
+                        key="two"
+                        id="two"
+                        onClick={(event) => {
+                            console.log(event);
+                            setSelectedButton('two');
+                        }}
+                        variant={selectedButton === 'two' ? 'contained' : 'outlined'}
+                    >
+                        Two
+                    </Button>
+                    <Button
+                        key="three"
+                        id="three"
+                        onClick={(event) => {
+                            console.log(event);
+                            setSelectedButton('three');
+                        }}
+                        variant={selectedButton === 'three' ? 'contained' : 'outlined'}
+                    >
+                        Three
+                    </Button>
+                </ButtonGroup>
+            </Box>
+
+
+
+)
+}
+
 function TypographyAndAvatar() {
     return (
         <>
@@ -79,8 +147,8 @@ function ForgotPassword() {
     return (
         <Grid container spacing={2}>
             <Grid item xs>
-                <Link href="/forgot-passowrd" variant="body2">
-                    Forgot id or password?
+                <Link href="/login" variant="body2">
+                    로그인 하러가기
                 </Link>
             </Grid>
             <Grid item>

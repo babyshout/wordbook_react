@@ -17,10 +17,11 @@ import '@fontsource/roboto/700.css';
  */
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
-import Login from './pages/login/Login.jsx'
+import Login from './pages/login/Login.jsx';
 import Signup from "./pages/signup/Signup.jsx";
 import ErrorPage from "./pages/error-page/error-page.jsx";
-import App from './App.jsx'
+import App from './App.jsx';
+import Dashboard from './pages/demo/dashboard/Dashboard.jsx';
 
 // react cookie
 import {CookiesProvider} from "react-cookie";
@@ -30,7 +31,7 @@ import ButtonGroupContainedWhenClickDemo from "./pages/demo/buttongroup-demo/But
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <App />,
+        element: <App/>,
         errorElement: <ErrorPage/>,
     },
     {
@@ -56,8 +57,12 @@ const router = createBrowserRouter([
     {
         path: '/demo/button-group-click-demo',
         element: <ButtonGroupContainedWhenClickDemo/>,
+    },
+    {
+        path: '/demo/dashboard',
+        element: <Dashboard/>,
     }
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>

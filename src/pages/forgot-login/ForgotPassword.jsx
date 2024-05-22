@@ -10,7 +10,7 @@ import COOKIES from "../../assets/enum/cookies.js";
 
 
 /**
- * TODO 아직 손 안댐
+ * TODO 레이아웃 확인하고, 로직 삽입하기
  * @returns {JSX.Element}
  * @constructor
  */
@@ -66,24 +66,33 @@ export default function ForgotPassword() {
                         id={'studentId'}
                         label={'ID'}
                         name={'studentId'}
-                        autoComplete="email"
+                        autoComplete="id"
                         autoFocus
+                    />
+                    <TextFieldElement
+                        margin={'normal'}
+                        required
+                        fullWidth
+                        id={'studentId'}
+                        label={'ID'}
+                        name={'studentId'}
+                        autoComplete="email"
                     />
                     <TextFieldElement
                         color={'primary'}
                         margin={'normal'}
                         required
                         fullWidth
-                        name={'password'}
-                        label={'Password'}
-                        type={'password'}
-                        id={'password'}
-                        autoComplete={'current-password'}
+                        name={'email'}
+                        label={'Email'}
+                        type={'email'}
+                        id={'email'}
+                        // autoComplete={''}
                     />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary"/>}
-                        label="Remember me"
-                    />
+                    {/*<FormControlLabel*/}
+                    {/*    control={<Checkbox value="remember" color="primary"/>}*/}
+                    {/*    label="Remember me"*/}
+                    {/*/>*/}
                     <Button
                         type={'submit'}
                         fullWidth

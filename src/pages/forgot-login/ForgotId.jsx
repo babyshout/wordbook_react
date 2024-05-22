@@ -19,7 +19,7 @@ export default function ForgotId() {
     /**
      * @link https://www.npmjs.com/package/react-cookie
      */
-    const [cookies, setCookie, removeCookie] = useCookies()
+    // const [cookies, setCookie, removeCookie] = useCookies()
 
     const onSubmit = (data, event) => {
         // event.preventDefault();
@@ -74,16 +74,16 @@ export default function ForgotId() {
                         margin={'normal'}
                         required
                         fullWidth
-                        name={'password'}
-                        label={'Password'}
-                        type={'password'}
-                        id={'password'}
+                        name={'email'}
+                        label={'Email'}
+                        type={'email'}
+                        id={'email'}
                         autoComplete={'current-password'}
                     />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary"/>}
-                        label="Remember me"
-                    />
+                    {/*<FormControlLabel*/}
+                    {/*    control={<Checkbox value="remember" color="primary"/>}*/}
+                    {/*    label="Remember me"*/}
+                    {/*/>*/}
                     <Button
                         type={'submit'}
                         fullWidth

@@ -19,32 +19,32 @@ export default function ForgotId() {
     /**
      * @link https://www.npmjs.com/package/react-cookie
      */
-    // const [cookies, setCookie, removeCookie] = useCookies()
+        // const [cookies, setCookie, removeCookie] = useCookies()
 
     const onSubmit = (data, event) => {
-        // event.preventDefault();
-        console.log('Login Form submit START!!')
-        console.log('event : ', event);
-        setValues(data)
-        console.log('data : ', data)
+            // event.preventDefault();
+            console.log('Forgot Id Form submit START!!')
+            console.log('event : ', event);
+            setValues(data)
+            console.log('data : ', data)
 
-        // TODO login request here
-        axios.post(REQUEST_URL.student.postLogin,
-            JSON.stringify(data), {
-                headers: {"Content-Type": "application/json"},
-            }).then(function (response) {
-            console.log(response);
-            alert(response.data.data.message)
-            if (response.data.data.isLogin === true) {
-                setCookie(COOKIES.loginInfo.name,
-                    response.data.data, {
-                        path: '/',
+            // TODO login request here
+            axios.post(REQUEST_URL.student.postForgotGetIdList,
+                JSON.stringify(data),
+                {
+                    headers: {"Content-Type": "application/json"},
+                }).then(function (response) {
+                console.log(response);
+                if (response.data.data === undefined) {
+                    alert("아이디가 없습니다!!");
+                    return;
+                }
+                alert("아이디는 \n" + response.data.data +
+                    "\n입니다.");
 
-                    })
-                location.href = "/";
-            }
-        })
-    }
+
+            })
+        }
 
     const onError = (errors, event) => {
         console.log(errors, event);
@@ -54,7 +54,7 @@ export default function ForgotId() {
     return (
         <>
             <FormContainer
-                defaultValues={{studentId: '123', password: ''}}
+                // defaultValues={{studentId: '123', password: ''}}
                 onSuccess={onSubmit}
                 onError={onError}
             >
@@ -63,10 +63,10 @@ export default function ForgotId() {
                         margin={'normal'}
                         required
                         fullWidth
-                        id={'studentId'}
-                        label={'ID'}
-                        name={'studentId'}
-                        autoComplete="email"
+                        id={'name'}
+                        label={'이름'}
+                        name={'name'}
+                        autoComplete="name"
                         autoFocus
                     />
                     <TextFieldElement
@@ -75,10 +75,10 @@ export default function ForgotId() {
                         required
                         fullWidth
                         name={'email'}
-                        label={'Email'}
+                        label={'이메일'}
                         type={'email'}
                         id={'email'}
-                        autoComplete={'current-password'}
+                        autoComplete={'email'}
                     />
                     {/*<FormControlLabel*/}
                     {/*    control={<Checkbox value="remember" color="primary"/>}*/}

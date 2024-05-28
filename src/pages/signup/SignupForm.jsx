@@ -53,7 +53,16 @@ export default function SignupForm() {
             }
         ).then(function (response) {
             console.log(response);
+            // if (response.data.data.message.startsWith("Id 가 이미 있습니다!!")) {
+            //     alert(response.data.data.message);
+            //
+            //     return;
+            // }
             alert(response.data.data.message)
+            location.href = "/login";
+        }, function (reason) {
+            console.log(reason)
+            alert(reason.response.data.message);
         })
     }
 

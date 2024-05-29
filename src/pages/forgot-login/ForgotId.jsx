@@ -28,14 +28,14 @@ export default function ForgotId() {
             setValues(data)
             console.log('data : ', data)
 
-            // TODO login request here
+            // NOTE 아이디 찾기 로직
             axios.post(REQUEST_URL.student.postForgotGetIdList,
                 JSON.stringify(data),
                 {
                     headers: {"Content-Type": "application/json"},
                 }).then(function (response) {
                 console.log(response);
-                if (response.data.data === undefined) {
+                if (response.data.data.result === false) {
                     alert("아이디가 없습니다!!");
                     return;
                 }

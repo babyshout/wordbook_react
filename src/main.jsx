@@ -21,7 +21,7 @@ import Login from './pages/login/Login.jsx';
 import Signup from "./pages/signup/Signup.jsx";
 import ErrorPage from "./pages/error-page/error-page.jsx";
 import App from './App.jsx';
-import Dashboard from './pages/demo/dashboard/Dashboard.jsx';
+import Dashboard from './pages/dashboard/Dashboard.jsx';
 
 // react cookie
 import {CookiesProvider} from "react-cookie";
@@ -58,10 +58,14 @@ const router = createBrowserRouter([
         path: '/demo/button-group-click-demo',
         element: <ButtonGroupContainedWhenClickDemo/>,
     },
+    // {
+    //     path: '/demo/dashboard-demo',
+    //     element: <Dashboard/>,
+    // },
     {
-        path: '/demo/dashboard',
+        path: '/dashboard',
         element: <Dashboard/>,
-    }
+    },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -34,13 +34,15 @@ export default function LoginForm() {
                 headers: {"Content-Type": "application/json"},
             }).then(function (response) {
             console.log(response);
-            alert(response.data.data.message)
             if (response.data.data.isLogin === true) {
+                alert("로그인 되었습니다!");
                 setCookie(COOKIES.loginInfo.name,
                     response.data.data, {
                         path: '/',
 
                     })
+
+                sessionStorage.setItem("token", response.data.data.token);
                 location.href = "/";
             }
         })

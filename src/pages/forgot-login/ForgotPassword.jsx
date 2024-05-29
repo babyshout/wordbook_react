@@ -29,19 +29,14 @@ export default function ForgotPassword() {
         console.log('data : ', data)
 
         // TODO login request here
-        axios.post(REQUEST_URL.student.postLogin,
+        axios.post(REQUEST_URL.student.postForgotResetPasswordForId,
             JSON.stringify(data), {
                 headers: {"Content-Type": "application/json"},
             }).then(function (response) {
             console.log(response);
-            alert(response.data.data.message)
-            if (response.data.data.isLogin === true) {
-                setCookie(COOKIES.loginInfo.name,
-                    response.data.data, {
-                        path: '/',
 
-                    })
-                location.href = "/";
+            if (response.data.isSueccess === true) {
+                alert(response.data.message);
             }
         })
     }
@@ -54,7 +49,7 @@ export default function ForgotPassword() {
     return (
         <>
             <FormContainer
-                defaultValues={{studentId: '123', password: ''}}
+                // defaultValues={{studentId: '123', password: ''}}
                 onSuccess={onSubmit}
                 onError={onError}
             >
@@ -64,7 +59,7 @@ export default function ForgotPassword() {
                         required
                         fullWidth
                         id={'studentId'}
-                        label={'ID'}
+                        label={'아이디'}
                         name={'studentId'}
                         autoComplete="id"
                         autoFocus
@@ -73,10 +68,10 @@ export default function ForgotPassword() {
                         margin={'normal'}
                         required
                         fullWidth
-                        id={'studentId'}
-                        label={'ID'}
-                        name={'studentId'}
-                        autoComplete="email"
+                        id={'name'}
+                        label={'이름'}
+                        name={'name'}
+                        autoComplete="name"
                     />
                     <TextFieldElement
                         color={'primary'}
@@ -84,7 +79,7 @@ export default function ForgotPassword() {
                         required
                         fullWidth
                         name={'email'}
-                        label={'Email'}
+                        label={'이메일'}
                         type={'email'}
                         id={'email'}
                         // autoComplete={''}

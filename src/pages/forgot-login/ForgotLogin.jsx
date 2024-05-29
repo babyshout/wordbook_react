@@ -36,7 +36,7 @@ export default function ForgotLogin() {
                     label={'아이디 찾기'}
                 />):(
                     <TypographyAndAvatar
-                    label={'비밀번호 찾기'}
+                    label={'비밀번호 재설정'}
             />)}
                 {/*login Form box start*/}
                 <Box
@@ -118,13 +118,13 @@ function SelectWhichButton({isForgotId, setIsForgotId}) {
                 key="forgot-password"
                 id="forgot-password"
                 onClick={(event) => {
-                    console.log("비밀번호 찾기 버튼 클릭!")
+                    console.log("비밀번호 재설정 버튼 클릭!")
                     console.log(event);
                     setIsForgotId(false);
                 }}
                 variant={!isForgotId ? 'contained' : 'outlined'}
             >
-                비밀번호 찾기
+                비밀번호 재설정
             </Button>
         </ButtonGroup>
         // </Box>

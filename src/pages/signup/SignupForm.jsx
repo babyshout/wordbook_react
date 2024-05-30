@@ -31,15 +31,18 @@ export default function SignupForm() {
         console.log('data : ', data);
         console.log('event : ', event);
         console.log('emailVerificationCode : ', emailVerificationCode);
+        console.log('data.emailVerificationCode', data.emailVerificationCode);
 
-        if (!isEmailVerified) {
-            alert("Please check your email verification code");
-            document.getElementById('emailVerificationCode').focus();
+        console.log("data.emailVerificationCode typeof", typeof data.emailVerificationCode)
+
+        if (!isEmailVerified && emailVerificationCode.code !== data.emailVerificationCode) {
+            alert("이메일코드를 확인해주세요");
+            document.getElementById('verification-code').focus();
             return
         }
 
         if (data.password !== data.passwordConfirm) {
-            alert("Please check your Password")
+            alert("비밀번호와 비밀번호 확인을 확인해주세요")
             return;
         }
 
@@ -70,20 +73,31 @@ export default function SignupForm() {
         console.log(errors, event);
     }
 
-    const handleEmailVerificationCodeSending = () => {
+    const handleEmailVerificationCodeSending = (data) => {
         // TODO axios 작동 확인하기
-        // axios.get(REQUEST_URL.getEmailVerficationCode,{
-        //     method: 'POST',
-        //     body: JSON.stringify(data),
-        //
-        // }).then(res => {
-        //     console.log(res)
-        //     setEmailVerificationCode(res.data);
-        // }).catch(err => console.log(err))
+        axios.post(REQUEST_URL.student.postGetEmailVerificationCode,
+            JSON.stringify(data), {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                }
+
+            }).then(res => {
+            console.log(res)
+            setEmailVerificationCode(res.data);
+
+            if (res.data.isEmailExists) {
+                setEmailVerificationCodeSent(false);
+                alert("이메일이 이미 존재합니다");
+                return;
+            }
+
+            alert("이메일 인증코드는 [" + res.data.code + "] 입니다.");
+            setEmailVerificationCodeSent(true);
+        }).catch(err => console.log(err))
 
         // TODO mock EmailVerificationCode 삭제하기
-        setEmailVerificationCode(mockEmailVerificationCode)
-        setEmailVerificationCodeSent(true);
+        // setEmailVerificationCode(mockEmailVerificationCode)
         console.log('emailVerificationCode ? ', emailVerificationCode);
         console.log('isEmailVerificationCodeSent ? ', isEmailVerificationCodeSent);
         console.log('emailVerificationCode ? ', emailVerificationCode);
@@ -107,13 +121,13 @@ export default function SignupForm() {
         }
 
         if (emailVerificationCode === '') {
-            handleEmailVerificationCodeSending()
             alert("이메일 인증코드가 발송되었습니다!")
+            handleEmailVerificationCodeSending(data)
             return
         }
         if (confirm('다시 이메일 확인코드를 보내시겠습니까?')) {
-            handleEmailVerificationCodeSending()
             alert("이메일 인증코드가 재발송되었습니다!")
+            handleEmailVerificationCodeSending(data)
             return
         }
 
@@ -179,7 +193,7 @@ export default function SignupForm() {
                         <TextFieldElement
                             required
                             fullWidth
-                            id="verfication-code"
+                            id="verification-code"
                             label="Email verification code"
                             name="emailVerificationCode"
                             autoComplete="email"

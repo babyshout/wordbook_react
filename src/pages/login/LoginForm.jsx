@@ -46,6 +46,8 @@ export default function LoginForm() {
                 sessionStorage.setItem("token", response.data.data.token);
                 location.href = "/";
             }
+        }).catch(function (error) {
+            console.log(error);
         })
     }
 

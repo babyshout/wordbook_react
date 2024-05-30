@@ -106,6 +106,7 @@ export default function Dashboard() {
             REQUEST_URL.student.loginSessionInformation,
             {
                 headers: "Content-Type: application/json",
+                withCredentials: true,
             }
         ).then(function (response) {
             console.log(response)

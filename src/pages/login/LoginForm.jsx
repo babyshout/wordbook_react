@@ -32,6 +32,7 @@ export default function LoginForm() {
         axios.post(REQUEST_URL.student.postLogin,
             JSON.stringify(data), {
                 headers: {"Content-Type": "application/json"},
+                withCredentials: true,
             }).then(function (response) {
             console.log(response);
             if (response.data.data.isLogin === true) {

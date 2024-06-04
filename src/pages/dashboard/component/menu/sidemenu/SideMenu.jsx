@@ -17,6 +17,7 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
         '& .MuiDrawer-paper': {
             // NOTE 왜인지는 모르나.. 원래 코드에는 relative 가 활성화 되어있지만,
             // 비활성화 하니 레이아웃이 제대로 보임
+            // FIXME 'relative' 가 꺼져있으니까.. sidebar ui 가 이쁘게 안나옴!
             // position: 'relative',
             whiteSpace: 'nowrap',
             width: drawerWidth,

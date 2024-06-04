@@ -39,7 +39,7 @@ function Copyright(props) {
     );
 }
 
-const drawerWidth = 240;
+// const drawerWidth = 240;
 
 // NOTE 맨위 중앙 nav bar
 const AppBar = styled(MuiAppBar, {
@@ -61,33 +61,33 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 // NOTE 왼쪽 메뉴 바
-const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})(
-    ({theme, open}) => ({
-        '& .MuiDrawer-paper': {
-            // NOTE 왜인지는 모르나.. 원래 코드에는 relative 가 활성화 되어있지만,
-            // 비활성화 하니 레이아웃이 제대로 보임
-            // position: 'relative',
-            whiteSpace: 'nowrap',
-            width: drawerWidth,
-            transition: theme.transitions.create('width', {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-            boxSizing: 'border-box',
-            ...(!open && {
-                overflowX: 'hidden',
-                transition: theme.transitions.create('width', {
-                    easing: theme.transitions.easing.sharp,
-                    duration: theme.transitions.duration.leavingScreen,
-                }),
-                width: theme.spacing(7),
-                [theme.breakpoints.up('sm')]: {
-                    width: theme.spacing(9),
-                },
-            }),
-        },
-    }),
-);
+// const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})(
+//     ({theme, open}) => ({
+//         '& .MuiDrawer-paper': {
+//             // NOTE 왜인지는 모르나.. 원래 코드에는 relative 가 활성화 되어있지만,
+//             // 비활성화 하니 레이아웃이 제대로 보임
+//             // position: 'relative',
+//             whiteSpace: 'nowrap',
+//             width: drawerWidth,
+//             transition: theme.transitions.create('width', {
+//                 easing: theme.transitions.easing.sharp,
+//                 duration: theme.transitions.duration.enteringScreen,
+//             }),
+//             boxSizing: 'border-box',
+//             ...(!open && {
+//                 overflowX: 'hidden',
+//                 transition: theme.transitions.create('width', {
+//                     easing: theme.transitions.easing.sharp,
+//                     duration: theme.transitions.duration.leavingScreen,
+//                 }),
+//                 width: theme.spacing(7),
+//                 [theme.breakpoints.up('sm')]: {
+//                     width: theme.spacing(9),
+//                 },
+//             }),
+//         },
+//     }),
+// );
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();

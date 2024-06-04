@@ -25,6 +25,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import REQUEST_URL from "/src/assets/enum/serverUrl.js"
+import SideMenu from "./component/sidemenu/SideMenu.jsx";
 
 function Copyright(props) {
     return (
@@ -60,34 +61,34 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-// NOTE 왼쪽 메뉴 바
-const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})(
-    ({theme, open}) => ({
-        '& .MuiDrawer-paper': {
-            // NOTE 왜인지는 모르나.. 원래 코드에는 relative 가 활성화 되어있지만,
-            // 비활성화 하니 레이아웃이 제대로 보임
-            // position: 'relative',
-            whiteSpace: 'nowrap',
-            width: drawerWidth,
-            transition: theme.transitions.create('width', {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-            boxSizing: 'border-box',
-            ...(!open && {
-                overflowX: 'hidden',
-                transition: theme.transitions.create('width', {
-                    easing: theme.transitions.easing.sharp,
-                    duration: theme.transitions.duration.leavingScreen,
-                }),
-                width: theme.spacing(7),
-                [theme.breakpoints.up('sm')]: {
-                    width: theme.spacing(9),
-                },
-            }),
-        },
-    }),
-);
+// // NOTE 왼쪽 메뉴 바
+// const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})(
+//     ({theme, open}) => ({
+//         '& .MuiDrawer-paper': {
+//             // NOTE 왜인지는 모르나.. 원래 코드에는 relative 가 활성화 되어있지만,
+//             // 비활성화 하니 레이아웃이 제대로 보임
+//             // position: 'relative',
+//             whiteSpace: 'nowrap',
+//             width: drawerWidth,
+//             transition: theme.transitions.create('width', {
+//                 easing: theme.transitions.easing.sharp,
+//                 duration: theme.transitions.duration.enteringScreen,
+//             }),
+//             boxSizing: 'border-box',
+//             ...(!open && {
+//                 overflowX: 'hidden',
+//                 transition: theme.transitions.create('width', {
+//                     easing: theme.transitions.easing.sharp,
+//                     duration: theme.transitions.duration.leavingScreen,
+//                 }),
+//                 width: theme.spacing(7),
+//                 [theme.breakpoints.up('sm')]: {
+//                     width: theme.spacing(9),
+//                 },
+//             }),
+//         },
+//     }),
+// );
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -176,26 +177,28 @@ export default function Dashboard() {
                         }
                     </Toolbar>
                 </AppBar>
-                <Drawer variant="permanent" open={open}>
-                    <Toolbar
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'flex-end',
-                            px: [1],
-                        }}
-                    >
-                        <IconButton onClick={toggleDrawer}>
-                            <ChevronLeftIcon/>
-                        </IconButton>
-                    </Toolbar>
-                    <Divider/>
-                    <List component="nav">
-                        {mainListItems}
-                        <Divider sx={{my: 1}}/>
-                        {secondaryListItems}
-                    </List>
-                </Drawer>
+                {/*NOTE 0604 SideMenu 컴포넌트 생성으로 기존 코드 삭제*/}
+                <SideMenu toggleDrawer={toggleDrawer} open={open}/>
+                {/*<Drawer variant="permanent" open={open}>*/}
+                {/*    <Toolbar*/}
+                {/*        sx={{*/}
+                {/*            display: 'flex',*/}
+                {/*            alignItems: 'center',*/}
+                {/*            justifyContent: 'flex-end',*/}
+                {/*            px: [1],*/}
+                {/*        }}*/}
+                {/*    >*/}
+                {/*        <IconButton onClick={toggleDrawer}>*/}
+                {/*            <ChevronLeftIcon/>*/}
+                {/*        </IconButton>*/}
+                {/*    </Toolbar>*/}
+                {/*    <Divider/>*/}
+                {/*    <List component="nav">*/}
+                {/*        {mainListItems}*/}
+                {/*        <Divider sx={{my: 1}}/>*/}
+                {/*        /!*{secondaryListItems}*!/*/}
+                {/*    </List>*/}
+                {/*</Drawer>*/}
                 <Box
                     component="main"
                     sx={{

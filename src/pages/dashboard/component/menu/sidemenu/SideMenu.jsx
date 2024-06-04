@@ -3,14 +3,12 @@ import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft.js";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
-import {mainListItems} from "../../listItems.jsx";
-import * as React from "react";
+import {mainListItems} from "./listItems.jsx";
 import {styled} from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
-// import {Drawer} from "@mui/material";
+import {drawerWidth} from "../Constants.js";
 
 
-const drawerWidth = 240;
 
 
 // NOTE 왼쪽 메뉴 바
@@ -41,6 +39,11 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
         },
     }),
 );
+
+// SideMenu.proptTypes = {
+//     toggleDrawer: PropTypes.func.isRequired,
+//     open: PropTypes.bool.isRequired,
+// }
 
 export default function SideMenu({toggleDrawer, open}) {
     return(

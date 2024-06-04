@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import {mainListItems, secondaryListItems} from './listItems.jsx';
+import {mainListItems, secondaryListItems} from './component/menu/sidemenu/listItems.jsx';
 import Chart from './Chart.jsx';
 import Deposits from './Deposits.jsx';
 import Orders from './Orders.jsx';
@@ -25,7 +25,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import REQUEST_URL from "/src/assets/enum/serverUrl.js"
-import SideMenu from "./component/sidemenu/SideMenu.jsx";
+import SideMenu from "./component/menu/sidemenu/SideMenu.jsx";
 
 function Copyright(props) {
     return (

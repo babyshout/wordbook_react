@@ -26,6 +26,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import REQUEST_URL from "/src/assets/enum/serverUrl.js"
 import SideMenu from "./component/menu/sidemenu/SideMenu.jsx";
+import UpperAppBar from "./component/menu/appbar/AppBar.jsx";
 
 function Copyright(props) {
     return (
@@ -39,27 +40,6 @@ function Copyright(props) {
         </Typography>
     );
 }
-
-const drawerWidth = 240;
-
-// NOTE 맨위 중앙 nav bar
-const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== 'open',
-})(({theme, open}) => ({
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(open && {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    }),
-}));
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -106,49 +86,14 @@ export default function Dashboard() {
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{display: 'flex'}}>
                 <CssBaseline/>
-                <AppBar position="absolute" open={open}>
-                    <Toolbar
-                        sx={{
-                            pr: '24px', // keep right padding when drawer closed
-                        }}
-                    >
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={toggleDrawer}
-                            sx={{
-                                marginRight: '36px',
-                                ...(open && {display: 'none'}),
-                            }}
-                        >
-                            <MenuIcon/>
-                        </IconButton>
-                        <Typography
-                            component="h1"
-                            variant="h6"
-                            color="inherit"
-                            noWrap
-                            sx={{flexGrow: 1}}
-                        >
-                            Dashboard
-                        </Typography>
-                        <IconButton color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <NotificationsIcon/>
-                            </Badge>
-                        </IconButton>
-                        {
-                            isLogin ?
-                                <Button color="inherit" onClick={handleLogoutButton}>
-                                    로그아웃
-                                </Button> :
-                                <Button color="inherit" href="/login">
-                                    로그인
-                                </Button>
-                        }
-                    </Toolbar>
-                </AppBar>
+                {/*맨위 AppBar 부분*/}
+                <UpperAppBar
+                    open={open}
+                    toggleDrawer={toggleDrawer}
+                    isLogin={isLogin}
+                    handleLogoutButton={handleLogoutButton}
+                />
+
 
                 {/*NOTE 0604 SideMenu 컴포넌트 생성으로 기존 코드 삭제*/}
                 {/*사이드 메뉴바!*/}
@@ -202,6 +147,8 @@ export default function Dashboard() {
                                 </Paper>
                             </Grid>
                         </Grid>
+
+                        {/*맨 아래 카피라이트 부분*/}
                         <Copyright sx={{pt: 4}}/>
                     </Container>
                 </Box>

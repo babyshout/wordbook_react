@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications.js";
 import Button from "@mui/material/Button";
-import * as React from "react";
 import {styled} from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import {drawerWidth} from "../Constants.js";

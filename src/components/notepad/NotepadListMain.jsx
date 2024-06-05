@@ -26,12 +26,12 @@ function Copyright(props) {
 
 export default function NotepadListMain({loginSessionInfo = null}) {
 
-    // console.log(loginSessionInfo);
-    //
-    // if (!loginSessionInfo) {
-    //     alert("로그인된 사용자만 이용가능한 서비스입니다");
-    //     // location.href = FRONT_URL.login;
-    // }
+    console.log(loginSessionInfo);
+
+    if (!loginSessionInfo) {
+        alert("로그인된 사용자만 이용가능한 서비스입니다");
+        // location.href = FRONT_URL.login;
+    }
 
     return (
         <Box

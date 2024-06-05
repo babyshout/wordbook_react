@@ -5,7 +5,7 @@ import SideMenu from "../../components/menu/sidemenu/SideMenu.jsx";
 import UpperAppBar from "../../components/menu/appbar/UpperAppBar.jsx";
 import useOpenState from "../../components/menu/hooks/useOpenState.js";
 import useLoginEffect from "../../components/menu/hooks/useLoginEffect.js";
-import MainExample from "../../components/dashboard/MainExample.jsx";
+import NotepadListMain from "../../components/notepad/NotepadListMain.jsx";
 
 
 
@@ -13,7 +13,7 @@ import MainExample from "../../components/dashboard/MainExample.jsx";
 const defaultTheme = createTheme();
 
 // NOTE Dashboard 컴포넌트 시작!!!
-export default function Dashboard({}) {
+export default function NotepadList() {
 
 
     // useOpenState 생성..
@@ -42,7 +42,7 @@ export default function Dashboard({}) {
                 <SideMenu toggleDrawer={toggleDrawer} open={open}/>
 
                 {/*애만 가져와서 신경쓰면 됨..*/}
-                <MainExample />
+                <NotepadListMain loginSessionInfo={loginSessionInfo}/>
 
             </Box>
         </ThemeProvider>

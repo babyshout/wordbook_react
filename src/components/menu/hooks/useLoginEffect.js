@@ -4,6 +4,7 @@ import REQUEST_URL from "../../../assets/enum/serverUrl.js";
 
 export default function useLoginEffect() {
     const [isLogin, setIsLogin] = useState(false)
+    const [loginSessionInfo, setLoginSessionInfo] = useState(null);
 // login 정보 session 에서 가져옴
     useEffect(() => {
         axios.get(
@@ -16,10 +17,12 @@ export default function useLoginEffect() {
             console.log(response)
             if (response.data !== null) {
                 setIsLogin(true)
+                setLoginSessionInfo(response.data);
             }
         }).catch(reason => {
             console.log(reason);
             setIsLogin(false)
+            setLoginSessionInfo(null);
         })
     }, [isLogin])
 
@@ -39,5 +42,5 @@ export default function useLoginEffect() {
             })
     }
 
-    return [isLogin, handleLogoutButton];
+    return [isLogin, loginSessionInfo, handleLogoutButton];
 }

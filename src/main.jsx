@@ -28,6 +28,7 @@ import {CookiesProvider} from "react-cookie";
 import ForgotLogin from "./pages/forgot-login/ForgotLogin.jsx";
 import ButtonGroupContainedWhenClickDemo from "./pages/demo/buttongroup-demo/ButtonGroupContainedWhenClickDemo.jsx";
 import FRONT_URL from "./assets/enum/frontUrl.js";
+import NotepadList from "./pages/notepad/NotepadList.jsx";
 
 const router = createBrowserRouter([
     {
@@ -75,9 +76,9 @@ const router = createBrowserRouter([
         element: <Dashboard/>,
     },
     {
-        path: FRONT_URL.notepad.notepadList,
+        path: FRONT_URL.notepad.list,
         // '/dashboard',
-        element: <Dashboard/>,
+        element: <NotepadList/>,
     },
 ]);
 

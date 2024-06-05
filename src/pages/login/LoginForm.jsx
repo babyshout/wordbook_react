@@ -7,6 +7,7 @@ import REQUEST_URL from "../../assets/enum/serverUrl.js";
 import axios from "axios";
 import {useCookies} from "react-cookie";
 import COOKIES from "../../assets/enum/cookies.js";
+import FRONT_URL from "../../assets/enum/frontUrl.js";
 
 
 export default function LoginForm() {
@@ -37,14 +38,17 @@ export default function LoginForm() {
             console.log(response);
             if (response.data.data.isLogin === true) {
                 alert("로그인 되었습니다!");
-                setCookie(COOKIES.loginInfo.name,
-                    response.data.data, {
-                        path: '/',
-
-                    })
+                // setCookie(COOKIES.loginInfo.name,
+                //     response.data.data, {
+                //         path: '/',
+                //
+                //     })
 
                 sessionStorage.setItem("token", response.data.data.token);
-                location.href = "/";
+                location.href = FRONT_URL.dashboard
+                    // "/";
+            } else {
+                alert("로그인 되지 않았습니다!");
             }
         }).catch(function (error) {
             console.log(error);

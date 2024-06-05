@@ -26,7 +26,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import REQUEST_URL from "/src/assets/enum/serverUrl.js"
 import SideMenu from "./component/menu/sidemenu/SideMenu.jsx";
-import UpperAppBar from "./component/menu/appbar/AppBar.jsx";
+import UpperAppBar from "./component/menu/appbar/UpperAppBar.jsx";
 import useOpenState from "./hooks/useOpenState.js";
 
 function Copyright(props) {

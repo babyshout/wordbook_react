@@ -26,7 +26,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import REQUEST_URL from "/src/assets/enum/serverUrl.js"
 import SideMenu from "./component/menu/sidemenu/SideMenu.jsx";
-import UpperAppBar from "./component/menu/appbar/AppBar.jsx";
+import UpperAppBar from "./component/menu/appbar/UpperAppBar.jsx";
 import useOpenState from "../notepad/hooks/useOpenState.js";
 
 function Copyright(props) {
@@ -64,7 +64,12 @@ export default function Dashboard() {
             }
         ).then(function (response) {
             console.log(response)
-            // setIsLogin(true)
+            if (response.data !== null) {
+                setIsLogin(true)
+            }
+        }).catch(reason => {
+            console.log(reason);
+            setIsLogin(false)
         })
     }, [isLogin])
 
@@ -74,6 +79,7 @@ export default function Dashboard() {
         axios.delete(REQUEST_URL.student.loginSessionInformation,
             {
                 headers: "Content-Type: application/json",
+                withCredentials: true,
             })
             .then((response) => {
                 console.log(response);

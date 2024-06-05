@@ -28,7 +28,7 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-export default function MyAppBar({open, toggleDrawer, isLogin, handleLogoutButton}) {
+export default function UpperAppBar({open, toggleDrawer, isLogin, handleLogoutButton}) {
 
     return (
         <AppBar position="absolute" open={open}>

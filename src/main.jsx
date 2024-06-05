@@ -27,6 +27,8 @@ import Dashboard from './pages/dashboard/Dashboard.jsx';
 import {CookiesProvider} from "react-cookie";
 import ForgotLogin from "./pages/forgot-login/ForgotLogin.jsx";
 import ButtonGroupContainedWhenClickDemo from "./pages/demo/buttongroup-demo/ButtonGroupContainedWhenClickDemo.jsx";
+import FRONT_URL from "./assets/enum/frontUrl.js";
+import FrontUrl from "./assets/enum/frontUrl.js";
 
 const router = createBrowserRouter([
     {
@@ -35,27 +37,33 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
     },
     {
-        path: '/hello-world',
+        path: FRONT_URL.hello_world,
+            //'/hello-world',
         element: <h1>HELLO WORLD!!!!</h1>
     },
     {
-        path: '/login',
+        path: FRONT_URL.login,
+            //'/login',
         element: <Login/>
     },
     {
-        path: '/signup',
+        path: FRONT_URL.signup,
+            //'/signup',
         element: <Signup/>
     },
     {
-        path: '/default-app',
+        path: FRONT_URL.default_app,
+            // '/default-app',
         element: <App/>
     },
     {
-        path: '/forgot-login',
+        path: FRONT_URL.forgot_login,
+            // '/forgot-login',
         element: <ForgotLogin/>,
     },
     {
-        path: '/demo/button-group-click-demo',
+        path: FRONT_URL.demo.button_group_click,
+        // '/demo/button-group-click-demo',
         element: <ButtonGroupContainedWhenClickDemo/>,
     },
     // {
@@ -63,7 +71,8 @@ const router = createBrowserRouter([
     //     element: <Dashboard/>,
     // },
     {
-        path: '/dashboard',
+        path: FRONT_URL.dashboard,
+            // '/dashboard',
         element: <Dashboard/>,
     },
 ]);

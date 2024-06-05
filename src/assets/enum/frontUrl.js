@@ -15,7 +15,8 @@ const FRONT_URL = {
     },
     dashboard: "/dashboard",
     notepad: {
-        list: notepadDefault + "/list"
+        list: notepadDefault + "/list",
+        detail: (notepadSeq) => notepadDefault + `/${notepadSeq}`,
     },
 }
 

@@ -1,5 +1,7 @@
 const defaultBackServerURL = "http://localhost:11000";
 
+const notepad = "/api/notepads/v1"
+
 const REQUEST_URL = {
     student: {
         // login, signup controller 와 연결됨
@@ -14,6 +16,13 @@ const REQUEST_URL = {
         deleteLoginSessionInformation: defaultBackServerURL + '/api/student/v1/login/deleteLoginSessionInformation',
         loginSessionInformation: defaultBackServerURL + '/api/student/v1/login/loginSessionInformation',
 
+    },
+
+    notepad: {
+        getNotepadList: defaultBackServerURL + notepad + "/notepad/getList",
+        getNotepad: (notepadSeq) => defaultBackServerURL + notepad + "/notepad/" + notepadSeq,
+        postCreateNotepad: defaultBackServerURL + notepad + "/notepad/" + "/createNotepad",
+        patchNotepad: (notepadSeq) => defaultBackServerURL + notepad + "/notepad/" + notepadSeq,
     }
 }
 

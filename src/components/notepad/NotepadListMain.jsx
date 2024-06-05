@@ -8,7 +8,6 @@ import Orders from "/src/components/dashboard/Orders.jsx";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import FRONT_URL from "../../assets/enum/frontUrl.js";
 
 function Copyright(props) {
     return (

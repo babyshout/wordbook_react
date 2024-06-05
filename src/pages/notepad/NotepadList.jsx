@@ -6,9 +6,7 @@ import UpperAppBar from "../../components/menu/appbar/UpperAppBar.jsx";
 import useOpenState from "../../components/menu/hooks/useOpenState.js";
 import useLoginEffect from "../../components/menu/hooks/useLoginEffect.js";
 import NotepadListMain from "../../components/notepad/NotepadListMain.jsx";
-import axios from "axios";
-import REQUEST_URL from "../../assets/enum/serverUrl.js";
-import {useMemo} from "react";
+
 
 
 // TODO remove, this demo shouldn't need to reset the theme.

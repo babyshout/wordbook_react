@@ -13,7 +13,7 @@ import MainExample from "../../components/dashboard/MainExample.jsx";
 const defaultTheme = createTheme();
 
 // NOTE Dashboard 컴포넌트 시작!!!
-export default function Dashboard({}) {
+export default function Dashboard() {
 
 
     // useOpenState 생성..

@@ -2,9 +2,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Chart from "/src/components/dashboard/Chart.jsx";
-import Deposits from "/src/components/dashboard/Deposits.jsx";
-import Orders from "/src/components/dashboard/Orders.jsx";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
@@ -12,6 +9,9 @@ import {useEffect, useState} from "react";
 import Notepad from "./Notepad.jsx";
 import axios from "axios";
 import serverUrl from "../../assets/enum/serverUrl.js";
+import Button from "@mui/material/Button";
+import {AppBar} from "@mui/material";
+import FRONT_URL from "../../assets/enum/frontUrl.js";
 
 function Copyright(props) {
     return (
@@ -39,7 +39,18 @@ function getMockNotepadResponseList() {
     for (let i = 0; i < 10; i++) {
         const notepadResponse = {
             notepadSeq: i,
-            content: "notepad 컨텐츠!! " + Math.random(),
+            content: "notepad 컨텐츠!! "
+                + ' ' +
+                Math.random()
+                + ' ' +
+                Math.random()
+                + ' ' +
+                Math.random()
+                + ' ' +
+                Math.random()
+                + ' ' +
+                Math.random()
+            ,
             regDate: new Date(),
             chgDate: new Date(),
         }
@@ -103,9 +114,47 @@ export default function NotepadListMain({loginSessionInfo = null}) {
                 overflow: 'auto',
             }}
         >
-            <Toolbar/>
+            <Toolbar
+            />
+            <AppBar
+                // position="fixed"
+                // position="absolute"
+                position="sticky"
+                // position="static"
+                // position="relative"
+
+            >
+                <Toolbar>
+                    {/*<IconButton*/}
+                    {/*    size="large"*/}
+                    {/*    edge="start"*/}
+                    {/*    color="inherit"*/}
+                    {/*    aria-label="menu"*/}
+                    {/*    sx={{ mr: 2 }}*/}
+                    {/*>*/}
+                    {/*    <MenuIcon />*/}
+                    {/*</IconButton>*/}
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        메뉴
+                    </Typography>
+                    <Button
+                        color="inherit"
+                        href={FRONT_URL.notepad.write}
+                    >글쓰기</Button>
+                </Toolbar>
+            </AppBar>
+
+
             <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
                 <Grid container spacing={3}>
+                    {/*<Grid item>*/}
+
+                    {/*<Button*/}
+                    {/*    aria-label={'123123'}*/}
+                    {/*    >*/}
+                    {/*    /!*!!!!*!/*/}
+                    {/*</Button>*/}
+                    {/*</Grid>*/}
 
                     {/* Recent Deposits */}
                     {notepadList.map((notepad) => (
@@ -115,7 +164,7 @@ export default function NotepadListMain({loginSessionInfo = null}) {
                                     p: 2,
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    height: 240,
+                                    // height: 240,
                                 }}
                             >
                                 {/*<Deposits/>*/}
@@ -123,6 +172,8 @@ export default function NotepadListMain({loginSessionInfo = null}) {
                             </Paper>
                         </Grid>
                     ))}
+
+
                     <Grid item xs={12} md={4} lg={3}>
                         <Paper
                             sx={{
@@ -132,6 +183,7 @@ export default function NotepadListMain({loginSessionInfo = null}) {
                                 height: 240,
                             }}
                         >
+                            테스트용 바로뜨는 notepad
                             {/*<Deposits/>*/}
                             <Notepad/>
                         </Paper>

@@ -17,6 +17,7 @@ const FRONT_URL = {
     notepad: {
         list: notepadDefault + "/list",
         detail: (notepadSeq) => notepadDefault + `/${notepadSeq}`,
+        write: notepadDefault + "/write",
     },
 }
 

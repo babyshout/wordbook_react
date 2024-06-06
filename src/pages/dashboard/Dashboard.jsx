@@ -34,6 +34,7 @@ export default function Dashboard() {
                     toggleDrawer={toggleDrawer}
                     isLogin={isLogin}
                     handleLogoutButton={handleLogoutButton}
+                    mainTitle={"DashBoard"}
                 />
 
 

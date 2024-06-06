@@ -27,7 +27,7 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-export default function UpperAppBar({open, toggleDrawer, isLogin, handleLogoutButton}) {
+export default function UpperAppBar({open, toggleDrawer, isLogin, handleLogoutButton, mainTitle}) {
 
     return (
         <AppBar position="absolute" open={open}>
@@ -55,7 +55,11 @@ export default function UpperAppBar({open, toggleDrawer, isLogin, handleLogoutBu
                     noWrap
                     sx={{flexGrow: 1}}
                 >
-                    Dashboard
+                    {
+                        mainTitle
+                        ||
+                        'mainTitle 지정안됨!!'
+                    }
                 </Typography>
                 <IconButton color="inherit">
                     <Badge badgeContent={4} color="secondary">

@@ -35,6 +35,7 @@ export default function NotepadList() {
                     toggleDrawer={toggleDrawer}
                     isLogin={isLogin}
                     handleLogoutButton={handleLogoutButton}
+                    mainTitle={'공부메모장 목록'}
                 />
 
 

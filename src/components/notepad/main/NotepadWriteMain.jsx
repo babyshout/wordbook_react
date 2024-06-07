@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import {AppBar} from "@mui/material";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
 import {Copyright} from "@mui/icons-material";
+import NotepadWrite from "../NotepadWrite.jsx";
 
 
 
@@ -125,18 +126,13 @@ export default function NotepadWriteMain({loginSessionInfo = null}) {
 
             >
                 <Toolbar>
-                    {/*<IconButton*/}
-                    {/*    size="large"*/}
-                    {/*    edge="start"*/}
-                    {/*    color="inherit"*/}
-                    {/*    aria-label="menu"*/}
-                    {/*    sx={{ mr: 2 }}*/}
-                    {/*>*/}
-                    {/*    <MenuIcon />*/}
-                    {/*</IconButton>*/}
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         메뉴
                     </Typography>
+                    <Button
+                        color="inherit"
+                        href={FRONT_URL.notepad.list}
+                    >공부메모장 리스트로 돌아가기</Button>
                     <Button
                         color="inherit"
                         href={FRONT_URL.notepad.write}
@@ -147,62 +143,23 @@ export default function NotepadWriteMain({loginSessionInfo = null}) {
 
             <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
                 <Grid container spacing={3}>
-                    {/*<Grid item>*/}
 
-                    {/*<Button*/}
-                    {/*    aria-label={'123123'}*/}
-                    {/*    >*/}
-                    {/*    /!*!!!!*!/*/}
-                    {/*</Button>*/}
-                    {/*</Grid>*/}
-
-                    {/* Recent Deposits */}
-                    {notepadList.map((notepad) => (
-                        <Grid item xs={12} md={4} lg={3} key={notepad.notepadSeq}>
-                            <Paper
-                                sx={{
-                                    p: 2,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    height: 240,
-                                    overflow: 'auto',
-                                }}
-                            >
-                                {/*<Deposits/>*/}
-                                <Notepad notepadResponse={notepad}/>
-                            </Paper>
-                        </Grid>
-                    ))}
-
-
-                    <Grid item xs={12} md={4} lg={3}>
+                    <Grid
+                        item
+                    >
                         <Paper
                             sx={{
                                 p: 2,
                                 display: 'flex',
                                 flexDirection: 'column',
-                                height: 240,
+                                height: "70vh",
+                                width: "80vw",
+                                // height: 'inherit',
+                                // width: 'inherit',
                                 overflow: 'auto',
                             }}
                         >
-                            {/*테스트용 바로뜨는 notepad*/}
-                            {/*<Deposits/>*/}
-                            <Notepad/>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} md={4} lg={3}>
-                        <Paper
-                            sx={{
-                                p: 2,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                height: 240,
-                                overflow: 'auto',
-                            }}
-                        >
-                            {/*테스트용 바로뜨는 notepad*/}
-                            {/*<Deposits/>*/}
-                            <Notepad/>
+                            <NotepadWrite />
                         </Paper>
                     </Grid>
 

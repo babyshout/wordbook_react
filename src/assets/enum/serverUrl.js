@@ -21,7 +21,7 @@ const REQUEST_URL = {
     notepad: {
         getNotepadList: defaultBackServerURL + notepad + "/notepad/getList",
         getNotepad: (notepadSeq) => defaultBackServerURL + notepad + "/notepad/" + notepadSeq,
-        postCreateNotepad: defaultBackServerURL + notepad + "/notepad/" + "/createNotepad",
+        postCreateNotepad: defaultBackServerURL + notepad + "/notepad" + "/createNotepad",
         patchNotepad: (notepadSeq) => defaultBackServerURL + notepad + "/notepad/" + notepadSeq,
     }
 }

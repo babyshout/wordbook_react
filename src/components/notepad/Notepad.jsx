@@ -56,13 +56,15 @@ export default function Notepad({
                     <div>
                         {
                             '등록한 날짜 ' +
-                            (regDate.toLocaleDateString() || '')
+                            (regDate || '')
+                            // (regDate.toLocaleDateString() || '')
                         }
                     </div>
                     <div>
                         {
                             '수정된 날짜 ' +
-                            (chgDate.toLocaleDateString() || '')
+                            (chgDate || '')
+                            // (chgDate.toLocaleDateString() || '')
                         }
                     </div>
                     {/*changed on {chgDate}*/}

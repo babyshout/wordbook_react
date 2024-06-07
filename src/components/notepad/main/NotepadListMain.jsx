@@ -86,12 +86,14 @@ export default function NotepadListMain({loginSessionInfo = null}) {
             }
         ).then((response) => {
             console.log(response)
+            setNotepadList(response.data);
         }).catch((reason) => {
             console.log(reason)
+            alert("알수없는 문제 발생")
         })
 
 
-        setNotepadList(getMockNotepadResponseList())
+        // setNotepadList(getMockNotepadResponseList())
         console.log(notepadList);
     }
 

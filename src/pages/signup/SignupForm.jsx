@@ -53,6 +53,7 @@ export default function SignupForm() {
         axios.post(REQUEST_URL.student.postSignup,
             JSON.stringify(data), {
                 headers: {"Content-Type": "application/json",},
+                withCredentials: true,
             }
         ).then(function (response) {
             console.log(response);

@@ -5,7 +5,6 @@ import SideMenu from "../../components/menu/sidemenu/SideMenu.jsx";
 import UpperAppBar from "../../components/menu/appbar/UpperAppBar.jsx";
 import useOpenState from "../../components/menu/hooks/useOpenState.js";
 import useLoginEffect from "../../components/menu/hooks/useLoginEffect.js";
-import NotepadDetailMain from "../../components/notepad/main/NotepadDetailMain.jsx"
 import NotepadUpdateMain from "../../components/notepad/main/NotepadUpdateMain.jsx";
 
 

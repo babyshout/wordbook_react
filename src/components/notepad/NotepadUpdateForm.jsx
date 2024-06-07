@@ -1,14 +1,12 @@
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import Title from "../dashboard/Title.jsx";
-import FRONT_URL from "../../assets/enum/frontUrl.js";
 import Grid from "@mui/material/Grid";
-import {FormContainer, TextFieldElement} from "react-hook-form-mui";
+import {FormContainer, TextFieldElement, useForm, useFormContext} from "react-hook-form-mui";
 import Button from "@mui/material/Button";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import serverUrl from "../../assets/enum/serverUrl.js";
 import {useParams} from "react-router-dom";
+import TextField from "@mui/material/TextField";
 
 // function preventDefault(event) {
 //     event.preventDefault();
@@ -27,7 +25,7 @@ export default function NotepadUpdateForm({
 
     // const {content, regDate, chgDate} = notepadResponse;
 
-    const [contentOfNotepad, setContentOfNotepad] = useState(null);
+    const [contentOfNotepad, setContentOfNotepad] = useState('11123123');
 
     // console.log(content);
 
@@ -44,6 +42,13 @@ export default function NotepadUpdateForm({
     console.log("useParams() -> ", useParams());
 
 
+    // const { setValue } = useFormContext();
+    // const methods = useForm({
+    //     defaultValues: {
+    //         content: contentOfNotepad
+    //     }
+    // });
+
     useEffect(() => {
         console.log(serverUrl.notepad.getNotepad(notepadSeq))
         axios.get(
@@ -57,8 +62,15 @@ export default function NotepadUpdateForm({
         ).then(response => {
             console.log(response)
             const data = response.data;
+            console.log(data)
+            console.log(data.content)
+
+            // methods.setValue('content', data.content); // 이 부분이 중요합니다.
 
             setNotepadResponse(data)
+            setContentOfNotepad(data.content)
+            console.log(contentOfNotepad)
+            console.log(notepadResponse)
 
         }).catch(reason => {
             console.log(reason)
@@ -69,11 +81,13 @@ export default function NotepadUpdateForm({
         event.preventDefault();
         console.log('data -> ', data);
         console.log('event -> ', event);
+        console.log('event.target.content -> ', event.target.content);
+        console.log('event.target.content.value -> ', event.target.content.value);
 
-        setContentOfNotepad(data.content);
+        setContentOfNotepad(event.target.content.value);
 
         axios.patch(
-            serverUrl.notepad.postCreateNotepad,
+            serverUrl.notepad.patchNotepad(notepadSeq),
             JSON.stringify(data),
             {
                 headers: {
@@ -104,20 +118,46 @@ export default function NotepadUpdateForm({
                 item
             >
                 <FormContainer
+
                     onSuccess={onSuccess}
                     onError={onError}
+                //     defaultValues={{
+                //         content: contentOfNotepad
+                // }}
                 >
-                    <TextFieldElement
+                    {/*<TextFieldElement*/}
+                    {/*    name={'content'}*/}
+                    {/*    id={'content'}*/}
+                    {/*    required*/}
+                    {/*    fullWidth*/}
+                    {/*    // rows={10}*/}
+                    {/*    multiline*/}
+                    {/*    // value={notepadResponse.content}*/}
+                    {/*    value={contentOfNotepad}*/}
+                    {/*    // value={contentOfNotepad}*/}
+                    {/*    onChange={(event) => {*/}
+                    {/*        // setContentOfNotepad(event.target.value)*/}
+
+                    {/*        // setContentOfNotepad(event.target.value);*/}
+                    {/*        methods.setValue('content', event.target.value);*/}
+                    {/*    }}*/}
+                    {/*>*/}
+
+                    {/*</TextFieldElement>*/}
+                    <TextField
                         name={'content'}
                         id={'content'}
                         required
                         fullWidth
                         // rows={10}
                         multiline
-                        value={notepadResponse.content}
+                        // value={notepadResponse.content}
+                        value={contentOfNotepad}
+                        // value={contentOfNotepad}
+                        onChange={(event) => setContentOfNotepad(event.target.value)}
                     >
 
-                    </TextFieldElement>
+                    </TextField>
                     <Button
                         type={'submit'}
                         color={'primary'}

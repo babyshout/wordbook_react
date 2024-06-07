@@ -1,6 +1,4 @@
 import NotepadUpdateForm from "../NotepadUpdateForm.jsx";
-
-NotepadUpdateMain
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -14,9 +12,7 @@ import Button from "@mui/material/Button";
 import {AppBar} from "@mui/material";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
 import {Copyright} from "@mui/icons-material";
-
-
-
+import {useParams} from "react-router-dom";
 
 
 /*
@@ -32,13 +28,32 @@ export default function NotepadUpdateMain({loginSessionInfo = null}) {
         location.href = FRONT_URL.login;
     }
 
+    // const {notepadSeq} = useParams()
+    //
+    // const [notepadResponse, setNotepadResponse] = useState({
+    //     notepadSeq: notepadSeq,
+    //     chgDate: new Date().toLocaleDateString(),
+    //     regDate: new Date().toLocaleDateString(),
+    //     content: '',
+    // })
+    //
+    // useEffect(() => {
+    //     axios.get(
+    //         serverUrl.notepad.getNotepad(notepadSeq),
+    //         {
+    //             headers: {"Content-Type": "application/json"},
+    //             withCredentials: true,
+    //         }
+    //     ).then(response => {
+    //         console.log(response)
+    //         setNotepadResponse(response.data)
+    //     }).catch(reason => {
+    //         console.log(reason)
+    //         alert(notepadSeq + "로 데이터 가져오기 실패..!!")
+    //         setNotepadResponse(null);
+    //     })
+    // }, []);
 
-
-    // getNotepadList();
-
-    useEffect(() => {
-        getNotepadList()
-    }, []);
 
     return (
         <Box
@@ -71,7 +86,7 @@ export default function NotepadUpdateMain({loginSessionInfo = null}) {
 
             >
                 <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         메뉴
                     </Typography>
                     <Button
@@ -104,7 +119,7 @@ export default function NotepadUpdateMain({loginSessionInfo = null}) {
                                 overflow: 'auto',
                             }}
                         >
-                            <NotepadUpdateForm />
+                            <NotepadUpdateForm/>
                         </Paper>
                     </Grid>
 

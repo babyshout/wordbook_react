@@ -17,6 +17,12 @@ export default function LoginForm() {
      */
     const [cookies, setCookie, removeCookie] = useCookies()
 
+    // const handleValueToValid = (value) => {
+    //     value =
+    // }
+
+    const [studentIdValue, setStudentIdValue] = useState('')
+
     const onSubmit = (data, event) => {
         // event.preventDefault();
         console.log('Login Form submit START!!')
@@ -78,6 +84,18 @@ export default function LoginForm() {
                         name={'studentId'}
                         autoComplete="email"
                         autoFocus
+                        value={studentIdValue}
+                        onChange={(event) => {
+                            console.log(event);
+                            console.log(event.target.value)
+                            console.log(studentIdValue)
+                            event.target.value = event.target.value
+                                .replace(/[\W]/, '');
+                            setStudentIdValue(studentIdValue
+                                .replace(/[\W]/, ''))
+                            setStudentIdValue( event.target.value
+                                .replace(/[\W]/, ''))
+                        }}
                     />
                     <TextFieldElement
                         color={'primary'}

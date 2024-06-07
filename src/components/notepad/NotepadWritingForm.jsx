@@ -13,7 +13,7 @@ import serverUrl from "../../assets/enum/serverUrl.js";
 //     event.preventDefault();
 // }
 
-export default function NotepadWrite({
+export default function NotepadWritingForm({
                                          notepadResponse = {
                                              notepadSeq: 1,
                                              content: '123',
@@ -48,6 +48,12 @@ export default function NotepadWrite({
             }
         ).then(response => {
             console.log(response)
+
+            const notepadSeq = response.data.notepadSeq
+            console.log("notepadSeq -> ", notepadSeq)
+            if(notepadSeq) {
+                location.href = FRONT_URL.notepad.detail(notepadSeq)
+            }
         }).catch(reason => {
             console.log(reason)
         })

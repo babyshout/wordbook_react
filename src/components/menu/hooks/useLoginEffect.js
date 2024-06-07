@@ -30,10 +30,10 @@ export default  function useLoginEffect() {
                     setLoginSessionInfo(null);
                     return null;
                 })
-                console.log("myValue -> ", myValue)
+                // console.log("myValue -> ", myValue)
             }
             const value = getLoginSessionInfo()
-            console.log("value -> ", value)
+            // console.log("value -> ", value)
         // }
     }, [isLogin])
 

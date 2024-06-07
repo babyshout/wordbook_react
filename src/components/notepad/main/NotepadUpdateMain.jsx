@@ -1,3 +1,6 @@
+import NotepadUpdateForm from "../NotepadUpdateForm.jsx";
+
+NotepadUpdateMain
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -5,88 +8,30 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {useEffect, useState} from "react";
-import Notepad from "../Notepad.jsx";
 import axios from "axios";
 import serverUrl from "../../../assets/enum/serverUrl.js";
 import Button from "@mui/material/Button";
 import {AppBar} from "@mui/material";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
 import {Copyright} from "@mui/icons-material";
-import NotepadWritingForm from "../NotepadWritingForm.jsx";
 
 
 
-// let notepadResponse = {
-//     notepadSeq: 1,
-//     content: "",
-//     regDate: null,
-//     chgDate: null,
-// }
-
-function getMockNotepadResponseList() {
-    let notepadResponseList = [];
-
-    for (let i = 0; i < 10; i++) {
-        const notepadResponse = {
-            notepadSeq: i,
-            content: "notepad 컨텐츠!! "
-                + ' ' +
-                Math.random()
-                + ' ' +
-                Math.random()
-                + ' ' +
-                Math.random()
-                + ' ' +
-                Math.random()
-                + ' ' +
-                Math.random()
-            ,
-            regDate: new Date(),
-            chgDate: new Date(),
-        }
-        notepadResponseList.push(notepadResponse);
-    }
-
-    return notepadResponseList;
-}
 
 
 /*
 TODO notepadReseponse 가지고 mock 데이터 만들어서 레이아웃 확인하기
  */
-export default function NotepadWriteMain({loginSessionInfo = null}) {
+export default function NotepadUpdateMain({loginSessionInfo = null}) {
 
     console.log(loginSessionInfo);
 
-    const [notepadList, setNotepadList] = useState([]);
 
     if (!loginSessionInfo) {
         alert("로그인된 사용자만 이용가능한 서비스입니다");
         location.href = FRONT_URL.login;
     }
 
-    function getNotepadList() {
-        console.log("getNotepadList 호출 시작!!!!");
-        axios.get(
-            serverUrl.notepad.getNotepadList,
-            {
-                headers: {"Content-Type": "application/json"},
-                withCredentials: true,
-            }
-        ).then((response) => {
-            console.log(response)
-            setNotepadList(response.data)
-        }).catch((reason) => {
-            console.log(reason)
-            // setNotepadList(reason.response.data);
-            console.log("notepadList 비어있음")
-            // setNotepadList([]);
-        })
-
-
-        // setNotepadList(getMockNotepadResponseList())
-        console.log(notepadList);
-    }
 
 
     // getNotepadList();
@@ -159,7 +104,7 @@ export default function NotepadWriteMain({loginSessionInfo = null}) {
                                 overflow: 'auto',
                             }}
                         >
-                            <NotepadWritingForm />
+                            <NotepadUpdateForm />
                         </Paper>
                     </Grid>
 

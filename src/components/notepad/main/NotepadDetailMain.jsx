@@ -13,6 +13,7 @@ import {AppBar} from "@mui/material";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
 import {Copyright} from "@mui/icons-material";
 import NotepadWritingForm from "../NotepadWritingForm.jsx";
+import NotepadDetailPaper from "../NotepadDetailPaper.jsx";
 
 
 
@@ -23,32 +24,6 @@ import NotepadWritingForm from "../NotepadWritingForm.jsx";
 //     chgDate: null,
 // }
 
-function getMockNotepadResponseList() {
-    let notepadResponseList = [];
-
-    for (let i = 0; i < 10; i++) {
-        const notepadResponse = {
-            notepadSeq: i,
-            content: "notepad 컨텐츠!! "
-                + ' ' +
-                Math.random()
-                + ' ' +
-                Math.random()
-                + ' ' +
-                Math.random()
-                + ' ' +
-                Math.random()
-                + ' ' +
-                Math.random()
-            ,
-            regDate: new Date(),
-            chgDate: new Date(),
-        }
-        notepadResponseList.push(notepadResponse);
-    }
-
-    return notepadResponseList;
-}
 
 
 /*
@@ -58,42 +33,14 @@ export default function NotepadWriteMain({loginSessionInfo = null}) {
 
     console.log(loginSessionInfo);
 
-    const [notepadList, setNotepadList] = useState([]);
 
     if (!loginSessionInfo) {
         alert("로그인된 사용자만 이용가능한 서비스입니다");
         location.href = FRONT_URL.login;
     }
 
-    function getNotepadList() {
-        console.log("getNotepadList 호출 시작!!!!");
-        axios.get(
-            serverUrl.notepad.getNotepadList,
-            {
-                headers: {"Content-Type": "application/json"},
-                withCredentials: true,
-            }
-        ).then((response) => {
-            console.log(response)
-            setNotepadList(response.data)
-        }).catch((reason) => {
-            console.log(reason)
-            // setNotepadList(reason.response.data);
-            console.log("notepadList 비어있음")
-            // setNotepadList([]);
-        })
 
 
-        // setNotepadList(getMockNotepadResponseList())
-        console.log(notepadList);
-    }
-
-
-    // getNotepadList();
-
-    useEffect(() => {
-        getNotepadList()
-    }, []);
 
     return (
         <Box
@@ -159,7 +106,7 @@ export default function NotepadWriteMain({loginSessionInfo = null}) {
                                 overflow: 'auto',
                             }}
                         >
-                            <NotepadWritingForm />
+                            <NotepadDetailPaper />
                         </Paper>
                     </Grid>
 

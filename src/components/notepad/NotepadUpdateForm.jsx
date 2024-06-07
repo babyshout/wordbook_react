@@ -7,19 +7,20 @@ import axios from "axios";
 import serverUrl from "../../assets/enum/serverUrl.js";
 import {useParams} from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import FRONT_URL from "../../assets/enum/frontUrl.js";
 
 // function preventDefault(event) {
 //     event.preventDefault();
 // }
 
 export default function NotepadUpdateForm({
-                                               // notepadResponse = {
-                                               //     notepadSeq: 1,
-                                               //     content: '123',
-                                               //     regDate: new Date(),
-                                               //     chgDate: new Date(),
-                                               // }
-                                           }) {
+                                              // notepadResponse = {
+                                              //     notepadSeq: 1,
+                                              //     content: '123',
+                                              //     regDate: new Date(),
+                                              //     chgDate: new Date(),
+                                              // }
+                                          }) {
 
     // console.log(notepadResponse);
 
@@ -86,9 +87,15 @@ export default function NotepadUpdateForm({
 
         setContentOfNotepad(event.target.content.value);
 
+        const sendingData = {
+            content: event.target.content.value,
+            notepadSeq: notepadSeq,
+        }
+        console.log(sendingData)
+
         axios.patch(
             serverUrl.notepad.patchNotepad(notepadSeq),
-            JSON.stringify(data),
+            JSON.stringify(sendingData),
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -97,8 +104,14 @@ export default function NotepadUpdateForm({
             }
         ).then(response => {
             console.log(response)
+            const resultNotepadSeq = response.data.notepadSeq
+            if(resultNotepadSeq) {
+                alert("업데이트 성공")
+                location.href = FRONT_URL.notepad.detail(resultNotepadSeq)
+            }
         }).catch(reason => {
             console.log(reason)
+            alert("업데이트 실패...")
         })
     }
 
@@ -121,9 +134,9 @@ export default function NotepadUpdateForm({
 
                     onSuccess={onSuccess}
                     onError={onError}
-                //     defaultValues={{
-                //         content: contentOfNotepad
-                // }}
+                    //     defaultValues={{
+                    //         content: contentOfNotepad
+                    // }}
                 >
                     {/*<TextFieldElement*/}
                     {/*    name={'content'}*/}

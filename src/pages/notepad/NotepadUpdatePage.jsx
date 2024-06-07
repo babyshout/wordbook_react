@@ -35,7 +35,7 @@ export default function NotepadUpdatePage() {
                     toggleDrawer={toggleDrawer}
                     isLogin={isLogin}
                     handleLogoutButton={handleLogoutButton}
-                    mainTitle={'공부메모장 상세보기'}
+                    mainTitle={'공부메모장 업데이트'}
                 />
 
 

@@ -62,6 +62,23 @@ export default function NotepadDetailPaper({
     const handleDeleteOnclick = (event) => {
         console.log(event)
         // event.preventDefault()
+
+        axios.delete(
+            serverUrl.notepad.getNotepad(notepadSeq),
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                withCredentials: true,
+            }
+        ).then(response => {
+            console.log(response)
+            alert("삭제 성공!!")
+            location.href = FRONT_URL.notepad.list;
+        }).catch(reason => {
+            console.log(reason)
+            alert("삭제 실패!!")
+        })
     }
 
     return (

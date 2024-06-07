@@ -22,6 +22,7 @@ import Signup from "./pages/signup/Signup.jsx";
 import ErrorPage from "./pages/error-page/error-page.jsx";
 import App from './App.jsx';
 import Dashboard from './pages/dashboard/Dashboard.jsx';
+import NotepadWrite from './pages/notepad/NotepadWrite.jsx'
 
 // react cookie
 import {CookiesProvider} from "react-cookie";
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
         // '/dashboard',
         element: <NotepadList/>,
     },
+    {
+        path: FRONT_URL.notepad.write,
+        element: <NotepadWrite />
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

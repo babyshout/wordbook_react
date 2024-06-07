@@ -17,20 +17,12 @@ export default function Notepad({
                                     }
                                 }) {
 
-    console.log(notepadResponse);
+    // console.log(notepadResponse);
 
     const {notepadSeq, content, regDate, chgDate} = notepadResponse;
 
     console.log(content);
-    // alert(chgDate)
-    // console.log('chgDate -> ' + chgDate)
-    // console.log('chgDate -> ' + chgDate.toDateString())
-    // console.log('chgDate -> ' + chgDate.toLocaleString())
-    // console.log('chgDate -> ' + chgDate.toISOString())
-    console.log('chgDate -> ' + chgDate.toLocaleDateString())
-    // console.log('chgDate -> ' + chgDate.toLocaleTimeString())
-    // console.log('chgDate -> ' + chgDate.toTimeString())
-    // console.log('chgDate -> ' + chgDate.toUTCString())
+
 
     return (
 
@@ -43,8 +35,6 @@ export default function Notepad({
             <Grid
                 item
             >
-
-                <Title>Recent Deposits</Title>
                 <Typography
                     component="p"
                     // variant="h4"
@@ -64,14 +54,12 @@ export default function Notepad({
                 {/*</Typography>*/}
                 <Typography color="text.secondary" sx={{flex: 1}}>
                     <div>
-
                         {
                             '등록한 날짜 ' +
                             (regDate.toLocaleDateString() || '')
                         }
                     </div>
                     <div>
-
                         {
                             '수정된 날짜 ' +
                             (chgDate.toLocaleDateString() || '')

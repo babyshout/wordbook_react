@@ -4,27 +4,16 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import {useEffect, useState} from "react";
-import Notepad from "./Notepad.jsx";
+import Notepad from "../Notepad.jsx";
 import axios from "axios";
-import serverUrl from "../../assets/enum/serverUrl.js";
+import serverUrl from "../../../assets/enum/serverUrl.js";
 import Button from "@mui/material/Button";
 import {AppBar} from "@mui/material";
-import FRONT_URL from "../../assets/enum/frontUrl.js";
+import FRONT_URL from "../../../assets/enum/frontUrl.js";
+import {Copyright} from "@mui/icons-material";
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+
 
 // let notepadResponse = {
 //     notepadSeq: 1,
@@ -64,7 +53,7 @@ function getMockNotepadResponseList() {
 /*
 TODO notepadReseponse 가지고 mock 데이터 만들어서 레이아웃 확인하기
  */
-export default function NotepadListMain({loginSessionInfo = null}) {
+export default function NotepadWriteMain({loginSessionInfo = null}) {
 
     console.log(loginSessionInfo);
 
@@ -85,12 +74,16 @@ export default function NotepadListMain({loginSessionInfo = null}) {
             }
         ).then((response) => {
             console.log(response)
+            setNotepadList(response.data)
         }).catch((reason) => {
             console.log(reason)
+            // setNotepadList(reason.response.data);
+            console.log("notepadList 비어있음")
+            // setNotepadList([]);
         })
 
 
-        setNotepadList(getMockNotepadResponseList())
+        // setNotepadList(getMockNotepadResponseList())
         console.log(notepadList);
     }
 
@@ -113,6 +106,7 @@ export default function NotepadListMain({loginSessionInfo = null}) {
                 height: '100vh',
                 overflow: 'auto',
             }}
+
         >
             <Toolbar
             />
@@ -164,7 +158,8 @@ export default function NotepadListMain({loginSessionInfo = null}) {
                                     p: 2,
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    // height: 240,
+                                    height: 240,
+                                    overflow: 'auto',
                                 }}
                             >
                                 {/*<Deposits/>*/}
@@ -181,9 +176,25 @@ export default function NotepadListMain({loginSessionInfo = null}) {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 height: 240,
+                                overflow: 'auto',
                             }}
                         >
-                            테스트용 바로뜨는 notepad
+                            {/*테스트용 바로뜨는 notepad*/}
+                            {/*<Deposits/>*/}
+                            <Notepad/>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12} md={4} lg={3}>
+                        <Paper
+                            sx={{
+                                p: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: 240,
+                                overflow: 'auto',
+                            }}
+                        >
+                            {/*테스트용 바로뜨는 notepad*/}
                             {/*<Deposits/>*/}
                             <Notepad/>
                         </Paper>

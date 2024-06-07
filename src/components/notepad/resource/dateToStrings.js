@@ -1,0 +1,8 @@
+// console.log('chgDate -> ' + new Date())
+// console.log('chgDate -> ' + new Date().toDateString())
+// console.log('chgDate -> ' + new Date().toLocaleString())
+// console.log('chgDate -> ' + new Date().toISOString())
+console.log('chgDate -> ' + new Date().toLocaleDateString())
+// console.log('chgDate -> ' + new Date().toLocaleTimeString())
+// console.log('chgDate -> ' + new Date().toTimeString())
+// console.log('chgDate -> ' + new Date().toUTCString())

@@ -166,36 +166,36 @@ export default function NotepadListMain({loginSessionInfo = null}) {
                     // fullwidth
                 >
 
-                    {/*{notepadList.map((notepad) => (*/}
-                    {/*    <Grid item xs={12} md={4} lg={3} key={notepad.notepadSeq}>*/}
-                    {/*        <Paper*/}
-                    {/*            sx={{*/}
-                    {/*                p: 2,*/}
-                    {/*                display: 'flex',*/}
-                    {/*                flexDirection: 'column',*/}
-                    {/*                height: 240,*/}
-                    {/*                overflow: 'auto',*/}
-                    {/*            }}*/}
-                    {/*        >*/}
-                    {/*            <Notepad notepadResponse={notepad}/>*/}
-                    {/*        </Paper>*/}
-                    {/*    </Grid>*/}
-                    {/*))}*/}
+                    {notepadList.map((notepad) => (
+                        <Grid item xs={12} md={4} lg={3} key={notepad.notepadSeq}>
+                            <Paper
+                                sx={{
+                                    p: 2,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    height: 240,
+                                    overflow: 'auto',
+                                }}
+                            >
+                                <Notepad notepadResponse={notepad}/>
+                            </Paper>
+                        </Grid>
+                    ))}
 
 
-                    {/*<Grid item xs={12} md={4} lg={3}>*/}
-                    {/*    <Paper*/}
-                    {/*        sx={{*/}
-                    {/*            p: 2,*/}
-                    {/*            display: 'flex',*/}
-                    {/*            flexDirection: 'column',*/}
-                    {/*            height: 240,*/}
-                    {/*            overflow: 'auto',*/}
-                    {/*        }}*/}
-                    {/*    >*/}
-                    {/*        <Notepad/>*/}
-                    {/*    </Paper>*/}
-                    {/*</Grid>*/}
+                    <Grid item xs={12} md={4} lg={3}>
+                        <Paper
+                            sx={{
+                                p: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: 240,
+                                overflow: 'auto',
+                            }}
+                        >
+                            <Notepad/>
+                        </Paper>
+                    </Grid>
                     <Grid item xs={12} md={4} lg={3}>
                         <Paper
                             sx={{

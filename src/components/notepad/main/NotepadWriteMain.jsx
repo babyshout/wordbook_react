@@ -103,8 +103,14 @@ export default function NotepadWriteMain({loginSessionInfo = null}) {
                         ? theme.palette.grey[100]
                         : theme.palette.grey[900],
                 flexGrow: 1,
-                height: '100vh',
+                height: '90vh',
                 overflow: 'auto',
+                // width: `${windowWidth}px`,
+                width: '90vw',
+                display: 'flex',          // Ensure the Box uses flex display
+                flexDirection: 'column',  // Arrange children in a column
+                // height: '100vh',          // Full viewport height
+                // overflow: 'auto',
             }}
 
         >

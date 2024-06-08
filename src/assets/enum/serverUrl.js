@@ -9,15 +9,20 @@ const REQUEST_URL = {
         postLogin: defaultBackServerURL + '/api/student/v1/login/getLogin',
         postSignup: defaultBackServerURL + '/api/student/v1/signup/createStudent',
 
+        // forgot-login 에서 사용..
         postForgotGetIdList: defaultBackServerURL + '/api/student/v1/forgot/get-id-list',
         postForgotResetPasswordForId: defaultBackServerURL + "/api/student/v1/forgot/reset-password-for-id",
 
+        // login 이후.. session 에서 사용..
         getLoginSessionInformation: defaultBackServerURL + '/api/student/v1/login/getLoginSessionInformation',
         deleteLoginSessionInformation: defaultBackServerURL + '/api/student/v1/login/deleteLoginSessionInformation',
         loginSessionInformation: defaultBackServerURL + '/api/student/v1/login/loginSessionInformation',
 
+        // mypage 에서 사용
+        getStudentInfoBySession: defaultBackServerURL + '/api/student/v1/mypage/getStudentInfoBySession',
     },
 
+    // 공부메모장..
     notepad: {
         getNotepadList: defaultBackServerURL + notepad + "/notepad/getList",
         getNotepad: (notepadSeq) => defaultBackServerURL + notepad + "/notepad/" + notepadSeq,

@@ -10,6 +10,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
+import {Face} from "@mui/icons-material";
 // import Link from "@mui/material/Link";
 
 export const mainListItems = (
@@ -45,12 +46,13 @@ export const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="단어장"/>
         </ListItemButton>
-        {/*<ListItemButton>*/}
-        {/*    <ListItemIcon>*/}
-        {/*        <LayersIcon />*/}
-        {/*    </ListItemIcon>*/}
-        {/*    <ListItemText primary={FRONT_URL.notepad.notepadList} />*/}
-        {/*</ListItemButton>*/}
+        <ListItemButton href={FRONT_URL.mypage.info}>
+            <ListItemIcon>
+                <Face />
+            </ListItemIcon>
+            <ListItemText primary={'마이페이지'} />
+            <ListItemText primary={FRONT_URL.mypage.info} />
+        </ListItemButton>
     </React.Fragment>
 );
 

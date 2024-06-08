@@ -32,6 +32,7 @@ import FRONT_URL from "./assets/enum/frontUrl.js";
 import NotepadList from "./pages/notepad/NotepadList.jsx";
 import NotepadDetail from "./pages/notepad/NotepadDetail.jsx";
 import NotepadUpdatePage from "./pages/notepad/NotepadUpdatePage.jsx";
+import MyPageInfoPage from "./pages/mypage/MyPageInfoPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
     {
         path: FRONT_URL.notepad.update(':notepadSeq'),
         element: <NotepadUpdatePage />
+    },
+    {
+        path: FRONT_URL.mypage.info,
+        element: <MyPageInfoPage />
     }
 ]);
 

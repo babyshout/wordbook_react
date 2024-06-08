@@ -20,6 +20,9 @@ const REQUEST_URL = {
 
         // mypage 에서 사용
         getStudentInfoBySession: defaultBackServerURL + '/api/student/v1/mypage/getStudentInfoBySession',
+        postGetEmailAuthCode: defaultBackServerURL + '/api/student/v1/mypage/getEmailAuthCode',
+        patchStudentInfo: defaultBackServerURL + '/api/student/v1/mypage/studentInfo',
+
     },
 
     // 공부메모장..

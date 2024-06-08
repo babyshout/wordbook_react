@@ -33,6 +33,7 @@ import NotepadList from "./pages/notepad/NotepadList.jsx";
 import NotepadDetail from "./pages/notepad/NotepadDetail.jsx";
 import NotepadUpdatePage from "./pages/notepad/NotepadUpdatePage.jsx";
 import MyPageInfoPage from "./pages/mypage/MyPageInfoPage.jsx";
+import MyPageUpdatePage from "./pages/mypage/MyPageUpdatePage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -99,6 +100,14 @@ const router = createBrowserRouter([
     {
         path: FRONT_URL.mypage.info,
         element: <MyPageInfoPage />
+    },
+    {
+        path: FRONT_URL.mypage.update,
+        element: <MyPageUpdatePage />
+    },
+    {
+        path: FRONT_URL.mypage.delete,
+        // element:
     }
 ]);
 

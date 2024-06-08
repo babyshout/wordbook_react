@@ -12,7 +12,7 @@ import frontUrl from "/src/assets/enum/frontUrl.js";
 //     event.preventDefault();
 // }
 
-export default function NotepadDetailPaper({
+export default function MyPageInfo({
                                                // notepadResponse = {
                                                //     notepadSeq: 1,
                                                //     content: '123',

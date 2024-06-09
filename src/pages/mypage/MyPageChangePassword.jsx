@@ -6,6 +6,7 @@ import UpperAppBar from "../../components/menu/appbar/UpperAppBar.jsx";
 import useOpenState from "../../components/menu/hooks/useOpenState.js";
 import useLoginEffect from "../../components/menu/hooks/useLoginEffect.js";
 import MyPageUpdateMain from "../../components/mypage/update/MyPageUpdateMain.jsx";
+import MyPageChangePasswordMain from "../../components/mypage/changepassword/MyPageChangePassowrdMain.jsx";
 
 
 
@@ -35,7 +36,7 @@ export default function MyPageChangePasswordPage() {
                     toggleDrawer={toggleDrawer}
                     isLogin={isLogin}
                     handleLogoutButton={handleLogoutButton}
-                    mainTitle={'내정보 수정'}
+                    mainTitle={'내정보 수정 - 비밀번호 변경'}
                 />
 
 
@@ -44,7 +45,7 @@ export default function MyPageChangePasswordPage() {
                 <SideMenu toggleDrawer={toggleDrawer} open={open}/>
 
                 {/*애만 가져와서 신경쓰면 됨..*/}
-                <MyPageUpdateMain loginSessionInfo={loginSessionInfo}/>
+                <MyPageChangePasswordMain loginSessionInfo={loginSessionInfo}/>
 
             </Box>
         </ThemeProvider>

@@ -4,8 +4,8 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import {Copyright} from "@mui/icons-material";
-import MyPageUpdate from "./MyPageUpdate.jsx";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
+import MyPageChangePassword from "./MyPageChangePassword.jsx";
 
 
 
@@ -98,7 +98,7 @@ export default function MyPageChangePasswordMain({loginSessionInfo = null}) {
                                 overflow: 'auto',
                             }}
                         >
-                            <MyPageUpdate />
+                            <MyPageChangePassword />
                         </Paper>
                     </Grid>
 

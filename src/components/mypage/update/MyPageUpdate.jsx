@@ -189,6 +189,9 @@ export default function MyPageUpdate() {
                     direction="row"
                     spacing={2}
                     flexGrow={1}
+                    sx={{
+                        width: '100%'
+                    }}
                 >
                     <TextField
                         name={"emailAuth"}

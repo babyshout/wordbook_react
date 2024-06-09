@@ -1,4 +1,3 @@
-import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -7,23 +6,18 @@ import {Stack} from "@mui/material";
 import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
 import frontUrl from "/src/assets/enum/frontUrl.js";
+import StudentDateTypographyForMypage from "../StudentDateTypographyForMypage.jsx";
 
 // function preventDefault(event) {
 //     event.preventDefault();
 // }
 
-export default function MyPageInfo({
-                                               // notepadResponse = {
-                                               //     notepadSeq: 1,
-                                               //     content: '123',
-                                               //     regDate: new Date(),
-                                               //     chgDate: new Date(),
-                                               // }
-                                           }) {
+export default function MyPageInfo() {
 
 
     const [userName, setUserName] = useState('mockName')
     const [userEmail, setUserEmail] = useState('mockEmail')
+    const [studentInfoBySession, setStudentInfoBySession] = useState({})
 
 
     useEffect(() => {
@@ -42,6 +36,7 @@ export default function MyPageInfo({
 
             setUserName(data.name)
             setUserEmail(data.email)
+            setStudentInfoBySession(data)
 
         }).catch(reason => {
             console.log(reason)
@@ -91,10 +86,9 @@ export default function MyPageInfo({
             </Button>
 
             <Divider/>
-            <Typography
-                >
-                123123123 뭐 띄어야됨..!!
-            </Typography>
+            <StudentDateTypographyForMypage
+                studentInfoBySession={studentInfoBySession}
+            />
         </Stack>
 
 

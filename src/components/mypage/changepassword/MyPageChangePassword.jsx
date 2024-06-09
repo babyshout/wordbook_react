@@ -1,3 +1,4 @@
+import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -7,13 +8,19 @@ import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
 import frontUrl from "/src/assets/enum/frontUrl.js";
 import Link from "@mui/material/Link";
-import StudentDateTypographyForMypage from "../StudentDateTypographyForMypage.jsx";
 
 // function preventDefault(event) {
 //     event.preventDefault();
 // }
 
-export default function MyPageUpdate() {
+export default function MyPageChangePassword({
+                                         // notepadResponse = {
+                                         //     notepadSeq: 1,
+                                         //     content: '123',
+                                         //     regDate: new Date(),
+                                         //     chgDate: new Date(),
+                                         // }
+                                     }) {
 
 
     const [userName, setUserName] = useState('')
@@ -232,23 +239,20 @@ export default function MyPageUpdate() {
                     비밀번호 변경하기
                 </Button>
 
-                <Divider/>
-                <StudentDateTypographyForMypage
-                    studentInfoBySession={studentInfoBySession}
-                />
                 <Link
                     href={frontUrl.mypage.delete}
                 >
                     회원탈퇴
                 </Link>
-                {/*<Typography*/}
-                {/*>*/}
-                {/*    {'가입일 : ' + studentInfoBySession.regDate || ''}*/}
-                {/*</Typography>*/}
-                {/*<Typography*/}
-                {/*>*/}
-                {/*    {'회원정보 수정일 : ' + studentInfoBySession.changerDate || ''}*/}
-                {/*</Typography>*/}
+                <Divider/>
+                <Typography
+                >
+                    {'가입일 : ' + studentInfoBySession.regDate || ''}
+                </Typography>
+                <Typography
+                >
+                    {'회원정보 수정일 : ' + studentInfoBySession.changerDate || ''}
+                </Typography>
             </Stack>
 
         </form>

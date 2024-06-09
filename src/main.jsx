@@ -34,7 +34,8 @@ import NotepadDetail from "./pages/notepad/NotepadDetail.jsx";
 import NotepadUpdatePage from "./pages/notepad/NotepadUpdatePage.jsx";
 import MyPageInfoPage from "./pages/mypage/MyPageInfoPage.jsx";
 import MyPageUpdatePage from "./pages/mypage/MyPageUpdatePage.jsx";
-import MyPageChangePasswordPage from "./pages/mypage/MyPageChangePassword.jsx";
+import MyPageChangePasswordPage from "./pages/mypage/MyPageChangePasswordPage.jsx";
+import MyPageDeleteAccountPage from "./pages/mypage/MyPageDeleteAccountPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -108,7 +109,7 @@ const router = createBrowserRouter([
     },
     {
         path: FRONT_URL.mypage.delete,
-        // element:
+        element: <MyPageDeleteAccountPage />
     },
     {
         path: FRONT_URL.mypage.changePassword,

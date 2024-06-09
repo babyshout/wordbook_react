@@ -6,7 +6,7 @@ import UpperAppBar from "../../components/menu/appbar/UpperAppBar.jsx";
 import useOpenState from "../../components/menu/hooks/useOpenState.js";
 import useLoginEffect from "../../components/menu/hooks/useLoginEffect.js";
 import MyPageUpdateMain from "../../components/mypage/update/MyPageUpdateMain.jsx";
-import MyPageChangePasswordMain from "../../components/mypage/changepassword/MyPageChangePassowrdMain.jsx";
+import MyPageChangePasswordMain from "../../components/mypage/changepassword/MyPageChangePasswordMain.jsx";
 
 
 

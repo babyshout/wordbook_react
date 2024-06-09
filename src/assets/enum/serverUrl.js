@@ -23,6 +23,7 @@ const REQUEST_URL = {
         postGetEmailAuthCode: defaultBackServerURL + '/api/student/v1/mypage/getEmailAuthCode',
         patchStudentInfo: defaultBackServerURL + '/api/student/v1/mypage/studentInfo',
         patchStudentPassword: defaultBackServerURL + '/api/student/v1/mypage/studentPassword',
+        postDeleteStudentAccount: defaultBackServerURL + '/api/student/v1/mypage/deleteStudentAccount',
 
 
     },

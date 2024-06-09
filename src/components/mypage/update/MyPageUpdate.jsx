@@ -70,6 +70,14 @@ export default function MyPageUpdate() {
             return
         }
 
+        if (!isEmailAuthSent) {
+            alert("이메일 인증번호를 받아주세요")
+            event.target.emailAuth.focus()
+            return
+        }
+
+        event.target.email.
+
         console.log('userEmailAuth.toString() -> ', userEmailAuth.toString());
         console.log('userEmailAuthCodeByServer.toString() -> ', userEmailAuthCodeByServer.toString())
         console.log(userEmailAuth.toString() === userEmailAuthCodeByServer.toString())
@@ -136,6 +144,7 @@ export default function MyPageUpdate() {
     return (
 
         <form onSubmit={handleSubmitButton}>
+
             <Stack
                 direction="column"
                 justifyContent="center"
@@ -145,10 +154,11 @@ export default function MyPageUpdate() {
                 {/*<FormContainer onSubmit={handleSubmitButton}>*/}
 
                 <TextField
-                    // disabled
+                    required
                     name={"name"}
                     id={"name"}
                     label={"이름"}
+                    type={"text"}
                     fullWidth
                     autoFocus
                     value={userName}
@@ -157,13 +167,17 @@ export default function MyPageUpdate() {
                     }}
                 />
                 <TextField
-                    // disabled
+                    required
                     name={"email"}
                     id={"email"}
+                    type={"email"}
                     label={"이메일"}
                     fullWidth
                     autoFocus
                     value={userEmail}
+                    // inputProps={{
+                    //     pattern: /email@email.com/
+                    // }}
                     onChange={(evt) => {
                         setUserEmail(evt.target.value)
                     }}
@@ -177,7 +191,6 @@ export default function MyPageUpdate() {
                     flexGrow={1}
                 >
                     <TextField
-                        // disabled
                         name={"emailAuth"}
                         id={"emailAuth"}
                         label={"이메일 인증번호"}
@@ -241,14 +254,7 @@ export default function MyPageUpdate() {
                 >
                     회원탈퇴
                 </Link>
-                {/*<Typography*/}
-                {/*>*/}
-                {/*    {'가입일 : ' + studentInfoBySession.regDate || ''}*/}
-                {/*</Typography>*/}
-                {/*<Typography*/}
-                {/*>*/}
-                {/*    {'회원정보 수정일 : ' + studentInfoBySession.changerDate || ''}*/}
-                {/*</Typography>*/}
+
             </Stack>
 
         </form>
@@ -256,101 +262,3 @@ export default function MyPageUpdate() {
     );
 }
 
-// <Grid
-//     container
-//     direction="column"
-//     justifyContent="space-between"
-//     alignItems="stretch"
-// >
-//     {/*<Grid*/}
-//     {/*    item*/}
-//     {/*>*/}
-//     {/*    <FormContainer*/}
-//     {/*        onSuccess={onSuccess}*/}
-//     {/*        onError={onError}*/}
-//     {/*    >*/}
-//     {/*        <TextFieldElement*/}
-//     {/*            name={'content'}*/}
-//     {/*            id={'content'}*/}
-//     {/*            required*/}
-//     {/*            fullWidth*/}
-//     {/*            // rows={10}*/}
-//     {/*            multiline*/}
-//     {/*        >*/}
-//
-//     {/*        </TextFieldElement>*/}
-//     {/*        <Button*/}
-//     {/*            type={'submit'}*/}
-//     {/*            color={'primary'}*/}
-//     {/*            variant="contained"*/}
-//     {/*            sx={{mt: 3, mb: 2}}*/}
-//     {/*        >*/}
-//     {/*            저장하기*/}
-//     {/*        </Button>*/}
-//     {/*    </FormContainer>*/}
-//     {/*    <Typography*/}
-//     {/*        component="p"*/}
-//     {/*        // variant="h4"*/}
-//     {/*    >*/}
-//     {/*        {contentOfNotepad || "content 없음!"}*/}
-//     {/*    </Typography>*/}
-//     {/*</Grid>*/}
-//
-//     <Grid
-//         item
-//     >
-//         <Typography
-//             component="p"
-//             // variant="h4"
-//         >
-//             {notepadResponse.content || "content 없음!"}
-//         </Typography>
-//     </Grid>
-//
-//     <Grid
-//         item
-//     >
-//
-//
-//         <Typography color="text.secondary" sx={{flex: 1}}>
-//             {/*TODO Date 띄워보기*/}
-//             {/*registered on {regDate}*/}
-//             {/*registered on {typeof regDate}*/}
-//         </Typography>
-//         <Typography color="text.secondary" sx={{flex: 1}}>
-//             <div>
-//                 {
-//                     '등록한 날짜 ' +
-//                     (notepadResponse.regDate || '')
-//                     // (regDate.toLocaleDateString() || '')
-//                 }
-//             </div>
-//             <div>
-//                 {
-//                     '수정된 날짜 ' +
-//                     (notepadResponse.chgDate || '')
-//                     // (chgDate.toLocaleDateString() || '')
-//                 }
-//             </div>
-//             {/*changed on {chgDate}*/}
-//         </Typography>
-//         <div>
-//             <Button
-//                 color="primary"
-//                 variant={'outlined'}
-//                 href={FRONT_URL.notepad.update(notepadSeq)}
-//                 // onClick={handleUpdateOnclick}
-//             >
-//                 수정
-//             </Button>
-//             <Button
-//                 color="primary"
-//                 variant={"contained"}
-//                 // href={FRONT_URL.notepad.detail(notepadSeq)}
-//                 onClick={handleDeleteOnclick}
-//             >
-//                 삭제
-//             </Button>
-//         </div>
-//     </Grid>
-// </Grid>

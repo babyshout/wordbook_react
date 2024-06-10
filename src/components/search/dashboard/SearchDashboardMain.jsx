@@ -92,8 +92,8 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
 
     if (!loginSessionInfo) {
         // FIXME 로그인 확인 로직 활성화 할것
-        // alert("로그인된 사용자만 이용가능한 서비스입니다");
-        // location.href = FRONT_URL.login;
+        alert("로그인된 사용자만 이용가능한 서비스입니다");
+        location.href = FRONT_URL.login;
     }
 
     /**
@@ -145,22 +145,20 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
         }
     }
 
-    function handleWordTypoCheckButton(event) {
+    function handleWordErrataCheckButton(event) {
         event.preventDefault()
         console.log(event);
-        alert("handleWordTypoCheckButton 클릭됨!!")
+        alert("handleWordErrataCheckButton 클릭됨!!")
 
         if (!searchInputValue) {
              alert("검색할 단어가 비어있습니다")
             document.getElementById('search-word-field').focus()
             return;
         }
-
-        setSearchInputValue('123123123')
-        // setSearchValue('111111111111111')
+        console.log(searchInputValue)
 
         axios.get(
-            serverUrl.word.search.getWordTypoCheck,
+            serverUrl.word.search.getWordErrataCheck(searchInputValue),
             {
                 headers: {"Content-Type": "application/json"},
                 withCredentials: true,
@@ -169,7 +167,12 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
             console.log(response)
             const data = response.data
 
+            if (!data) {
+                alert("오타 없는거로 확인됨")
+                return
+            }
             alert('오타확인.. [' + data + '] 결과 반환..')
+            setSearchInputValue(data)
         }).catch(reason => {
             console.log(reason)
             alert(reason.response.data.message)
@@ -219,9 +222,9 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
                         // color="warning"
                         variant={'contained'}
                         // href={FRONT_URL.notepad.write}
-                        name={'wordTypoCheckButton'}
-                        id={'wordTypoCheckButton'}
-                        onClick={handleWordTypoCheckButton}
+                        name={'wordErrataCheckButton'}
+                        id={'wordErrataCheckButton'}
+                        onClick={handleWordErrataCheckButton}
                     >오타확인</Button>
                     <div>
                         <div>{`searchValue: ${searchValue !== null ? `'${searchValue}'` : 'null'}`}</div>

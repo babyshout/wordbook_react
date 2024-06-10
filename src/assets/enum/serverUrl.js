@@ -2,7 +2,7 @@ const defaultBackServerURL = "http://localhost:11000";
 
 const notepad = "/api/notepads/v1"
 
-const word = "/api/words"
+const word = "/api/words/v1"
 const search = "/search"
 
 const REQUEST_URL = {
@@ -41,7 +41,9 @@ const REQUEST_URL = {
     word: {
         search: {
             getRecentlySearchWord:
-                defaultBackServerURL + word + search + "/searchRecentlySearchWord"
+                defaultBackServerURL + word + search + "/searchRecentlySearchWord",
+            getWordErrataCheck: (wordName) =>
+                defaultBackServerURL + word + search + "/wordErrataCheck?wordName=" + wordName,
         }
     }
 }

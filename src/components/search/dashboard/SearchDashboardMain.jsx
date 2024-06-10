@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import {AppBar, Autocomplete} from "@mui/material";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
 import TextField from "@mui/material/TextField";
+import Divider from "@mui/material/Divider";
 
 function Copyright(props) {
     return (
@@ -81,6 +82,7 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
 
     const [searchValue, setSearchValue] = React.useState(
         // options[0]
+        ''
     );
     const [searchInputValue, setSearchInputValue] = React.useState('');
     const [wordOptions, setWordOptions] = useState([])
@@ -89,6 +91,7 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
     // const searchWordFieldRef = useRef(null);
 
     if (!loginSessionInfo) {
+        // FIXME 로그인 확인 로직 활성화 할것
         // alert("로그인된 사용자만 이용가능한 서비스입니다");
         // location.href = FRONT_URL.login;
     }
@@ -133,8 +136,13 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
     function handleSearchWordButtonOnClick(event) {
         event.preventDefault()
         console.log(event);
-        // searchWordFieldRef.current.focus()
         alert("searchWordButton 클릭됨!!")
+
+        if (!searchInputValue) {
+            alert("검색할 단어가 비어있습니다")
+            document.getElementById('search-word-field').focus()
+            return;
+        }
     }
 
     function handleWordTypoCheckButton(event) {
@@ -143,13 +151,29 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
         alert("handleWordTypoCheckButton 클릭됨!!")
 
         if (!searchInputValue) {
-            // console.log('searchWordFieldRef',searchWordFieldRef)
-            // console.log('searchWordFieldRef.current',searchWordFieldRef.current)
-            alert("검색할 단어가 비어있습니다")
+             alert("검색할 단어가 비어있습니다")
             document.getElementById('search-word-field').focus()
-            // searchWordFieldRef.current.focus()
             return;
         }
+
+        setSearchInputValue('123123123')
+        // setSearchValue('111111111111111')
+
+        axios.get(
+            serverUrl.word.search.getWordTypoCheck,
+            {
+                headers: {"Content-Type": "application/json"},
+                withCredentials: true,
+            },
+        ).then(response => {
+            console.log(response)
+            const data = response.data
+
+            alert('오타확인.. [' + data + '] 결과 반환..')
+        }).catch(reason => {
+            console.log(reason)
+            alert(reason.response.data.message)
+        })
     }
 
     return (
@@ -202,7 +226,9 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
                     <div>
                         <div>{`searchValue: ${searchValue !== null ? `'${searchValue}'` : 'null'}`}</div>
                         <div>{`searchInputValue: '${searchInputValue}'`}</div>
-                        <br/>
+                        {/*<hr/>*/}
+                        <Divider variant="middle" />
+                        123123
                         <Autocomplete
                             value={searchValue}
                             onChange={(event, newValue) => {

@@ -14,6 +14,7 @@ import {AppBar, Autocomplete} from "@mui/material";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
+import frontUrl from "../../../assets/enum/frontUrl.js";
 
 function Copyright(props) {
     return (
@@ -87,14 +88,7 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
     const [searchInputValue, setSearchInputValue] = React.useState('');
     const [wordOptions, setWordOptions] = useState([])
 
-    // FIXME 123
-    // const searchWordFieldRef = useRef(null);
 
-    if (!loginSessionInfo) {
-        // FIXME 로그인 확인 로직 활성화 할것
-        alert("로그인된 사용자만 이용가능한 서비스입니다");
-        location.href = FRONT_URL.login;
-    }
 
     /**
      * notepad List 호출시 사용
@@ -143,6 +137,28 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
             document.getElementById('search-word-field').focus()
             return;
         }
+
+        axios.get(
+            serverUrl.word.search.getWordErrataCheck(searchInputValue),
+            {
+                headers: {"Content-Type": "application/json"},
+                withCredentials: true,
+            },
+        ).then(response => {
+            console.log(response)
+            const data = response.data
+
+            if (!data) {
+                alert("오타 없는거로 확인됨")
+                location.href  = frontUrl.searchWord.result(searchInputValue)
+                return
+            }
+            alert('오타확인.. [' + data + '] 결과 반환..')
+            setSearchInputValue(data)
+        }).catch(reason => {
+            console.log(reason)
+            alert(reason.response.data.message)
+        })
     }
 
     function handleWordErrataCheckButton(event) {
@@ -177,6 +193,13 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
             console.log(reason)
             alert(reason.response.data.message)
         })
+    }
+
+
+    if (!loginSessionInfo) {
+        // FIXME 로그인 확인 로직 활성화 할것
+        alert("로그인된 사용자만 이용가능한 서비스입니다");
+        location.href = FRONT_URL.login;
     }
 
     return (

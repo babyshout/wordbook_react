@@ -3,7 +3,8 @@
 
 const notepadDefault = "/notepad";
 
-const mypageDefault = "/mypage"
+const mypageDefault = "/mypage";
+const searchWordDefault = "/search-word";
 
 const FRONT_URL = {
 
@@ -33,6 +34,11 @@ const FRONT_URL = {
         update: mypageDefault + '/update',
         delete: mypageDefault + '/deleteAccount',
         changePassword: mypageDefault + '/change-password',
+    },
+
+    searchWord: {
+        dashboard: searchWordDefault + "/dashboard",
+
     }
 }
 

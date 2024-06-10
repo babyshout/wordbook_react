@@ -2,6 +2,9 @@ const defaultBackServerURL = "http://localhost:11000";
 
 const notepad = "/api/notepads/v1"
 
+const word = "/api/words"
+const search = "/search"
+
 const REQUEST_URL = {
     student: {
         // login, signup controller 와 연결됨
@@ -34,6 +37,12 @@ const REQUEST_URL = {
         getNotepad: (notepadSeq) => defaultBackServerURL + notepad + "/notepad/" + notepadSeq,
         postCreateNotepad: defaultBackServerURL + notepad + "/notepad" + "/createNotepad",
         patchNotepad: (notepadSeq) => defaultBackServerURL + notepad + "/notepad/" + notepadSeq,
+    },
+    word: {
+        search: {
+            getRecentlySearchWord:
+                defaultBackServerURL + word + search + "/searchRecentlySearchWord"
+        }
     }
 }
 

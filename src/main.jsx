@@ -37,6 +37,7 @@ import MyPageUpdatePage from "./pages/mypage/MyPageUpdatePage.jsx";
 import MyPageChangePasswordPage from "./pages/mypage/MyPageChangePasswordPage.jsx";
 import MyPageDeleteAccountPage from "./pages/mypage/MyPageDeleteAccountPage.jsx";
 import SearchDashboardPage from "./pages/search/SearchDashboardPage.jsx";
+import SearchWordResult from "./components/search/SearchWordResult.jsx";
 
 const router = createBrowserRouter([
     {
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
     {
         path: FRONT_URL.searchWord.dashboard,
         element: <SearchDashboardPage />
+    },
+    {
+        path: FRONT_URL.searchWord.result,
+        element: <SearchWordResult />
     }
 ]);
 

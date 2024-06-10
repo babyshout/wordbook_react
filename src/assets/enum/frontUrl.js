@@ -38,7 +38,7 @@ const FRONT_URL = {
 
     searchWord: {
         dashboard: searchWordDefault + "/dashboard",
-
+        result: (wordName) => searchWordDefault + "/result?wordName=" + wordName,
     }
 }
 

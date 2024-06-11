@@ -29,6 +29,9 @@ const REQUEST_URL = {
         postDeleteStudentAccount: defaultBackServerURL + '/api/student/v1/mypage/deleteStudentAccount',
 
 
+        naver: {
+            postGetSocialLogin: defaultBackServerURL + '/api/student/v1/naver/getSocialLogin'
+        }
     },
 
     // 공부메모장..
@@ -44,6 +47,11 @@ const REQUEST_URL = {
                 defaultBackServerURL + word + search + "/searchRecentlySearchWord",
             getWordErrataCheck: (wordName) =>
                 defaultBackServerURL + word + search + "/wordErrataCheck?wordName=" + wordName,
+            // getSearchWord: (wordNameParam) => {
+            //     return defaultBackServerURL + word + search + "/getSearchWord";
+            // }
+            postGetSearchWord: defaultBackServerURL + word + search + "/getSearchWord"
+
         }
     }
 }

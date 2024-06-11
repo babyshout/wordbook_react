@@ -5,8 +5,7 @@ import SideMenu from "../../components/menu/sidemenu/SideMenu.jsx";
 import UpperAppBar from "../../components/menu/appbar/UpperAppBar.jsx";
 import useOpenState from "../../components/menu/hooks/useOpenState.js";
 import useLoginEffect from "../../components/menu/hooks/useLoginEffect.js";
-import SearchResultMain from "../../components/search/result/SearchResultMain.jsx";
-
+import SearchWordResultMain from "../../components/search/result/SearchWordResultMain.jsx";
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -44,7 +43,7 @@ export default function SearchResultPage() {
                 <SideMenu toggleDrawer={toggleDrawer} open={open}/>
 
                 {/*애만 가져와서 신경쓰면 됨..*/}
-                <SearchResultMain loginSessionInfo={loginSessionInfo}/>
+                <SearchWordResultMain loginSessionInfo={loginSessionInfo}/>
 
             </Box>
         </ThemeProvider>

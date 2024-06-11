@@ -8,6 +8,7 @@ import axios from "axios";
 import {useCookies} from "react-cookie";
 import COOKIES from "../../assets/enum/cookies.js";
 import FRONT_URL from "../../assets/enum/frontUrl.js";
+import naverOauth from "../../assets/enum/oauth/naverOauth.js";
 
 
 export default function LoginForm() {
@@ -52,7 +53,7 @@ export default function LoginForm() {
 
                 sessionStorage.setItem("token", response.data.data.token);
                 location.href = FRONT_URL.dashboard
-                    // "/";
+                // "/";
             } else {
                 alert("로그인 되지 않았습니다!");
             }
@@ -64,6 +65,15 @@ export default function LoginForm() {
     const onError = (errors, event) => {
         console.log(errors, event);
     }
+
+    let array = new Uint32Array(10)
+    window.crypto.getRandomValues(array)
+
+    // console.log('나의 행운의 숫자들:')
+    // for (let i = 0; i < array.length; i++) {
+    //     console.log(array[i])
+    // }
+    // console.log(array.toString());
 
 
     return (
@@ -93,7 +103,7 @@ export default function LoginForm() {
                                 .replace(/[\W]/, '');
                             setStudentIdValue(studentIdValue
                                 .replace(/[\W]/, ''))
-                            setStudentIdValue( event.target.value
+                            setStudentIdValue(event.target.value
                                 .replace(/[\W]/, ''))
                         }}
                     />
@@ -123,6 +133,13 @@ export default function LoginForm() {
                     </Button>
                 </Stack>
             </FormContainer>
+            <Button
+                color={"success"}
+                variant={'contained'}
+                href={naverOauth.create_authorize_URL(array[0])}
+            >
+                네이버로그인
+            </Button>
             <div>
                 Data:
                 <br/>

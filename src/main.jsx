@@ -37,7 +37,9 @@ import MyPageUpdatePage from "./pages/mypage/MyPageUpdatePage.jsx";
 import MyPageChangePasswordPage from "./pages/mypage/MyPageChangePasswordPage.jsx";
 import MyPageDeleteAccountPage from "./pages/mypage/MyPageDeleteAccountPage.jsx";
 import SearchDashboardPage from "./pages/search/SearchDashboardPage.jsx";
-import SearchResultPage from "./pages/search/SearchResultPage.jsx";
+import naverOauth from "./assets/enum/oauth/naverOauth.js";
+import SearchWordResultPage from "./pages/search/SearchWordResultPage.jsx";
+import NaverOauthCallbackPage from "./pages/login/naver/NaverOauthCallbackPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -123,7 +125,12 @@ const router = createBrowserRouter([
     },
     {
         path: FRONT_URL.searchWord.result(":wordNameParam"),
-        element: <SearchResultPage />
+        element: <SearchWordResultPage />
+    },
+    // 네이버 로그인 callback 처리
+    {
+        path: naverOauth.callback_URI,
+        element: <NaverOauthCallbackPage />
     }
 ]);
 

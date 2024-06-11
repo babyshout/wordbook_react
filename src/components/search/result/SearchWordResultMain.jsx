@@ -31,7 +31,7 @@ function Copyright(props) {
 /*
 TODO notepadReseponse 가지고 mock 데이터 만들어서 레이아웃 확인하기
  */
-export default function SearchResultMain({loginSessionInfo = null}) {
+export default function SearchWordResultMain({loginSessionInfo = null}) {
 
     console.log(loginSessionInfo);
 
@@ -40,10 +40,15 @@ export default function SearchResultMain({loginSessionInfo = null}) {
     const [searchWordResponse, setSearchWordResponse] = useState({})
 
     const {wordNameParam} = useParams()
+    const data = {
+        wordName: wordNameParam
+    }
+    console.log('data -> ', data);
     console.log(useParams());
     useEffect(() => {
-        axios.get(
-            serverUrl.word.search.getSearchWord(wordNameParam),
+        axios.post(
+            serverUrl.word.search.postGetSearchWord,
+            data,
             {
                 headers: {"Content-Type": "application/json"},
                 withCredentials: true,

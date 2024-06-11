@@ -76,7 +76,7 @@ export default function MyPageUpdate() {
             return
         }
 
-        event.target.email.
+        // event.target.email.
 
         console.log('userEmailAuth.toString() -> ', userEmailAuth.toString());
         console.log('userEmailAuthCodeByServer.toString() -> ', userEmailAuthCodeByServer.toString())
@@ -107,6 +107,7 @@ export default function MyPageUpdate() {
         ).then(response => {
             console.log(response)
             alert("회원정보 수정 성공")
+            location.href = frontUrl.mypage.info;
         }).catch(reason => {
             console.log(reason)
             alert("업데이트 실패..!")

@@ -46,15 +46,13 @@ export default function NaverOauthCallbackPage() {
         }
     ).then((response) => {
         console.log(response);
-        alert("네이버 로그인 성공")
         // fixme 지우고 원하는데로 보내기
-        // location.href = frontUrl.login;
+        location.href = frontUrl.dashboard;
     }).catch((reason) => {
         console.log(reason);
 
         alert("네이버 로그인 실패..")
-        // fixme 지우고 원하는데로 보내기
-        // location.href = frontUrl.login;
+        location.href = frontUrl.login;
     })
 
 

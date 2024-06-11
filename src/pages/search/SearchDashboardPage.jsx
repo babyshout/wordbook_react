@@ -7,6 +7,7 @@ import useOpenState from "../../components/menu/hooks/useOpenState.js";
 import useLoginEffect from "../../components/menu/hooks/useLoginEffect.js";
 import NotepadListMain from "../../components/notepad/main/NotepadListMain.jsx";
 import SearchDashboardMain from "../../components/search/dashboard/SearchDashboardMain.jsx";
+import {useEffect} from "react";
 
 
 
@@ -24,6 +25,12 @@ export default function SearchDashboardPage() {
 
 
     console.log("loginSessionInfo -> ", loginSessionInfo);
+
+    useEffect(() => {
+    console.log('123123');
+
+    }, []);
+
 
 
     return (

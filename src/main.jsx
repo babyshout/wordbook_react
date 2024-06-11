@@ -52,11 +52,14 @@ const router = createBrowserRouter([
         //'/hello-world',
         element: <h1>HELLO WORLD!!!!</h1>
     },
+
+    // 로그인
     {
         path: FRONT_URL.login,
         //'/login',
         element: <Login/>
     },
+    // 회원가입
     {
         path: FRONT_URL.signup,
         //'/signup',
@@ -86,6 +89,8 @@ const router = createBrowserRouter([
         // '/dashboard',
         element: <Dashboard/>,
     },
+
+    // 공부메모장
     {
         path: FRONT_URL.notepad.list,
         // '/dashboard',
@@ -103,6 +108,8 @@ const router = createBrowserRouter([
         path: FRONT_URL.notepad.update(':notepadSeq'),
         element: <NotepadUpdatePage />
     },
+
+    // 마이페이지
     {
         path: FRONT_URL.mypage.info,
         element: <MyPageInfoPage />
@@ -119,6 +126,8 @@ const router = createBrowserRouter([
         path: FRONT_URL.mypage.changePassword,
         element: <MyPageChangePasswordPage />
     },
+
+    // 단어검색
     {
         path: FRONT_URL.searchWord.dashboard,
         element: <SearchDashboardPage />

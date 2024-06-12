@@ -41,6 +41,7 @@ import naverOauth from "./assets/enum/oauth/naverOauth.js";
 import SearchWordResultPage from "./pages/search/SearchWordResultPage.jsx";
 import NaverOauthCallbackPage from "./pages/login/naver/NaverOauthCallbackPage.jsx";
 import FullCalendarDemo from "./pages/demo/fullcalendar-demo/FullCalendarDemo.jsx";
+import CalendarPage from "./pages/calendar/CalendarPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -146,6 +147,11 @@ const router = createBrowserRouter([
     {
         path: FRONT_URL.calendar.demo,
         element: <FullCalendarDemo />
+    },
+    // fullcalendar
+    {
+        path: FRONT_URL.calendar.main,
+        element: <CalendarPage />
     }
 ]);
 

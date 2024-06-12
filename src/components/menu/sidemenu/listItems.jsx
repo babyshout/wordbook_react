@@ -10,7 +10,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
-import {Face} from "@mui/icons-material";
+import {CalendarMonth, Face} from "@mui/icons-material";
 // import Link from "@mui/material/Link";
 
 export const mainListItems = (
@@ -49,6 +49,13 @@ export const mainListItems = (
                 <LayersIcon/>
             </ListItemIcon>
             <ListItemText primary="단어장"/>
+        </ListItemButton>
+
+        <ListItemButton href={FRONT_URL.calendar.main}>
+            <ListItemIcon>
+                <CalendarMonth/>
+            </ListItemIcon>
+            <ListItemText primary="달력"/>
         </ListItemButton>
 
         <ListItemButton href={FRONT_URL.mypage.info}>

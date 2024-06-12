@@ -5,15 +5,16 @@ import SideMenu from "../../components/menu/sidemenu/SideMenu.jsx";
 import UpperAppBar from "../../components/menu/appbar/UpperAppBar.jsx";
 import useOpenState from "../../components/menu/hooks/useOpenState.js";
 import useLoginEffect from "../../components/menu/hooks/useLoginEffect.js";
-import MyPageInfoMain from "../../components/mypage/info/MyPageInfoMain.jsx";
+import CalendarMain from "/src/components/calendar/main/CalendarMain.jsx";
+import React from "react"
 
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-// NOTE Dashboard 컴포넌트 시작!!!
-export default function MyPageInfoPage() {
+
+export default function CalendarPage() {
 
 
     // useOpenState 생성..
@@ -22,12 +23,9 @@ export default function MyPageInfoPage() {
     const [isLogin, loginSessionInfo, handleLogoutButton] = useLoginEffect();
 
 
-    // console.log("loginSessionInfo -> ", loginSessionInfo);
-
 
     return (
-        <ThemeProvider theme={defaultTheme}>
-            <Box sx={{display: 'flex'}}>
+            <React.Fragment>
                 <CssBaseline/>
                 {/*맨위 AppBar 부분*/}
                 <UpperAppBar
@@ -35,7 +33,7 @@ export default function MyPageInfoPage() {
                     toggleDrawer={toggleDrawer}
                     isLogin={isLogin}
                     handleLogoutButton={handleLogoutButton}
-                    mainTitle={'내정보'}
+                    mainTitle={'공부메모장 상세보기'}
                 />
 
 
@@ -44,9 +42,8 @@ export default function MyPageInfoPage() {
                 <SideMenu toggleDrawer={toggleDrawer} open={open}/>
 
                 {/*애만 가져와서 신경쓰면 됨..*/}
-                <MyPageInfoMain loginSessionInfo={loginSessionInfo}/>
+                <CalendarMain loginSessionInfo={loginSessionInfo}/>
+            </React.Fragment>
 
-            </Box>
-        </ThemeProvider>
     );
 }

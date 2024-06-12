@@ -4,32 +4,18 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import {useEffect, useState} from "react";
-import Notepad from "../Notepad.jsx";
-import axios from "axios";
-import serverUrl from "../../../assets/enum/serverUrl.js";
 import Button from "@mui/material/Button";
 import {AppBar} from "@mui/material";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
 import {Copyright} from "@mui/icons-material";
-import NotepadWritingForm from "../NotepadWritingForm.jsx";
-import NotepadDetailPaper from "../NotepadDetailPaper.jsx";
-
-
-
-// let notepadResponse = {
-//     notepadSeq: 1,
-//     content: "",
-//     regDate: null,
-//     chgDate: null,
-// }
+import Calendar from "../Calendar.jsx";
 
 
 
 /*
 TODO notepadReseponse 가지고 mock 데이터 만들어서 레이아웃 확인하기
  */
-export default function NotepadDetailMain({loginSessionInfo = null}) {
+export default function NotepadWriteMain({loginSessionInfo = null}) {
 
     console.log(loginSessionInfo);
 
@@ -64,28 +50,28 @@ export default function NotepadDetailMain({loginSessionInfo = null}) {
         >
             <Toolbar
             />
-            <AppBar
-                // position="fixed"
-                // position="absolute"
-                position="sticky"
-                // position="static"
-                // position="relative"
+            {/*<AppBar*/}
+            {/*    // position="fixed"*/}
+            {/*    // position="absolute"*/}
+            {/*    position="sticky"*/}
+            {/*    // position="static"*/}
+            {/*    // position="relative"*/}
 
-            >
-                <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        메뉴
-                    </Typography>
-                    <Button
-                        color="inherit"
-                        href={FRONT_URL.notepad.list}
-                    >공부메모장 리스트로 돌아가기</Button>
-                    <Button
-                        color="inherit"
-                        href={FRONT_URL.notepad.write}
-                    >글쓰기</Button>
-                </Toolbar>
-            </AppBar>
+            {/*>*/}
+            {/*    <Toolbar>*/}
+            {/*        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>*/}
+            {/*            메뉴*/}
+            {/*        </Typography>*/}
+            {/*        <Button*/}
+            {/*            color="inherit"*/}
+            {/*            href={FRONT_URL.notepad.list}*/}
+            {/*        >공부메모장 리스트로 돌아가기</Button>*/}
+            {/*        <Button*/}
+            {/*            color="inherit"*/}
+            {/*            href={FRONT_URL.notepad.write}*/}
+            {/*        >글쓰기</Button>*/}
+            {/*    </Toolbar>*/}
+            {/*</AppBar>*/}
 
 
             <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
@@ -99,14 +85,16 @@ export default function NotepadDetailMain({loginSessionInfo = null}) {
                                 p: 2,
                                 display: 'flex',
                                 flexDirection: 'column',
-                                height: "70vh",
+                                // height: "70vh",
                                 width: "80vw",
                                 // height: 'inherit',
                                 // width: 'inherit',
                                 overflow: 'auto',
                             }}
                         >
-                            <NotepadDetailPaper />
+
+                            <Calendar />
+
                         </Paper>
                     </Grid>
 

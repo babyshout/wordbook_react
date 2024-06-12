@@ -40,6 +40,7 @@ import SearchDashboardPage from "./pages/search/SearchDashboardPage.jsx";
 import naverOauth from "./assets/enum/oauth/naverOauth.js";
 import SearchWordResultPage from "./pages/search/SearchWordResultPage.jsx";
 import NaverOauthCallbackPage from "./pages/login/naver/NaverOauthCallbackPage.jsx";
+import FullCalendarDemo from "./pages/demo/fullcalendar-demo/FullCalendarDemo.jsx";
 
 const router = createBrowserRouter([
     {
@@ -140,6 +141,11 @@ const router = createBrowserRouter([
     {
         path: naverOauth.callback_URI,
         element: <NaverOauthCallbackPage />
+    },
+    // fullcalendar demo
+    {
+        path: FRONT_URL.calendar.demo,
+        element: <FullCalendarDemo />
     }
 ]);
 

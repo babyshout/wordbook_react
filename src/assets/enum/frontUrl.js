@@ -6,6 +6,8 @@ const notepadDefault = "/notepad";
 const mypageDefault = "/mypage";
 const searchWordDefault = "/search-word";
 
+const calendarDefault = "/calendar";
+
 const FRONT_URL = {
 
     hello_world: '/hello-world',
@@ -39,6 +41,12 @@ const FRONT_URL = {
     searchWord: {
         dashboard: searchWordDefault + "/dashboard",
         result: (wordName) => searchWordDefault + "/result/" + wordName,
+    },
+
+    calendar: {
+        main: calendarDefault + "/main",
+        demo: calendarDefault + "/demo",
+
     }
 }
 

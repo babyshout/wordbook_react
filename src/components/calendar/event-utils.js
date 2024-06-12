@@ -18,17 +18,25 @@ export const INITIAL_EVENTS = [
     {
         // id: createEventId(),
         title: 'All-day event',
-        start: todayStr
+        start: todayStr,
+        isEditable: false,
+    },
+    {
+        // id: createEventId(),
+        title: 'All-day event',
+        start: todayStr,
+        isEditable: false,
     },
     {
         // id: createEventId(),
         title: 'Timed event',
-        start: todayStr + 'T12:00:00'
+        start: todayStr + 'T12:00:00',
+        isEditable: false,
     },
     {
         // id: createEventId(),
         title: 'Timed event12123',
-        start: new Date()
+        start: new Date(),
     }
 ]
 

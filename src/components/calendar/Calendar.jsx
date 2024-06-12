@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import  {useState} from 'react'
 import {formatDate} from '@fullcalendar/core'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -40,8 +40,8 @@ export default function Calendar() {
         }
     }
 
-    function handleEvents(events) {
-        console.log('handleEvents called!! events -> ', events)
+    function handleEventsSet(events) {
+        console.log('handleEventsSet called!! events -> ', events)
         setCurrentEvents(events)
     }
 
@@ -58,16 +58,18 @@ export default function Calendar() {
                         right: 'dayGridMonth,timeGridWeek,timeGridDay'
                     }}
                     initialView='dayGridMonth'
+                    locale={'kr'}
                     // editable={true}
                     selectable={true}
                     selectMirror={true}
                     dayMaxEvents={true}
-                    weekends={weekendsVisible}
+
+                    // weekends={weekendsVisible}
                     initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
                     select={handleDateSelect}
                     // eventContent={renderEventContent} // custom render function
                     eventClick={handleEventClick}
-                    eventsSet={handleEvents} // called after events are initialized/added/changed/removed
+                    eventsSet={handleEventsSet} // called after events are initialized/added/changed/removed
                     /* you can update a remote database when these fire:
                     eventAdd={function(){}}
                     eventChange={function(){}}
@@ -75,13 +77,25 @@ export default function Calendar() {
                     */
                     eventAdd={function (arg) {
                         console.log("eventAdd !! arg -> ", arg);
+
+                        console.log('arg.event -> ',arg.event)
+                        console.log('arg.revert', arg.revert)
+                        console.log('arg.relatedEvents', arg.relatedEvents)
                     }}
                     eventChange={function (arg) {
                         console.log("eventChange !! arg -> ", arg);
 
+                        console.log('arg.event -> ',arg.event)
+                        console.log('arg.revert', arg.revert)
+                        console.log('arg.relatedEvents', arg.relatedEvents)
                     }}
                     eventRemove={function (arg) {
                         console.log("eventRemove !! arg -> ", arg);
+
+                        arg.revert()
+                        console.log('arg.event -> ',arg.event)
+                        console.log('arg.revert', arg.revert)
+                        console.log('arg.relatedEvents', arg.relatedEvents)
 
                     }}
 

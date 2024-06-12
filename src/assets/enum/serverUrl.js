@@ -1,10 +1,13 @@
 const defaultBackServerURL = "http://localhost:11000";
+// FIXME 배포시.. 서버URL 관련 확인요망
+// const defaultBackServerURL = "http://localhost:11000";
 
 const notepad = "/api/notepads/v1"
 
 const word = "/api/words/v1"
 const search = "/search"
 
+const calendar = "/api/calendar/v1";
 const REQUEST_URL = {
     student: {
         // login, signup controller 와 연결됨
@@ -29,6 +32,7 @@ const REQUEST_URL = {
         postDeleteStudentAccount: defaultBackServerURL + '/api/student/v1/mypage/deleteStudentAccount',
 
 
+        // 네이버 로그인시 사용
         naver: {
             postGetSocialLogin: defaultBackServerURL + '/api/student/v1/naver/getSocialLogin'
         }
@@ -41,7 +45,10 @@ const REQUEST_URL = {
         postCreateNotepad: defaultBackServerURL + notepad + "/notepad" + "/createNotepad",
         patchNotepad: (notepadSeq) => defaultBackServerURL + notepad + "/notepad/" + notepadSeq,
     },
+    // 단어 관련..
     word: {
+
+        // 단어 검색..
         search: {
             getRecentlySearchWord:
                 defaultBackServerURL + word + search + "/searchRecentlySearchWord",
@@ -53,6 +60,13 @@ const REQUEST_URL = {
             postGetSearchWord: defaultBackServerURL + word + search + "/getSearchWord"
 
         }
+    },
+
+    // fullcalendar 사용 관련
+    calendar: {
+        getScheduleList: defaultBackServerURL + calendar + "/scheduleList",
+        postSchedule: defaultBackServerURL + calendar + "/schedule",
+        deleteSchedule: (id) => defaultBackServerURL + calendar + "/schedule/" + id,
     }
 }
 

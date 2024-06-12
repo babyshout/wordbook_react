@@ -1,10 +1,12 @@
-import  {useState} from 'react'
+import {useState} from 'react'
 import {formatDate} from '@fullcalendar/core'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import {INITIAL_EVENTS, createEventId} from './event-utils'
+import axios from "axios";
+import serverUrl from "../../assets/enum/serverUrl.js";
 
 export default function Calendar() {
     const [weekendsVisible, setWeekendsVisible] = useState(true)
@@ -45,61 +47,98 @@ export default function Calendar() {
         setCurrentEvents(events)
     }
 
+    function handleEventAdd(arg) {
+        console.log("eventAdd !! arg -> ", arg);
+
+        console.log('arg.event -> ', arg.event)
+        console.log('arg.revert', arg.revert)
+        console.log('arg.relatedEvents', arg.relatedEvents)
+
+        const data = arg.event;
+        console.log('data', data);
+
+        axios.post(
+            serverUrl.calendar.postSchedule,
+            JSON.stringify(data),
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Data-Type": "xml",
+                },
+                withCredentials: true
+            }
+        ).then(response => {
+            console.log(response)
+        }).catch(reason => {
+            console.log(reason)
+            alert("remove 실패..  해당 이벤트 요청 revert 함!\n" +
+                ""+ reason.response.data.message)
+            arg.revert()
+        })
+    }
+
+    function handleEventChange(arg) {
+        console.log("eventChange !! arg -> ", arg);
+
+        console.log('arg.event -> ', arg.event)
+        console.log('arg.revert', arg.revert)
+        console.log('arg.relatedEvents', arg.relatedEvents)
+    }
+
+    function handleEventRemove(arg) {
+        console.log("eventRemove !! arg -> ", arg);
+
+        console.log('arg.event -> ', arg.event)
+        console.log('arg.revert', arg.revert)
+        console.log('arg.relatedEvents', arg.relatedEvents)
+
+        axios.delete(
+            serverUrl.calendar.deleteSchedule(12)
+        ).then(response => {
+            console.log(response)
+        }).catch(reason => {
+            console.log(reason)
+            alert("remove 실패..  해당 이벤트 요청 revert 함!\n" +
+                ""+ reason.response.data.message)
+            arg.revert()
+        })
+    }
+
     return (
-                <FullCalendar
-                    plugins={[
-                        dayGridPlugin,
-                        timeGridPlugin,
-                        interactionPlugin
-                    ]}
-                    headerToolbar={{
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                    }}
-                    initialView='dayGridMonth'
-                    locale={'kr'}
-                    // editable={true}
-                    selectable={true}
-                    selectMirror={true}
-                    dayMaxEvents={true}
+        <FullCalendar
+            plugins={[
+                dayGridPlugin,
+                timeGridPlugin,
+                interactionPlugin
+            ]}
+            headerToolbar={{
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            }}
+            initialView='dayGridMonth'
+            locale={'kr'}
+            // editable={true}
+            selectable={true}
+            selectMirror={true}
+            dayMaxEvents={true}
 
-                    // weekends={weekendsVisible}
-                    initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
-                    select={handleDateSelect}
-                    // eventContent={renderEventContent} // custom render function
-                    eventClick={handleEventClick}
-                    eventsSet={handleEventsSet} // called after events are initialized/added/changed/removed
-                    /* you can update a remote database when these fire:
-                    eventAdd={function(){}}
-                    eventChange={function(){}}
-                    eventRemove={function(){}}
-                    */
-                    eventAdd={function (arg) {
-                        console.log("eventAdd !! arg -> ", arg);
+            // weekends={weekendsVisible}
+            initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+            select={handleDateSelect}
+            // eventContent={renderEventContent} // custom render function
+            eventClick={handleEventClick}
+            eventsSet={handleEventsSet} // called after events are initialized/added/changed/removed
+            /* you can update a remote database when these fire:
+            eventAdd={function(){}}
+            eventChange={function(){}}
+            eventRemove={function(){}}
+            */
+            eventAdd={handleEventAdd}
+            eventChange={handleEventChange}
+            eventRemove={handleEventRemove}
 
-                        console.log('arg.event -> ',arg.event)
-                        console.log('arg.revert', arg.revert)
-                        console.log('arg.relatedEvents', arg.relatedEvents)
-                    }}
-                    eventChange={function (arg) {
-                        console.log("eventChange !! arg -> ", arg);
-
-                        console.log('arg.event -> ',arg.event)
-                        console.log('arg.revert', arg.revert)
-                        console.log('arg.relatedEvents', arg.relatedEvents)
-                    }}
-                    eventRemove={function (arg) {
-                        console.log("eventRemove !! arg -> ", arg);
-
-                        arg.revert()
-                        console.log('arg.event -> ',arg.event)
-                        console.log('arg.revert', arg.revert)
-                        console.log('arg.relatedEvents', arg.relatedEvents)
-
-                    }}
-
-                />
+        />
     )
 }
 

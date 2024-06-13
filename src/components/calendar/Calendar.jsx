@@ -4,9 +4,10 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import {INITIAL_EVENTS, createEventId} from './event-utils'
 import axios from "axios";
 import serverUrl from "../../assets/enum/serverUrl.js";
+
+let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
 
 export default function Calendar() {
     const [weekendsVisible, setWeekendsVisible] = useState(true)
@@ -26,7 +27,7 @@ export default function Calendar() {
 
         if (title) {
             calendarApi.addEvent({
-                id: createEventId(),
+                // id: createEventId(),
                 title,
                 start: selectInfo.startStr,
                 end: selectInfo.endStr,
@@ -124,7 +125,30 @@ export default function Calendar() {
             dayMaxEvents={true}
 
             // weekends={weekendsVisible}
-            initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+            initialEvents={[
+    {
+        title: 'All-day event',
+        start: todayStr,
+        isEditable: false,
+    },
+                {
+                    title: 'All-day event',
+                    start: todayStr,
+                    isEditable: false,
+                },
+                {
+                    title: 'Timed event',
+                    start: todayStr + 'T12:00:00',
+                    isEditable: false,
+                },
+                {
+                    title: 'Timed event12123',
+                    start: new Date(),
+                }
+            ]} // alternatively, use the `events` setting to fetch from a feed
+            events={
+                serverUrl.calendar.getScheduleList
+            }
             select={handleDateSelect}
             // eventContent={renderEventContent} // custom render function
             eventClick={handleEventClick}

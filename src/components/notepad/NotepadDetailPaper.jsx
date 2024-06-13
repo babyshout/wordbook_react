@@ -55,6 +55,8 @@ export default function NotepadDetailPaper({
 
         }).catch(reason => {
             console.log(reason)
+            alert("문제발생!!");
+            location.href = FRONT_URL.notepad.list;
         })
     }, []);
 

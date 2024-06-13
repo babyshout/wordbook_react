@@ -9,19 +9,17 @@ import Grid from "@mui/material/Grid";
 // }
 
 export default function SearchWordResult({
-                                    notepadResponse = {
-                                        notepadSeq: 1,
-                                        content: '123',
-                                        regDate: new Date(),
-                                        chgDate: new Date(),
+                                    searchWordResponse = {
+                                        wordName: 'wordName',
+                                        definition: 'word definition'
                                     }
                                 }) {
 
     // console.log(notepadResponse);
 
-    const {notepadSeq, content, regDate, chgDate} = notepadResponse;
+    const {wordName, definition} = searchWordResponse;
 
-    console.log(content);
+    console.log("searchWordResponse", searchWordResponse);
 
 
     return (
@@ -31,7 +29,18 @@ export default function SearchWordResult({
             direction="column"
             justifyContent="space-between"
             alignItems="stretch"
+            href={FRONT_URL.searchWord.detail(wordName)}
         >
+            <Grid
+                item
+            >
+                <Typography
+                    component="h5"
+                    // variant="h4"
+                >
+                    {wordName || "wordName 없음!"}
+                </Typography>
+            </Grid>
             <Grid
                 item
             >
@@ -39,44 +48,18 @@ export default function SearchWordResult({
                     component="p"
                     // variant="h4"
                 >
-                    {content || "content 없음!"}
+                    {definition || "definition 없음!"}
                 </Typography>
             </Grid>
+            <div>
+                <Link color="primary"
+                      href={FRONT_URL.searchWord.detail(wordName)}
+                >
+                    상세보기
+                </Link>
+            </div>
 
-            <Grid
-                item
-            >
 
-                {/*<Typography color="text.secondary" sx={{flex: 1}}>*/}
-                {/*    /!*TODO Date 띄워보기*!/*/}
-                {/*    /!*registered on {regDate}*!/*/}
-                {/*    /!*registered on {typeof regDate}*!/*/}
-                {/*</Typography>*/}
-                <Typography color="text.secondary" sx={{flex: 1}}>
-                    <div>
-                        {
-                            '등록한 날짜 ' +
-                            (regDate || '')
-                            // (regDate.toLocaleDateString() || '')
-                        }
-                    </div>
-                    <div>
-                        {
-                            '수정된 날짜 ' +
-                            (chgDate || '')
-                            // (chgDate.toLocaleDateString() || '')
-                        }
-                    </div>
-                    {/*changed on {chgDate}*/}
-                </Typography>
-                <div>
-                    <Link color="primary"
-                          href={FRONT_URL.notepad.detail(notepadSeq)}
-                    >
-                        상세보기
-                    </Link>
-                </div>
-            </Grid>
         </Grid>
     );
 }

@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     // 모든 호스트에서 오는 요청 허용
-    host: true
+    host: true,
+    port: 4173,
   }
 })

@@ -35,9 +35,9 @@ export default function SearchWordResultMain({loginSessionInfo = null}) {
 
     console.log(loginSessionInfo);
 
-    const [wordOptions, notepadList] = useRecentlySearchWord();
+    const [wordOptions] = useRecentlySearchWord();
 
-    const [searchWordResponse, setSearchWordResponse] = useState({})
+    const [searchSimpleWordResponse, setSearchSimpleWordResponse] = useState([])
 
     const {wordNameParam} = useParams()
     const data = {
@@ -47,7 +47,7 @@ export default function SearchWordResultMain({loginSessionInfo = null}) {
     console.log(useParams());
     useEffect(() => {
         axios.post(
-            serverUrl.word.search.postGetSearchWord,
+            serverUrl.word.search.postGetSearchSimpleWordList,
             data,
             {
                 headers: {"Content-Type": "application/json"},
@@ -57,7 +57,7 @@ export default function SearchWordResultMain({loginSessionInfo = null}) {
             console.log(response);
             const data = response.data;
 
-            setSearchWordResponse(data)
+            setSearchSimpleWordResponse(data)
         }).catch(reason => {
             console.log(reason)
             alert("단어 검색 조회결과 실패!!")
@@ -68,8 +68,8 @@ export default function SearchWordResultMain({loginSessionInfo = null}) {
         alert("로그인된 사용자만 이용가능한 서비스입니다");
         location.href = FRONT_URL.login;
     }
-    if (!searchWordResponse) {
-        alert("searchWordResponse 가 비어있음!!")
+    if (!searchSimpleWordResponse) {
+        alert("searchSimpleWordResponse 가 비어있음!!")
     }
 
     return (
@@ -94,7 +94,7 @@ export default function SearchWordResultMain({loginSessionInfo = null}) {
             <Toolbar
             />
 
-            <SearchWordBar wordOptions={wordOptions}/>
+            <SearchWordBar wordOptions={wordOptions} wordNameParam={wordNameParam}/>
 
 
             <Container
@@ -119,8 +119,8 @@ export default function SearchWordResultMain({loginSessionInfo = null}) {
                     // fullwidth
                 >
 
-                    {notepadList.map((notepad) => (
-                        <Grid item xs={12} md={4} lg={3} key={notepad.notepadSeq}>
+                    {searchSimpleWordResponse.map((searchWordResponse) => (
+                        <Grid item xs={12} md={4} lg={3} key={searchWordResponse.definition}>
                             <Paper
                                 sx={{
                                     p: 2,
@@ -130,38 +130,12 @@ export default function SearchWordResultMain({loginSessionInfo = null}) {
                                     overflow: 'auto',
                                 }}
                             >
-                                <SearchWordResult notepadResponse={notepad}/>
+                                <SearchWordResult searchWordResponse={searchWordResponse}/>
                             </Paper>
                         </Grid>
                     ))}
 
 
-                    <Grid item xs={12} md={4} lg={3}>
-                        <Paper
-                            sx={{
-                                p: 2,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                height: 240,
-                                overflow: 'auto',
-                            }}
-                        >
-                            <SearchWordResult/>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} md={4} lg={3}>
-                        <Paper
-                            sx={{
-                                p: 2,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                height: 240,
-                                overflow: 'auto',
-                            }}
-                        >
-                            <SearchWordResult/>
-                        </Paper>
-                    </Grid>
 
                 </Grid>
 

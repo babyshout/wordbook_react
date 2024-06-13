@@ -3,7 +3,6 @@ import axios from "axios";
 import serverUrl from "../../../assets/enum/serverUrl.js";
 
 export default function useRecentlySearchWord(){
-    const [myNotepadList, setMyNotepadList] = useState([]);
 
     const [recentlySearchWordOptions, setRecentlySearchWordOptions] = useState([])
 
@@ -17,17 +16,14 @@ export default function useRecentlySearchWord(){
             }
         ).then((response) => {
             console.log(response);
-            // setWordOptions(response.data);
+            setRecentlySearchWordOptions(response.data);
         }).catch((reason) => {
             console.log(reason)
             alert("알수없는 문제 발생")
         })
 
 
-        setMyNotepadList(getMockNotepadResponseList())
-        // fixme 지울것
         setRecentlySearchWordOptions(top100Films)
-        console.log('myNotepadList -> ', myNotepadList);
         console.log('recentlySearchWordOptions -> ', recentlySearchWordOptions);
     }
 
@@ -37,34 +33,7 @@ export default function useRecentlySearchWord(){
 
     }, []);
 
-    function getMockNotepadResponseList() {
-        let notepadResponseList = [];
-
-        for (let i = 0; i < 10; i++) {
-            const notepadResponse = {
-                notepadSeq: i,
-                content: "notepad 컨텐츠!! "
-                    + ' ' +
-                    Math.random()
-                    + ' ' +
-                    Math.random()
-                    + ' ' +
-                    Math.random()
-                    + ' ' +
-                    Math.random()
-                    + ' ' +
-                    Math.random()
-                ,
-                regDate: new Date(),
-                chgDate: new Date(),
-            }
-            notepadResponseList.push(notepadResponse);
-        }
-
-        return notepadResponseList;
-    }
-
-    return [recentlySearchWordOptions, myNotepadList]
+    return [recentlySearchWordOptions]
 
 }
 

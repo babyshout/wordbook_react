@@ -41,6 +41,7 @@ const FRONT_URL = {
     searchWord: {
         dashboard: searchWordDefault + "/dashboard",
         result: (wordName) => searchWordDefault + "/result/" + wordName,
+        detail: (wordName) => searchWordDefault + "/result/detail/" + wordName,
     },
 
     calendar: {

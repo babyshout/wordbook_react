@@ -6,7 +6,10 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
 
-export default function SearchWordBar({wordOptions}) {
+export default function SearchWordBar({
+                                          wordOptions
+                                          , wordNameParam = null
+                                      }) {
 
     const [searchValue,
         setSearchValue,
@@ -15,6 +18,11 @@ export default function SearchWordBar({wordOptions}) {
         handleSearchWordButtonOnClick,
         handleWordErrataCheckButton
     ] = useHandleSearchBar();
+
+    if (searchInputValue) {
+        setSearchInputValue(wordNameParam);
+    }
+
     return (
 
         <AppBar

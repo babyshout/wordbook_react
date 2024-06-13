@@ -39,7 +39,7 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
     console.log(loginSessionInfo);
 
 
-    const [wordOptions, notepadList] = useRecentlySearchWord();
+    const [wordOptions] = useRecentlySearchWord();
 
 
 
@@ -71,7 +71,7 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
             <Toolbar
             />
 
-            <SearchWordBar wordOptions={wordOptions} />
+            <SearchWordBar wordOptions={wordOptions} wordNameParam={null} />
 
 
             <Container
@@ -96,49 +96,49 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
                     // fullwidth
                 >
 
-                    {notepadList.map((notepad) => (
-                        <Grid item xs={12} md={4} lg={3} key={notepad.notepadSeq}>
-                            <Paper
-                                sx={{
-                                    p: 2,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    height: 240,
-                                    overflow: 'auto',
-                                }}
-                            >
-                                <SearchWordResult notepadResponse={notepad}/>
-                            </Paper>
-                        </Grid>
-                    ))}
+                    {/*{notepadList.map((notepad) => (*/}
+                    {/*    <Grid item xs={12} md={4} lg={3} key={notepad.notepadSeq}>*/}
+                    {/*        <Paper*/}
+                    {/*            sx={{*/}
+                    {/*                p: 2,*/}
+                    {/*                display: 'flex',*/}
+                    {/*                flexDirection: 'column',*/}
+                    {/*                height: 240,*/}
+                    {/*                overflow: 'auto',*/}
+                    {/*            }}*/}
+                    {/*        >*/}
+                    {/*            <SearchWordResult notepadResponse={notepad}/>*/}
+                    {/*        </Paper>*/}
+                    {/*    </Grid>*/}
+                    {/*))}*/}
 
 
-                    <Grid item xs={12} md={4} lg={3}>
-                        <Paper
-                            sx={{
-                                p: 2,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                height: 240,
-                                overflow: 'auto',
-                            }}
-                        >
-                            <SearchWordResult/>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} md={4} lg={3}>
-                        <Paper
-                            sx={{
-                                p: 2,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                height: 240,
-                                overflow: 'auto',
-                            }}
-                        >
-                            <SearchWordResult/>
-                        </Paper>
-                    </Grid>
+                    {/*<Grid item xs={12} md={4} lg={3}>*/}
+                    {/*    <Paper*/}
+                    {/*        sx={{*/}
+                    {/*            p: 2,*/}
+                    {/*            display: 'flex',*/}
+                    {/*            flexDirection: 'column',*/}
+                    {/*            height: 240,*/}
+                    {/*            overflow: 'auto',*/}
+                    {/*        }}*/}
+                    {/*    >*/}
+                    {/*        <SearchWordResult/>*/}
+                    {/*    </Paper>*/}
+                    {/*</Grid>*/}
+                    {/*<Grid item xs={12} md={4} lg={3}>*/}
+                    {/*    <Paper*/}
+                    {/*        sx={{*/}
+                    {/*            p: 2,*/}
+                    {/*            display: 'flex',*/}
+                    {/*            flexDirection: 'column',*/}
+                    {/*            height: 240,*/}
+                    {/*            overflow: 'auto',*/}
+                    {/*        }}*/}
+                    {/*    >*/}
+                    {/*        <SearchWordResult/>*/}
+                    {/*    </Paper>*/}
+                    {/*</Grid>*/}
 
                 </Grid>
 

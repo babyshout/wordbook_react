@@ -66,7 +66,7 @@ const REQUEST_URL = {
     calendar: {
         getScheduleList: defaultBackServerURL + calendar + "/scheduleList",
         postSchedule: defaultBackServerURL + calendar + "/schedule",
-        deleteSchedule: (id) => defaultBackServerURL + calendar + "/schedule/" + id,
+        deleteSchedule: (id) => defaultBackServerURL + calendar + "/schedule?id=" + id,
     }
 }
 

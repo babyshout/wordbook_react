@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {formatDate} from '@fullcalendar/core'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -6,12 +6,33 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import axios from "axios";
 import serverUrl from "../../assets/enum/serverUrl.js";
+// import {createEventId} from "./event-utils.js";
 
 let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
 
 export default function Calendar() {
     const [weekendsVisible, setWeekendsVisible] = useState(true)
     const [currentEvents, setCurrentEvents] = useState([])
+    const [eventFromServer, setEventFromServer] = useState([])
+
+
+    useEffect(() => {
+        // 캘린더에 넣을 이벤트 서버에서 가져옴!!
+        axios.get(
+            serverUrl.calendar.getScheduleList,
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                withCredentials: true,
+            }
+        ).then(response => {
+            console.log(response)
+            setEventFromServer(response.data)
+        }).catch(reason => {
+            console.log(reason)
+        })
+    }, []);
 
     function handleWeekendsToggle() {
         console.log('handleWeekendsToggle called! weekendsVisible: ', weekendsVisible);
@@ -24,6 +45,7 @@ export default function Calendar() {
         let calendarApi = selectInfo.view.calendar
 
         calendarApi.unselect() // clear date selection
+        console.log('calendarApi -> ', calendarApi)
 
         if (title) {
             calendarApi.addEvent({
@@ -38,8 +60,14 @@ export default function Calendar() {
 
     function handleEventClick(clickInfo) {
         console.log('handleEventClick called!! clickInfo -> ', clickInfo)
-        if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+
+        if (clickInfo.event.extendedProps.isDeletable
+            && (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`))) {
             clickInfo.event.remove()
+            return;
+        } else {
+            alert("선택한 이벤트는 삭제가 불가능합니다!")
+            return;
         }
     }
 
@@ -49,10 +77,9 @@ export default function Calendar() {
     }
 
     function handleEventAdd(arg) {
-        console.log("eventAdd !! arg -> ", arg);
+        console.log("eventAdd !!");
 
         console.log('arg.event -> ', arg.event)
-        console.log('arg.revert', arg.revert)
         console.log('arg.relatedEvents', arg.relatedEvents)
 
         const data = arg.event;
@@ -70,10 +97,20 @@ export default function Calendar() {
             }
         ).then(response => {
             console.log(response)
+            // arg.event = response.data;
+            // arg.event = {
+            //     title: 'All-day event',
+            //     start: todayStr,
+            //     isEditable: false,
+            // };
+            // arg.event.id = response.data.id;
+            arg.event.setProp('id', response.data.id);
+            arg.event.setExtendedProp('isDeletable', true);
+            console.log(arg.event)
         }).catch(reason => {
             console.log(reason)
             alert("remove 실패..  해당 이벤트 요청 revert 함!\n" +
-                ""+ reason.response.data.message)
+                "" + reason.response.data.message)
             arg.revert()
         })
     }
@@ -94,13 +131,23 @@ export default function Calendar() {
         console.log('arg.relatedEvents', arg.relatedEvents)
 
         axios.delete(
-            serverUrl.calendar.deleteSchedule(12)
+            serverUrl.calendar.deleteSchedule(arg.event.id),
+            {
+                headers: {"Content-Type": "application/json"},
+                withCredentials: true
+            }
         ).then(response => {
             console.log(response)
+            alert("이벤트 삭제 성공")
         }).catch(reason => {
-            console.log(reason)
+            if (reason) {
+                alert("")
+                arg.revert()
+            }
+
+            console.log(reason);
             alert("remove 실패..  해당 이벤트 요청 revert 함!\n" +
-                ""+ reason.response.data.message)
+                "" + reason.response.data.message)
             arg.revert()
         })
     }
@@ -125,30 +172,11 @@ export default function Calendar() {
             dayMaxEvents={true}
 
             // weekends={weekendsVisible}
-            initialEvents={[
-    {
-        title: 'All-day event',
-        start: todayStr,
-        isEditable: false,
-    },
-                {
-                    title: 'All-day event',
-                    start: todayStr,
-                    isEditable: false,
-                },
-                {
-                    title: 'Timed event',
-                    start: todayStr + 'T12:00:00',
-                    isEditable: false,
-                },
-                {
-                    title: 'Timed event12123',
-                    start: new Date(),
-                }
-            ]} // alternatively, use the `events` setting to fetch from a feed
-            events={
-                serverUrl.calendar.getScheduleList
-            }
+            // initialEvents={eventFromServer} // alternatively, use the `events` setting to fetch from a feed
+            events={eventFromServer}
+            // events={
+            //     serverUrl.calendar.getScheduleList
+            // }
             select={handleDateSelect}
             // eventContent={renderEventContent} // custom render function
             eventClick={handleEventClick}

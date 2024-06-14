@@ -77,7 +77,8 @@ export default function SearchWordBar({
 
 
                         renderInput={(params) => {
-                            console.log(params)
+                            // param 으로 뭐 넘어오는지 궁금해서 찍어봄..
+                            // console.log(params)
                             return <TextField
                                 {...params}
                                 label="검색할 단어"

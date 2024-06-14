@@ -57,7 +57,9 @@ const REQUEST_URL = {
             // getSearchWord: (wordNameParam) => {
             //     return defaultBackServerURL + word + search + "/getSearchWord";
             // }
-            postGetSearchSimpleWordList: defaultBackServerURL + word + search + "/getSearchSimpleWordList"
+            postGetSearchSimpleWordList: defaultBackServerURL + word + search + "/getSearchSimpleWordList",
+
+            getTodaySearchWord: defaultBackServerURL + word + search + "/todaySearchWord",
 
         }
     },

@@ -5,10 +5,10 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import SearchWordResult from "../SearchWordResult.jsx";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
 import useRecentlySearchWord from "../hooks/useRecentlySearchWord.js";
 import SearchWordBar from "../searchwordbar/SearchWordBar.jsx";
+import TodaySearchWord from "../TodaySearchWord.jsx";
 
 function Copyright(props) {
     return (
@@ -40,6 +40,8 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
 
 
     const [wordOptions] = useRecentlySearchWord();
+
+
 
 
 
@@ -96,6 +98,10 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
                     // fullwidth
                 >
 
+
+
+
+
                     {/*{notepadList.map((notepad) => (*/}
                     {/*    <Grid item xs={12} md={4} lg={3} key={notepad.notepadSeq}>*/}
                     {/*        <Paper*/}
@@ -113,19 +119,19 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
                     {/*))}*/}
 
 
-                    {/*<Grid item xs={12} md={4} lg={3}>*/}
-                    {/*    <Paper*/}
-                    {/*        sx={{*/}
-                    {/*            p: 2,*/}
-                    {/*            display: 'flex',*/}
-                    {/*            flexDirection: 'column',*/}
-                    {/*            height: 240,*/}
-                    {/*            overflow: 'auto',*/}
-                    {/*        }}*/}
-                    {/*    >*/}
-                    {/*        <SearchWordResult/>*/}
-                    {/*    </Paper>*/}
-                    {/*</Grid>*/}
+                    <Grid item xs={12} md={4} lg={3}>
+                        <Paper
+                            sx={{
+                                p: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: 240,
+                                overflow: 'auto',
+                            }}
+                        >
+                            <TodaySearchWord />
+                        </Paper>
+                    </Grid>
                     {/*<Grid item xs={12} md={4} lg={3}>*/}
                     {/*    <Paper*/}
                     {/*        sx={{*/}

@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import FRONT_URL from "../../assets/enum/frontUrl.js";
 import useGetTodaySearchWord from "./hooks/useGetTodaySearchWord.js";
+import Divider from "@mui/material/Divider";
 
 
 export default function TodaySearchWord() {
@@ -19,9 +20,19 @@ export default function TodaySearchWord() {
             alignItems="stretch"
             href={FRONT_URL.searchWord.detail(todaySearchWord.wordName || '')}
         >
+            <Grid item>
+                <Typography
+                    component="h4"
+                    // variant="h4"
+                >
+                    오늘의 단어
+                </Typography>
+            </Grid>
+            <Divider />
             <Grid
                 item
             >
+
                 <Typography
                     component="h5"
                     // variant="h4"

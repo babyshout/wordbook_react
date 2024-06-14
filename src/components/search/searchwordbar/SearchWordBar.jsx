@@ -3,14 +3,15 @@ import {AppBar, Autocomplete} from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
+import useRecentlySearchWord from "../hooks/useRecentlySearchWord.js";
+import {useParams} from "react-router-dom";
+import {useEffect} from "react";
 
-export default function SearchWordBar({
-                                          wordOptions
-                                          , wordNameParam = null
-                                      }) {
-
+export default function SearchWordBar() {
+    const [wordOptions] = useRecentlySearchWord();
+    const {wordNameParam} = useParams()
+    console.log("wordNameParma -> ", wordNameParam)
     const [searchValue,
         setSearchValue,
         searchInputValue,
@@ -19,9 +20,12 @@ export default function SearchWordBar({
         handleWordErrataCheckButton
     ] = useHandleSearchBar();
 
-    if (searchInputValue) {
-        setSearchInputValue(wordNameParam);
-    }
+    useEffect(() => {
+        // useEffect 로 감싸지 않으면, 아래에서 무한 루프 발생..
+        if (wordNameParam) {
+            setSearchInputValue(wordNameParam);
+        }
+    }, []);
 
     return (
 
@@ -54,9 +58,7 @@ export default function SearchWordBar({
                 <div>
                     <div>{`searchValue: ${searchValue !== null ? `'${searchValue}'` : 'null'}`}</div>
                     <div>{`searchInputValue: '${searchInputValue}'`}</div>
-                    {/*<hr/>*/}
-                    <Divider variant="middle"/>
-                    123123
+                    <hr/>
                     <Autocomplete
                         value={searchValue}
                         onChange={(event, newValue) => {
@@ -78,7 +80,7 @@ export default function SearchWordBar({
 
                         renderInput={(params) => {
                             // param 으로 뭐 넘어오는지 궁금해서 찍어봄..
-                            // console.log(params)
+                            console.log(params)
                             return <TextField
                                 {...params}
                                 label="검색할 단어"

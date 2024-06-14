@@ -42,6 +42,7 @@ import SearchWordResultPage from "./pages/search/SearchWordResultPage.jsx";
 import NaverOauthCallbackPage from "./pages/login/naver/NaverOauthCallbackPage.jsx";
 import FullCalendarDemo from "./pages/demo/fullcalendar-demo/FullCalendarDemo.jsx";
 import CalendarPage from "./pages/calendar/CalendarPage.jsx";
+import SearchWordResultDetailPage from "./pages/search/SeatchWordResultDetailPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -137,6 +138,10 @@ const router = createBrowserRouter([
     {
         path: FRONT_URL.searchWord.result(":wordNameParam"),
         element: <SearchWordResultPage />
+    },
+    {
+        path: FRONT_URL.searchWord.detail(":wordNameParam"),
+        element: <SearchWordResultDetailPage />
     },
     // 네이버 로그인 callback 처리
     {

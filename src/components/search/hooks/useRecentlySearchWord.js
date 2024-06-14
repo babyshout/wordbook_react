@@ -17,6 +17,8 @@ export default function useRecentlySearchWord(){
         ).then((response) => {
             console.log(response);
             setRecentlySearchWordOptions(response.data);
+            // wordName option 테스트용 데이터
+            // setRecentlySearchWordOptions(top100Films);
         }).catch((reason) => {
             console.log(reason)
             alert("알수없는 문제 발생")

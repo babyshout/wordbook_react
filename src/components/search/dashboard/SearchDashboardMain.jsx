@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
-import useRecentlySearchWord from "../hooks/useRecentlySearchWord.js";
 import SearchWordBar from "../searchwordbar/SearchWordBar.jsx";
 import TodaySearchWord from "../TodaySearchWord.jsx";
 
@@ -23,13 +22,6 @@ function Copyright(props) {
     );
 }
 
-// let notepadResponse = {
-//     notepadSeq: 1,
-//     content: "",
-//     regDate: null,
-//     chgDate: null,
-// }
-
 
 /*
 TODO notepadReseponse 가지고 mock 데이터 만들어서 레이아웃 확인하기
@@ -39,7 +31,6 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
     console.log(loginSessionInfo);
 
 
-    const [wordOptions] = useRecentlySearchWord();
 
 
 
@@ -73,7 +64,7 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
             <Toolbar
             />
 
-            <SearchWordBar wordOptions={wordOptions} wordNameParam={null} />
+            <SearchWordBar />
 
 
             <Container

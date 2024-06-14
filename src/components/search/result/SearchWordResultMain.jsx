@@ -94,7 +94,7 @@ export default function SearchWordResultMain({loginSessionInfo = null}) {
             <Toolbar
             />
 
-            <SearchWordBar wordOptions={wordOptions} wordNameParam={wordNameParam}/>
+            <SearchWordBar />
 
 
             <Container

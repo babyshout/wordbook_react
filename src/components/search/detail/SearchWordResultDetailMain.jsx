@@ -19,8 +19,8 @@ export default function SearchWordResultDetailMain({loginSessionInfo = null}) {
     console.log(loginSessionInfo);
 
 
-    const [wordOptions] = useRecentlySearchWord();
-    const {wordNameParam} = useParams()
+    // const [wordOptions] = useRecentlySearchWord();
+    // const {wordNameParam} = useParams()
 
     if (!loginSessionInfo) {
         alert("로그인된 사용자만 이용가능한 서비스입니다");

@@ -81,7 +81,7 @@ function AddMyword({setSimpleMywordList}) {
                     </TextField>
                     <Button
 
-                        onClick={handleAddNewMywordButton}>Close Child Modal</Button>
+                        onClick={handleAddNewMywordButton}>단어장 추가하기!</Button>
                 </Box>
             </Modal>
         </React.Fragment>
@@ -174,7 +174,7 @@ export default function AddWordNameToMywordModal({wordName = '주식'}) {
                     {/*<p id="parent-modal-description">*/}
                     {/*    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.*/}
                     {/*</p>*/}
-                    <h3>추가될 단어 -> {wordName || ''}</h3>
+                    <h3>추가될 단어 &gt;&gt; {wordName || ''}</h3>
                     <AddMyword setSimpleMywordList={setSimpleMywordList}/>
                 </Box>
             </Modal>

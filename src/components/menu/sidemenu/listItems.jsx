@@ -44,7 +44,7 @@ export const mainListItems = (
             <ListItemText primary="단어연습"/>
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton href={FRONT_URL.myword.dashboard}>
             <ListItemIcon>
                 <LayersIcon/>
             </ListItemIcon>

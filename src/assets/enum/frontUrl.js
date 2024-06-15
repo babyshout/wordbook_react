@@ -8,6 +8,8 @@ const searchWordDefault = "/search-word";
 
 const calendarDefault = "/calendar";
 
+const mywordDefault = "/myword"
+
 const FRONT_URL = {
 
     hello_world: '/hello-world',
@@ -49,6 +51,12 @@ const FRONT_URL = {
         main: calendarDefault + "/main",
         demo: calendarDefault + "/demo",
 
+    },
+
+    // 단어장
+    myword: {
+        dashboard: mywordDefault + "/dashboard",
+        detail: (mywordName) => mywordDefault + `/detail/${mywordName}`,
     }
 }
 

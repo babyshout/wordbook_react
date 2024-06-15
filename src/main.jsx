@@ -44,6 +44,7 @@ import FullCalendarDemo from "./pages/demo/fullcalendar-demo/FullCalendarDemo.js
 import CalendarPage from "./pages/calendar/CalendarPage.jsx";
 import SearchWordResultDetailPage from "./pages/search/SeatchWordResultDetailPage.jsx";
 import AddWordNameToMywordModal from "./components/search/AddWordNameToMywordModal.jsx";
+import MywordDashboardPage from "./pages/myword/MywordDashboardPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -162,6 +163,16 @@ const router = createBrowserRouter([
     {
         path: FRONT_URL.calendar.main,
         element: <CalendarPage />
+    },
+
+    // 단어장
+    {
+        path: FRONT_URL.myword.dashboard,
+        element: <MywordDashboardPage />
+    },
+    {
+        path: FRONT_URL.myword.detail(":mywordNameParam"),
+        element: <div/>
     }
 ]);
 

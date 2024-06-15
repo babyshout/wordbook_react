@@ -21,7 +21,7 @@ const style = {
     pb: 3,
 };
 
-function AddMyword() {
+function AddMyword({setSimpleMywordList}) {
     const [open, setOpen] = React.useState(false);
 
     const [newMywordName, setNewMywordName] = useState('')
@@ -46,6 +46,7 @@ function AddMyword() {
             console.log(response)
             alert("단어장이 추가됐습니다!!")
             setOpen(false);
+            setSimpleMywordList(response.data);
         }).catch(reason => {
             console.warn(reason)
             alert(reason.response.data.message);
@@ -87,11 +88,25 @@ function AddMyword() {
     );
 }
 
-export default function AddWordNameToMywordModal() {
+export default function AddWordNameToMywordModal({wordName = '주식'}) {
     const [open, setOpen] = React.useState(false);
 
-    useEffect(() => {
+    const [simpleMywordList, setSimpleMywordList] = useState([])
 
+    useEffect(() => {
+        axios.get(
+            serverUrl.word.myword.getSimpleMywordList,
+            {
+                headers: {"Content-Type": "application/json"},
+                withCredentials: true,
+            }
+        ).then(response => {
+            console.log(response)
+            setSimpleMywordList(response.data);
+        }).catch(reason => {
+            console.warn(reason)
+            alert("단어장 리스트 가져오기 실패..!")
+        })
     }, []);
 
     const handleOpen = () => {
@@ -100,6 +115,30 @@ export default function AddWordNameToMywordModal() {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const postWordNameToMyword = (wordName, mywordName) => {
+        // console.log('wordName -> ', wordName);
+        // console.log('mywordName -> ', mywordName);
+
+        const data = {
+            wordName: wordName,
+            mywordName: mywordName,
+        }
+
+        console.log('data -> ', data)
+        axios.post(
+            serverUrl.word.myword.postWordNameToMyword,
+            data,
+            {
+                headers: {"Content-Type": "application/json"},
+                withCredentials: true,
+            }
+        ).then(response => {
+            console.log(response)
+            alert(`${mywordName}단어장에 [${wordName}] 추가 성공!!`)
+            handleClose();
+        })
+    }
 
     return (
         <div>
@@ -114,11 +153,20 @@ export default function AddWordNameToMywordModal() {
                 aria-describedby="parent-modal-description"
             >
                 <Box sx={{...style, width: 400}}>
+                    {simpleMywordList.map((item, index) => (
+                        <Button
+                            name={item.mywordName}
+                            key={item.mywordName}
+                            onClick={(event) => {
+                                console.log(event)
+                                postWordNameToMyword(wordName, item.mywordName)
+                            }}>{item.mywordName}</Button>
+                    ))}
                     <h2 id="parent-modal-title">Text in a modal</h2>
                     <p id="parent-modal-description">
                         Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                     </p>
-                    <AddMyword/>
+                    <AddMyword setSimpleMywordList={setSimpleMywordList}/>
                 </Box>
             </Modal>
         </div>

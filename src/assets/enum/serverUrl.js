@@ -69,6 +69,9 @@ const REQUEST_URL = {
         myword: {
             // 새로운 myword 추가..
             postAddNewMyword: defaultBackServerURL + word + myword + "/addNewMyword",
+            getSimpleMywordList: defaultBackServerURL + word + myword + "/list/simple",
+            postWordNameToMyword: defaultBackServerURL + word + myword + "/wordNameToMyword",
+
         }
     },
 

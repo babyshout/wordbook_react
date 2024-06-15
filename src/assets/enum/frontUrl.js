@@ -18,7 +18,8 @@ const FRONT_URL = {
 
     // 데모들..
     demo: {
-        button_group_click: '/demo/button-group-click-demo'
+        button_group_click: '/demo/button-group-click-demo',
+        AddWordNameToMywordModal: '/demo/add-word-name-to-my-word-modal',
     },
     dashboard: "/dashboard",
 

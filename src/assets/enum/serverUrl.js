@@ -6,6 +6,7 @@ const notepad = "/api/notepads/v1"
 
 const word = "/api/words/v1"
 const search = "/search"
+const myword = '/myword'
 
 const calendar = "/api/calendar/v1";
 const REQUEST_URL = {
@@ -63,6 +64,11 @@ const REQUEST_URL = {
             getSearchWordDetail: (wordNameParam) =>
                 defaultBackServerURL + word + search + `/searchSearch/${wordNameParam}`,
 
+        },
+
+        myword: {
+            // 새로운 myword 추가..
+            postAddNewMyword: defaultBackServerURL + word + myword + "/addNewMyword",
         }
     },
 

@@ -43,6 +43,7 @@ import NaverOauthCallbackPage from "./pages/login/naver/NaverOauthCallbackPage.j
 import FullCalendarDemo from "./pages/demo/fullcalendar-demo/FullCalendarDemo.jsx";
 import CalendarPage from "./pages/calendar/CalendarPage.jsx";
 import SearchWordResultDetailPage from "./pages/search/SeatchWordResultDetailPage.jsx";
+import AddWordNameToMywordModal from "./components/search/AddWordNameToMywordModal.jsx";
 
 const router = createBrowserRouter([
     {
@@ -138,6 +139,10 @@ const router = createBrowserRouter([
     {
         path: FRONT_URL.searchWord.result(":wordNameParam"),
         element: <SearchWordResultPage />
+    },
+    {
+        path: FRONT_URL.demo.AddWordNameToMywordModal,
+        element: <AddWordNameToMywordModal />
     },
     {
         path: FRONT_URL.searchWord.detail(":wordNameParam"),

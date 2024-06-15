@@ -119,6 +119,11 @@ export default function AddWordNameToMywordModal({wordName = '주식'}) {
     const postWordNameToMyword = (wordName, mywordName) => {
         // console.log('wordName -> ', wordName);
         // console.log('mywordName -> ', mywordName);
+        if (mywordName === "RECENTLY_SEARCH" &&
+            !confirm("해당 단어장은 최근검색 단어장입니다. 이미 추가되어있을 가능성이 높습니다! 정말 추가하시겠습니까?")) {
+            console.log("최근검색 단어장에 추가하려 했으나, 취소함")
+            return;
+        }
 
         const data = {
             wordName: wordName,
@@ -135,8 +140,11 @@ export default function AddWordNameToMywordModal({wordName = '주식'}) {
             }
         ).then(response => {
             console.log(response)
-            alert(`${mywordName}단어장에 [${wordName}] 추가 성공!!`)
+            alert(`${mywordName} 단어장에 [${wordName}] 추가 성공!!`)
             handleClose();
+        }).catch(reason => {
+            console.warn(reason)
+            alert(`${mywordName} 단어장에 [${wordName}] 추가 실패..`)
         })
     }
 

@@ -61,10 +61,10 @@ export default function Calendar() {
     function handleEventClick(clickInfo) {
         console.log('handleEventClick called!! clickInfo -> ', clickInfo)
 
-        if (clickInfo.event.extendedProps.isDeletable
-            && (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`))) {
-            clickInfo.event.remove()
-            return;
+        if (clickInfo.event.extendedProps.isDeletable) {
+            if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)){
+                clickInfo.event.remove()
+            }
         } else {
             alert("선택한 이벤트는 삭제가 불가능합니다!")
             return;

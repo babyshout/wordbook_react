@@ -170,10 +170,11 @@ export default function AddWordNameToMywordModal({wordName = '주식'}) {
                                 postWordNameToMyword(wordName, item.mywordName)
                             }}>{item.mywordName}</Button>
                     ))}
-                    <h2 id="parent-modal-title">Text in a modal</h2>
-                    <p id="parent-modal-description">
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </p>
+                    {/*<h2 id="parent-modal-title">Text in a modal</h2>*/}
+                    {/*<p id="parent-modal-description">*/}
+                    {/*    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.*/}
+                    {/*</p>*/}
+                    <h3>추가될 단어 -> {wordName || ''}</h3>
                     <AddMyword setSimpleMywordList={setSimpleMywordList}/>
                 </Box>
             </Modal>

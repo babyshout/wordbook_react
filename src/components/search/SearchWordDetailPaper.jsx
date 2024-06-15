@@ -65,7 +65,7 @@ export default function SearchWordDetailPaper({}) {
                         >
                             {wordDocument.wordName || "wordName 없음!"}
                         </Typography>
-                        <Divider />
+                        <Divider/>
                     </Grid>
                     <Grid
                         item
@@ -75,22 +75,18 @@ export default function SearchWordDetailPaper({}) {
                                 key={wordDetail.supNo}
                                 // variant="h4"
                             >
-                                <Typography
-                                >
-
-                                {'보조 번호' + wordDetail.supNo || '' + '    '}
-                                </Typography>
+                                <sup>
+                                    {wordDetail.supNo || '' + '    '}
+                                </sup>
                                 {wordDetail.definition || ''}
-                                <Typography>
-
-                                {'품사 ' + wordDetail.pos || ''}
-                                </Typography>
-                                <Divider />
+                                <sub>
+                                    {'품사 ' + wordDetail.pos || ''}
+                                </sub>
+                                <Divider/>
                             </div>
 
                         )) : ''}
                     </Grid>
-
 
 
                 </Fragment>

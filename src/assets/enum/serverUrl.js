@@ -73,6 +73,9 @@ const REQUEST_URL = {
             getSimpleMywordList: defaultBackServerURL + word + myword + "/list/simple",
             postWordNameToMyword: defaultBackServerURL + word + myword + "/wordNameToMyword",
             getMywordList: defaultBackServerURL + word + myword + "/list",
+            getMywordDetail:
+                (mywordNameParam) => defaultBackServerURL + word + myword +
+                    "/detail?mywordName=" + mywordNameParam,
         }
     },
 

@@ -45,6 +45,7 @@ import CalendarPage from "./pages/calendar/CalendarPage.jsx";
 import SearchWordResultDetailPage from "./pages/search/SeatchWordResultDetailPage.jsx";
 import AddWordNameToMywordModal from "./components/search/AddWordNameToMywordModal.jsx";
 import MywordDashboardPage from "./pages/myword/MywordDashboardPage.jsx";
+import MywordDetailPage from "./pages/myword/MywordDetailPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -172,7 +173,7 @@ const router = createBrowserRouter([
     },
     {
         path: FRONT_URL.myword.detail(":mywordNameParam"),
-        element: <div/>
+        element: <MywordDetailPage />
     }
 ]);
 

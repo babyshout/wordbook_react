@@ -5,9 +5,13 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import FRONT_URL from "../../../assets/enum/frontUrl.js";
-import SearchWordBar from "../searchwordbar/SearchWordBar.jsx";
-import TodaySearchWord from "../TodaySearchWord.jsx";
+import TodaySearchWord from "../search/TodaySearchWord.jsx";
+import DashboardRecentlyNotepad from "./DashboardRecentlyNotepad.jsx";
+import FRONT_URL from "../../assets/enum/frontUrl.js";
+import MywordSimplePaper from "../myword/MywordSimplePaper.jsx";
+import axios from "axios";
+import serverUrl from "../../assets/enum/serverUrl.js";
+import {useEffect, useState} from "react";
 
 function Copyright(props) {
     return (
@@ -23,23 +27,54 @@ function Copyright(props) {
 }
 
 
-/*
-TODO notepadReseponse 가지고 mock 데이터 만들어서 레이아웃 확인하기
- */
-export default function SearchDashboardMain({loginSessionInfo = null}) {
+export default function DashboardMain({loginSessionInfo = null}) {
 
     console.log(loginSessionInfo);
-
-
-
-
-
 
 
     if (!loginSessionInfo) {
         alert("로그인된 사용자만 이용가능한 서비스입니다");
         location.href = FRONT_URL.login;
     }
+
+    const [mywordList, setMywordList] = useState([]);
+
+    const [recentlySearch, setRecentlySearch] = useState(null)
+
+
+    /**
+     * 전체 myword 가져오고, RECENTLY_SEARCH 만 남김!!
+     */
+    function getMywordList() {
+        console.log("getMywordList 호출 시작!!!!");
+        axios.get(
+            serverUrl.word.myword.getMywordList,
+            {
+                headers: {"Content-Type": "application/json"},
+                withCredentials: true,
+            }
+        ).then((response) => {
+            console.log(response)
+            setMywordList(response.data);
+            const data = response.data.filter(asdf => asdf.mywordName === "RECENTLY_SEARCH")
+            console.log('data -> ', data)
+            if (data[0]) {
+                setRecentlySearch(data[0])
+            }
+        }).catch((reason) => {
+            console.log(reason)
+            alert("알수없는 문제 발생")
+        })
+
+
+        // setNotepadList(getMockNotepadResponseList())
+        console.log(mywordList);
+    }
+
+    useEffect(() => {
+        getMywordList()
+    }, []);
+
 
     return (
         <Box
@@ -63,7 +98,7 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
             <Toolbar
             />
 
-            <SearchWordBar />
+            {/*<SearchWordBar />*/}
 
 
             <Container
@@ -89,9 +124,6 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
                 >
 
 
-
-
-
                     {/*{notepadList.map((notepad) => (*/}
                     {/*    <Grid item xs={12} md={4} lg={3} key={notepad.notepadSeq}>*/}
                     {/*        <Paper*/}
@@ -108,6 +140,7 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
                     {/*    </Grid>*/}
                     {/*))}*/}
 
+                    <DashboardRecentlyNotepad/>
 
                     <Grid item xs={12} md={4} lg={3}>
                         <Paper
@@ -119,7 +152,24 @@ export default function SearchDashboardMain({loginSessionInfo = null}) {
                                 overflow: 'auto',
                             }}
                         >
-                            <TodaySearchWord />
+                            {recentlySearch &&
+                                <MywordSimplePaper myword={recentlySearch}/>
+                            }
+                        </Paper>
+                    </Grid>
+
+
+                    <Grid item xs={12} md={4} lg={3}>
+                        <Paper
+                            sx={{
+                                p: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: 240,
+                                overflow: 'auto',
+                            }}
+                        >
+                            <TodaySearchWord/>
                         </Paper>
                     </Grid>
                     {/*<Grid item xs={12} md={4} lg={3}>*/}

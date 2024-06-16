@@ -73,7 +73,7 @@ export default function NotepadListMain({loginSessionInfo = null}) {
 
     if (!loginSessionInfo) {
         alert("로그인된 사용자만 이용가능한 서비스입니다");
-        // location.href = FRONT_URL.login;
+        location.href = FRONT_URL.login;
     }
 
     function getNotepadList() {

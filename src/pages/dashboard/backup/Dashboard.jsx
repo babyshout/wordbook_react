@@ -1,11 +1,11 @@
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import SideMenu from "../../components/menu/sidemenu/SideMenu.jsx";
-import UpperAppBar from "../../components/menu/appbar/UpperAppBar.jsx";
-import useOpenState from "../../components/menu/hooks/useOpenState.js";
-import useLoginEffect from "../../components/menu/hooks/useLoginEffect.js";
-import MainExample from "../../components/dashboard/MainExample.jsx";
+import SideMenu from "../../../components/menu/sidemenu/SideMenu.jsx";
+import UpperAppBar from "../../../components/menu/appbar/UpperAppBar.jsx";
+import useOpenState from "../../../components/menu/hooks/useOpenState.js";
+import useLoginEffect from "../../../components/menu/hooks/useLoginEffect.js";
+import MainExample from "../../../components/dashboard/backup/MainExample.jsx";
 
 
 

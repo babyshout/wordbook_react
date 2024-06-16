@@ -21,7 +21,7 @@ import Login from './pages/login/Login.jsx';
 import Signup from "./pages/signup/Signup.jsx";
 import ErrorPage from "./pages/error-page/error-page.jsx";
 import App from './App.jsx';
-import Dashboard from './pages/dashboard/Dashboard.jsx';
+import DashboardPage from './pages/dashboard/DashboardPage.jsx';
 import NotepadWrite from './pages/notepad/NotepadWrite.jsx'
 
 // react cookie
@@ -89,12 +89,12 @@ const router = createBrowserRouter([
     },
     // {
     //     path: '/demo/dashboard-demo',
-    //     element: <Dashboard/>,
+    //     element: <DashboardPage/>,
     // },
     {
         path: FRONT_URL.dashboard,
         // '/dashboard',
-        element: <Dashboard/>,
+        element: <DashboardPage/>,
     },
 
     // 공부메모장

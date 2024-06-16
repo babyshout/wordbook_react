@@ -11,6 +11,8 @@ const myword = '/myword'
 const problemOfWord = "/problem-of-word"
 
 const calendar = "/api/calendar/v1";
+
+const dashboard = "/api/dashboard/v1";
 const REQUEST_URL = {
     student: {
         // login, signup controller 와 연결됨
@@ -94,6 +96,16 @@ const REQUEST_URL = {
         getScheduleList: defaultBackServerURL + calendar + "/scheduleList",
         postSchedule: defaultBackServerURL + calendar + "/schedule",
         deleteSchedule: (id) => defaultBackServerURL + calendar + "/schedule?id=" + id,
+    },
+
+    // dashboard 관련 요청들 (메인페이지)
+    dashboard: {
+        getRecentlyNotepadList: (amount) =>
+            defaultBackServerURL + dashboard + `/notepad/list?amount=${amount}`,
+        // getRecentlySearchWordDetail:
+        //     defaultBackServerURL + word + myword +
+        //     "/detail?mywordName=RECENTLY_SEARCH",
+
     }
 }
 

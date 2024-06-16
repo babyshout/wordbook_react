@@ -57,6 +57,9 @@ const FRONT_URL = {
     myword: {
         dashboard: mywordDefault + "/dashboard",
         detail: (mywordName) => mywordDefault + `/detail/${mywordName}`,
+
+        // 해당 단어장의 단어로 문제 연습하기
+        problemToSolve: (mywordName) => mywordDefault + `/${mywordName}/problem-to-solve`,
     }
 }
 

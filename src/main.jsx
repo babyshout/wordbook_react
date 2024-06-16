@@ -46,6 +46,7 @@ import SearchWordResultDetailPage from "./pages/search/SeatchWordResultDetailPag
 import AddWordNameToMywordModal from "./components/search/AddWordNameToMywordModal.jsx";
 import MywordDashboardPage from "./pages/myword/MywordDashboardPage.jsx";
 import MywordDetailPage from "./pages/myword/MywordDetailPage.jsx";
+import MywordProblemToSolvePage from "./pages/myword/MywordProblemToSolvePage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -174,7 +175,13 @@ const router = createBrowserRouter([
     {
         path: FRONT_URL.myword.detail(":mywordNameParam"),
         element: <MywordDetailPage />
-    }
+    },
+
+    // 단어장 단어들로 문제 풀기
+    {
+        path: FRONT_URL.myword.problemToSolve(":mywordNameParam"),
+        element: <MywordProblemToSolvePage />
+    },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

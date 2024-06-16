@@ -5,7 +5,6 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import FRONT_URL from "../../../assets/enum/frontUrl.js";
 import {Copyright} from "@mui/icons-material";
-import MywordDetailPaper from "../MywordDetailPaper.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import serverUrl from "../../../assets/enum/serverUrl.js";
@@ -13,9 +12,10 @@ import {useParams} from "react-router-dom";
 import {AppBar} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import MywordProblemToSolvePaper from "../MywordProblemToSolvePaper.jsx";
 
 
-export default function MywordDetailMain({loginSessionInfo = null}) {
+export default function MywordProblemToSolveMain({loginSessionInfo = null}) {
 
     console.log(loginSessionInfo);
 
@@ -27,18 +27,18 @@ export default function MywordDetailMain({loginSessionInfo = null}) {
 
     const {mywordNameParam} = useParams();
 
-    const [wordDocumentList, setWordDocumentList] = useState([])
+    const [wordDocumentToSolve, setWordDocumentToSolve] = useState(null)
 
     useEffect(() => {
         axios.get(
-            serverUrl.word.myword.getMywordDetail(mywordNameParam),
+            serverUrl.word.problemOfWord.getRandomWordDocumentToSolve(mywordNameParam),
             {
                 headers: {"Content-Type": "application/json"},
                 withCredentials: true,
             }
         ).then((response) => {
             console.log(response);
-            setWordDocumentList(response.data.wordDocumentList);
+            setWordDocumentToSolve(response.data);
         }).catch(reason => {
             console.warn(reason);
         })
@@ -88,6 +88,12 @@ export default function MywordDetailMain({loginSessionInfo = null}) {
                         color="inherit"
                         href={FRONT_URL.myword.problemToSolve(mywordNameParam)}
                     >단어 연습하기</Button>
+                    <Button
+                        color="inherit"
+                        // href={FRONT_URL.myword.problemToSolve(mywordNameParam)}
+                        // 현재페이지 다시로드하면.. 서버에서 random 돌려서.. 단어장에서 하나 가져옴...
+                        onClick={() => window.location.reload()}
+                    >다른문제 가져오기</Button>
                 </Toolbar>
             </AppBar>
 
@@ -95,12 +101,10 @@ export default function MywordDetailMain({loginSessionInfo = null}) {
             <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
                 <Grid container spacing={3}>
 
-                    {wordDocumentList.map((wordDocument, index) => {
-                        return (
+                    {wordDocumentToSolve && (
 
                             <Grid
                                 item
-                                key={index}
                             >
                                 <Paper
                                     sx={{
@@ -114,11 +118,11 @@ export default function MywordDetailMain({loginSessionInfo = null}) {
                                         overflow: 'auto',
                                     }}
                                 >
-                                    <MywordDetailPaper wordDocument={wordDocument}/>
+                                    <MywordProblemToSolvePaper wordDocument={wordDocumentToSolve}/>
                                 </Paper>
                             </Grid>
                         )
-                    })}
+                    }
 
                 </Grid>
 

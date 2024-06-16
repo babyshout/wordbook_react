@@ -8,6 +8,8 @@ const word = "/api/words/v1"
 const search = "/search"
 const myword = '/myword'
 
+const problemOfWord = "/problem-of-word"
+
 const calendar = "/api/calendar/v1";
 const REQUEST_URL = {
     student: {
@@ -76,7 +78,15 @@ const REQUEST_URL = {
             getMywordDetail:
                 (mywordNameParam) => defaultBackServerURL + word + myword +
                     "/detail?mywordName=" + mywordNameParam,
-        }
+        },
+
+        // 문제 관련
+        problemOfWord: {
+            postRandomWordDocumentToSolveResult:
+                defaultBackServerURL + word + problemOfWord + "/randomWordDocument/toSolveResult",
+            getRandomWordDocumentToSolve: (mywordNameParam) =>
+                defaultBackServerURL + word + problemOfWord + "/randomWordDocument/toSolve?mywordName=" + mywordNameParam,
+        },
     },
 
     // fullcalendar 사용 관련

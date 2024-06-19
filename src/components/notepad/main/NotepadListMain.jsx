@@ -184,7 +184,7 @@ export default function NotepadListMain({loginSessionInfo = null}) {
                         </Grid>
                     ))}
 
-
+{/*
                     <Grid item xs={12} md={4} lg={3}>
                         <Paper
                             sx={{
@@ -211,6 +211,7 @@ export default function NotepadListMain({loginSessionInfo = null}) {
                             <Notepad/>
                         </Paper>
                     </Grid>
+*/}
 
                 </Grid>
 

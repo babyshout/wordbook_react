@@ -134,7 +134,7 @@ export default function MyPageUpdate() {
             setIsEmailAuthSent(true)
             console.log('userEmailAuthCodeByServer -> ', userEmailAuthCodeByServer)
             console.log('isEmailAuthSent -> ', isEmailAuthSent)
-
+            alert(`이메일 인증번호는 ${data.authCode} 입니다!`)
         }).catch(reason => {
             console.log(reason)
             alert("이메일 인증번호 전송 실패!")

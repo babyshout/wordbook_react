@@ -41,7 +41,8 @@ export default function Calendar() {
 
     function handleDateSelect(selectInfo) {
         console.log('handleDateSelect called selectInfo -> ', selectInfo)
-        let title = prompt('Please enter a new title for your event')
+        //let title = prompt('Please enter a new title for your event')
+        let title = prompt('추가할 스케줄 이름을 넣으십시오!')
         let calendarApi = selectInfo.view.calendar
 
         calendarApi.unselect() // clear date selection
@@ -62,7 +63,8 @@ export default function Calendar() {
         console.log('handleEventClick called!! clickInfo -> ', clickInfo)
 
         if (clickInfo.event.extendedProps.isDeletable) {
-            if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)){
+            // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)){
+            if (confirm(`정말 ['${clickInfo.event.title}'] 이벤트를 삭제하시겠습니까???`)){
                 clickInfo.event.remove()
             }
         } else {

@@ -255,11 +255,6 @@ export default function SignupForm() {
             </FormContainer>
             <HaveAccount
             />
-            <div>
-                DATA:
-                <br/>
-                {JSON.stringify(values, null, 2)}
-            </div>
         </Box>
     )
 }

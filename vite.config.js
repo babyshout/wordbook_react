@@ -8,5 +8,9 @@ export default defineConfig({
     // 모든 호스트에서 오는 요청 허용
     host: true,
     port: 4173,
-  }
+  },
+//  esbuild: {
+ //   target: 'esnext',
+  //  platform: 'linux',
+ // }
 })

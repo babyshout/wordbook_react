@@ -140,11 +140,6 @@ export default function LoginForm() {
             >
                 네이버로그인
             </Button>
-            <div>
-                Data:
-                <br/>
-                {JSON.stringify(values)}
-            </div>
         </>
     )
 }

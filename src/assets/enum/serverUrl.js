@@ -1,7 +1,8 @@
 // const defaultBackServerURL = "http://localhost:11000";
-const defaultBackServerURL = "http://27.96.134.201:11000";
+// const defaultBackServerURL = "http://27.96.134.201:11000";
 // FIXME 배포시.. 서버URL 관련 확인요망
 // const defaultBackServerURL = "http://localhost:11000";
+const defaultBackServerURL = "http://www.sumin.site:11000";
 
 const notepad = "/api/notepads/v1"
 

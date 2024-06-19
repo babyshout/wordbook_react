@@ -47,6 +47,10 @@ export default function SignupForm() {
         }
 
         // if ()
+        if (!isEmailVerificationCodeSent){
+            alert("이메일 인증번호를 받아주세요");
+            return;
+        }
 
 
         // TODO singup request here
@@ -198,6 +202,11 @@ export default function SignupForm() {
                             label="Email Address"
                             name="email"
                             autoComplete="email"
+                            onChange={() => {
+                                setEmailVerificationCodeSent(false)
+                                console.log("email on change!!!");
+                            }}
+
                         />
                     </Grid>
                     <Grid item xs={12} sm={8}>

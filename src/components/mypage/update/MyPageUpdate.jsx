@@ -194,6 +194,7 @@ export default function MyPageUpdate() {
                     // }}
                     onChange={(evt) => {
                         setUserEmail(evt.target.value)
+                        setIsEmailAuthSent(false);
                     }}
                 />
                 <Divider

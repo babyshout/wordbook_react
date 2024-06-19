@@ -34,10 +34,14 @@ export default function ForgotPassword() {
                 headers: {"Content-Type": "application/json"},
             }).then(function (response) {
             console.log(response);
+            alert(response.data.message);
 
             if (response.data.isSueccess === true) {
                 alert(response.data.message);
             }
+        }).catch(reason => {
+            console.warn(reason);
+            alert("실패!!!!");
         })
     }
 
@@ -99,11 +103,6 @@ export default function ForgotPassword() {
                     </Button>
                 </Stack>
             </FormContainer>
-            <div>
-                Data:
-                <br/>
-                {JSON.stringify(values)}
-            </div>
         </>
     )
 }

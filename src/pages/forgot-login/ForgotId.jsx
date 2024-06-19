@@ -95,11 +95,6 @@ export default function ForgotId() {
                     </Button>
                 </Stack>
             </FormContainer>
-            <div>
-                Data:
-                <br/>
-                {JSON.stringify(values)}
-            </div>
         </>
     )
 }

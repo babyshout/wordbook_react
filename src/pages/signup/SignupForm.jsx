@@ -95,7 +95,10 @@ export default function SignupForm() {
 
             alert("이메일 인증코드는 [" + res.data.code + "] 입니다.");
             setEmailVerificationCodeSent(true);
-        }).catch(err => console.log(err))
+        }).catch(err => {
+		console.log(err);
+		alert("회원가입 실패..");
+	})
 
         // TODO mock EmailVerificationCode 삭제하기
         // setEmailVerificationCode(mockEmailVerificationCode)

@@ -26,8 +26,8 @@ export const mainListItems = (
                 <ShoppingCartIcon/>
             </ListItemIcon>
             <ListItemText primary="공부 메모장"/>
-            <ListItemText primary={FRONT_URL.notepad.list}/>
-        </ListItemButton>
+{/*            <ListItemText primary={FRONT_URL.notepad.list}/>
+*/}        </ListItemButton>
 
         <ListItemButton href={FRONT_URL.searchWord.dashboard}>
             <ListItemIcon>
@@ -62,8 +62,8 @@ export const mainListItems = (
                 <Face />
             </ListItemIcon>
             <ListItemText primary={'마이페이지'} />
-            <ListItemText primary={FRONT_URL.mypage.info} />
-        </ListItemButton>
+{/*            <ListItemText primary={FRONT_URL.mypage.info} />
+*/}        </ListItemButton>
 
     </React.Fragment>
 );

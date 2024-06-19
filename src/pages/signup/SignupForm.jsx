@@ -75,7 +75,15 @@ export default function SignupForm() {
     }
 
     const handleEmailVerificationCodeSending = (data) => {
-        // TODO axios 작동 확인하기
+
+        console.log("data.eamil -> ", data.email);
+        const email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+        console.log(email_regex.test(data.email));
+        if(!email_regex.test(data.email)){ 
+            alert("유효하지 않은 이메일 입니다..")
+            return
+        }
+
         axios.post(REQUEST_URL.student.postGetEmailVerificationCode,
             JSON.stringify(data), {
                 method: 'POST',
@@ -98,6 +106,7 @@ export default function SignupForm() {
         }).catch(err => {
 		console.log(err);
 		alert("회원가입 실패..");
+        alert(`${err.response.data.message}`);
 	})
 
         // TODO mock EmailVerificationCode 삭제하기
@@ -125,12 +134,10 @@ export default function SignupForm() {
         }
 
         if (emailVerificationCode === '') {
-            alert("이메일 인증코드가 발송되었습니다!")
             handleEmailVerificationCodeSending(data)
             return
         }
         if (confirm('다시 이메일 확인코드를 보내시겠습니까?')) {
-            alert("이메일 인증코드가 재발송되었습니다!")
             handleEmailVerificationCodeSending(data)
             return
         }

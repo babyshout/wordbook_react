@@ -95,6 +95,13 @@ export default function MyPageUpdate() {
 
         console.log('data to server -> ', data)
 
+        const email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+        if(!email_regex.test(userEmail)){ 
+            alert("유효하지 않은 이메일 입니다..")
+            return
+        }
+        
+
         axios.patch(
             serverUrl.student.patchStudentInfo,
             data,
@@ -117,6 +124,12 @@ export default function MyPageUpdate() {
     const handleEmailAuthSendButton = (event) => {
         console.log(event);
         const data = {email: userEmail}
+
+        const email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+        if(!email_regex.test(userEmail)){ 
+            alert("유효하지 않은 이메일 입니다..")
+            return
+        }
 
         axios.post(
             serverUrl.student.postGetEmailAuthCode,

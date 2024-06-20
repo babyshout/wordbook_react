@@ -47,6 +47,7 @@ export default function NaverOauthCallbackPage() {
     ).then((response) => {
         console.log(response);
         // fixme 지우고 원하는데로 보내기
+        alert("기본 비밀번호는 1234 입니다!");
         location.href = frontUrl.dashboard;
     }).catch((reason) => {
         console.log(reason);

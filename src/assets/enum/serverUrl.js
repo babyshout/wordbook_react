@@ -15,6 +15,9 @@ const problemOfWord = "/problem-of-word"
 const calendar = "/api/calendar/v1";
 
 const dashboard = "/api/dashboard/v1";
+
+const famoussaying = "/api/famoussaying/v1"
+
 const REQUEST_URL = {
     student: {
         // login, signup controller 와 연결됨
@@ -108,7 +111,11 @@ const REQUEST_URL = {
         //     defaultBackServerURL + word + myword +
         //     "/detail?mywordName=RECENTLY_SEARCH",
 
-    }
+    },
+
+    famoussaying: {
+        getKoreanAdviceOpenApi: defaultBackServerURL + famoussaying + "/korean-advice-open-api",
+    },
 }
 
 export default REQUEST_URL

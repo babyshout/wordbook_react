@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import LoginForm from "./LoginForm.jsx";
+import axios from "axios";
+import serverUrl from "../../assets/enum/serverUrl.js";
 
 function Copyright(props) {
     return (
@@ -38,6 +40,21 @@ function Copyright(props) {
  * @constructor
  */
 export default function Login() {
+
+    // 로그인 시 한국어 랜덤 명언 API 호출 및 alert 추가
+    axios.get(
+        serverUrl.famoussaying.getKoreanAdviceOpenApi,
+        {
+            headers: {"Content-Type": "application/json"},
+            withCredentials: true,
+        }
+    ).then((response) => {
+        console.log(response)
+        alert(JSON.stringify(response.data, null, "\t"));
+    }).catch((reason) => {
+        console.log(reason)
+        alert(JSON.stringify(reason.data, null, "\t"))
+    })
 
 
     return (

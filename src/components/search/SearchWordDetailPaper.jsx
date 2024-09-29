@@ -6,6 +6,7 @@ import serverUrl from "../../assets/enum/serverUrl.js";
 import {useParams} from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import AddWordNameToMywordModal from "./AddWordNameToMywordModal.jsx";
+import WordComment from "./WordComment.jsx";
 
 // function preventDefault(event) {
 //     event.preventDefault();
@@ -87,6 +88,7 @@ export default function SearchWordDetailPaper({}) {
 
                         )) : ''}
                     </Grid>
+                    <WordComment wordName={wordDocument.wordName}/>
 
 
                 </Fragment>

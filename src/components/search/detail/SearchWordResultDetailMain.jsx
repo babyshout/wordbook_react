@@ -76,7 +76,7 @@ export default function SearchWordResultDetailMain({loginSessionInfo = null}) {
                                 overflow: 'auto',
                             }}
                         >
-                            <SearchWordDetailPaper />
+                            <SearchWordDetailPaper loginSessionInfo={loginSessionInfo}/>
                         </Paper>
                     </Grid>
 

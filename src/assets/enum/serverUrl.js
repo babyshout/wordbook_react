@@ -2,13 +2,19 @@
 // const defaultBackServerURL = "http://27.96.134.201:11000";
 // FIXME 배포시.. 서버URL 관련 확인요망
 // const defaultBackServerURL = "http://localhost:11000";
-const defaultBackServerURL = "http://www.sumin.site:11000";
+// const defaultBackServerURL = "http://www.sumin.site:11000";
+//TODO 아래 주석 해제하고 배포할것
+// const defaultBackServerURL = "https://www.sumin.site";
+
+// 로컬 개발용
+const defaultBackServerURL = "http://localhost:11000";
 
 const notepad = "/api/notepads/v1"
 
 const word = "/api/words/v1"
 const search = "/search"
 const myword = '/myword'
+const comment = "/comment"
 
 const problemOfWord = "/problem-of-word"
 
@@ -93,6 +99,11 @@ const REQUEST_URL = {
                 defaultBackServerURL + word + problemOfWord + "/randomWordDocument/toSolveResult",
             getRandomWordDocumentToSolve: (mywordNameParam) =>
                 defaultBackServerURL + word + problemOfWord + "/randomWordDocument/toSolve?mywordName=" + mywordNameParam,
+        },
+
+        // 단어 댓글 관련
+        comment: {
+            getWordComment: (wordName) => defaultBackServerURL + word + comment + `?wordName=${wordName}`,
         },
     },
 

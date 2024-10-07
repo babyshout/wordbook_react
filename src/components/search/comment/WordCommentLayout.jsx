@@ -1,9 +1,6 @@
 import {Fragment, useEffect, useState} from "react";
 import axios from "axios";
 import serverUrl from "../../../assets/enum/serverUrl.js";
-import FRONT_URL from "../../../assets/enum/frontUrl.js";
-import Paper from "@mui/material/Paper";
-import Notepad from "../../notepad/Notepad.jsx";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -14,34 +11,81 @@ import Button from "@mui/material/Button";
 
 const commentMock = [
     {
-        CONTENT: "comment 1",
-        REG_DATE: "20240901",
-        REG_ID: "test id 1",
+        wordName: "주식",
+        wordCommentSeq : "1",
+        content: "comment 1",
+        regDate: "20240901",
+        regId: "test id 1",
     },
     {
-        CONTENT: "comment 2",
-        REG_DATE: "20240901",
-        REG_ID: "test id 2",
+        content: "comment 2",
+        regDate: "20240901",
+        regId: "test id 2",
     },
     {
-        CONTENT: "comment 3",
-        REG_DATE: "20240901",
-        REG_ID: "test id 3",
+        content: "comment 3",
+        regDate: "20240901",
+        regId: "test id 3",
     },
     {
-        CONTENT: "comment 4",
-        REG_DATE: "20240901",
-        REG_ID: "1234",
+        content: "comment 4",
+        regDate: "20240901",
+        regId: "1234",
     },
 ]
 
-function WordComment({comment : {CONTENT, REG_DATE, REG_ID}, loginSessionInfo : {studentId, name, email}}) {
-    const [content, setContent] = useState(CONTENT)
+WordComment.propTypes = {
+    comment: PropTypes.object,
+    loginSessionInfo: PropTypes.object,
+    resetCommentList: PropTypes.func,
+    wordName: PropTypes.string,
+};
+
+function WordComment({
+                         comment,
+                         loginSessionInfo: {studentId, name, email},
+                         resetCommentList,
+                         wordName
+                     }) {
+    const [content, setContent] = useState(comment.content)
     const [isEditable, setIsEditable] = useState(true);
 
-    const isSameRegister = REG_ID === studentId
+    const isSameRegister = comment.regId === studentId
 
     console.log(isSameRegister)
+
+    const handleDelete = () => {
+        axios.delete(
+            serverUrl.word.comment.deleteWordCommentByIdAndWordName(wordName, studentId),
+            {
+                withCredentials: true,
+            }
+        ).then(response => {
+            console.log(response)
+            alert("삭제 성공!!")
+            resetCommentList();
+        }).catch(reason => {
+            console.log(reason)
+            alert("삭제 실패!!")
+            resetCommentList();
+        })
+    }
+
+    const handlePatch = () => {
+        axios.patch(
+            serverUrl.word.comment.patchWordComment(wordName),
+            JSON.stringify({content: content}),
+            {
+                withCredentials: true,
+            }
+        ).then(response => {
+            console.log(response)
+            resetCommentList()
+        }).catch(reason => {
+            console.log(reason)
+            resetCommentList()
+        })
+    }
 
     return (
         <Grid>
@@ -57,25 +101,7 @@ function WordComment({comment : {CONTENT, REG_DATE, REG_ID}, loginSessionInfo : 
                 //         content: contentOfNotepad
                 // }}
             >
-                {/*<TextFieldElement*/}
-                {/*    name={'content'}*/}
-                {/*    id={'content'}*/}
-                {/*    required*/}
-                {/*    fullWidth*/}
-                {/*    // rows={10}*/}
-                {/*    multiline*/}
-                {/*    // value={notepadResponse.content}*/}
-                {/*    value={contentOfNotepad}*/}
-                {/*    // value={contentOfNotepad}*/}
-                {/*    onChange={(event) => {*/}
-                {/*        // setContentOfNotepad(event.target.value)*/}
 
-                {/*        // setContentOfNotepad(event.target.value);*/}
-                {/*        methods.setValue('content', event.target.value);*/}
-                {/*    }}*/}
-                {/*>*/}
-
-                {/*</TextFieldElement>*/}
                 <TextField
                     name={'content'}
                     id={'content'}
@@ -89,10 +115,25 @@ function WordComment({comment : {CONTENT, REG_DATE, REG_ID}, loginSessionInfo : 
 
                 </TextField>
                 <Button
+                    type={'button'}
+                    color={'warning'}
+                    variant="contained"
+                    disabled={isEditable}
+                    sx={{mt: 3, mb: 2}}
+                    onClick={(event) => handleDelete()}
+                >
+                    삭제하기
+                </Button>
+                <Button
                     type={"button"}
                     color={'secondary'}
                     disabled={!isSameRegister}
-                    onClick={(event) => setIsEditable(!isEditable)}
+                    onClick={(event) => {
+                        setIsEditable(!isEditable)
+                        if (!isEditable) {
+                            resetCommentList();
+                        }
+                    }}
                     variant="contained"
                     sx={{mt: 3, mb: 2}}
                 >
@@ -104,67 +145,157 @@ function WordComment({comment : {CONTENT, REG_DATE, REG_ID}, loginSessionInfo : 
                     variant="contained"
                     disabled={isEditable}
                     sx={{mt: 3, mb: 2}}
+                    onClick={(event) => {
+                        event.preventDefault()
+                        handlePatch();
+                    }}
                 >
                     저장하기
                 </Button>
             </FormContainer>
             <Typography variant="body2" color="textSecondary" gutterBottom align={"right"}>
                 <Typography variant="caption" color="textSecondary" gutterBottom align={"left"}>
-                    작성자 : {REG_ID}
+                    작성자 : {comment.regId}
                 </Typography>
             </Typography>
             <Typography variant="body2" color="textSecondary" gutterBottom align={"right"}>
                 <Typography variant="caption" color="textSecondary" gutterBottom align={"right"}>
-                    작성일 : {REG_DATE}
+                    작성일 : {comment.regDate}
                 </Typography>
             </Typography>
         </Grid>
     );
 }
 
-WordComment.propTypes = {comment: PropTypes.any};
+
+NewWordComment.propTypes = {
+    comment: PropTypes.object,
+    loginSessionInfo: PropTypes.object,
+    resetCommentList: PropTypes.func,
+    wordName: PropTypes.string,
+};
+
+function NewWordComment({
+                         loginSessionInfo: {studentId, name, email},
+                         resetCommentList,
+                         wordName
+                     }) {
+    const [content, setContent] = useState("댓글 내용")
+
+    const handlePost = () => {
+        axios.post(
+            serverUrl.word.comment.postWordComment(wordName),
+            JSON.stringify({content: content, wordName: wordName}),
+            {
+                withCredentials: true,
+            }
+        ).then(response => {
+            console.log(response)
+            resetCommentList()
+        }).catch(reason => {
+            console.log(reason)
+            resetCommentList()
+        })
+    }
+
+    return (
+        <Grid>
+            <FormContainer
+
+                // TODO 작성하기
+                // onSuccess={onSuccess}
+                // onError={onError}
+
+                // disabled={true}
+
+                //     defaultValues={{
+                //         content: contentOfNotepad
+                // }}
+            >
+
+                <TextField
+                    name={'content'}
+                    id={'content'}
+                    required
+                    fullWidth
+                    multiline
+                    value={content}
+                    onChange={(event) => setContent(event.target.value)}
+                >
+
+                </TextField>
+                <Button
+                    type={'submit'}
+                    color={'primary'}
+                    variant="contained"
+                    sx={{mt: 3, mb: 2}}
+                    onClick={(event) => {
+                        event.preventDefault()
+                        handlePost();
+                    }}
+                >
+                    저장하기
+                </Button>
+            </FormContainer>
+        </Grid>
+    );
+}
+
+WordCommentLayout.propTypes = {
+    wordName: PropTypes.string,
+    loginSessionInfo: PropTypes.object
+}
 export default function WordCommentLayout({wordName = "주식", loginSessionInfo}) {
 
     // TODO 백엔드작업 후 useState([]) 로 변경하기
     // const [commentList, setCommentList] = useState([])
     const [commentList, setCommentList] = useState(commentMock)
 
+    const getWordComment = () => {
+        axios.get(
+            serverUrl.word.comment.getWordComment(wordName),
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                withCredentials: true,
+            }
+        ).then(response => {
+            console.log(response)
+            const data = response.data;
+
+            setCommentList(data)
+        }).catch(reason => {
+            console.log(reason)
+            alert("문제발생!!");
+        })
+    }
+
     // TODO 백엔드 작업 후 활성화 하기
-    // useEffect(() => {
-    //     axios.get(
-    //         serverUrl.word.comment.getWordComment(wordName),
-    //         {
-    //             headers: {
-    //                 "Content-Type": "application/json"
-    //             },
-    //             withCredentials: true,
-    //         }
-    //     ).then(response => {
-    //         console.log(response)
-    //         const data = response.data;
-    //
-    //         setCommentList(data)
-    //     }).catch(reason => {
-    //         console.log(reason)
-    //         alert("문제발생!!");
-    //     })
-    // }, [])
-    console.log(commentList);
-    commentList.map(item => console.log(item))
+    useEffect(() => {
+        // getWordComment()
+    }, [])
 
     return (
         <Fragment>
 
             <h1>this is wordComment start header</h1>
             <p>wordName : {wordName}</p>
-            {commentList[0].CONTENT}
             {/*{commentList}*/}
-            {commentList.map((comment, index) => (
+            {commentList && commentList.map((comment, index) => (
                 <Fragment key={index}>
                     <Divider/>
-                    <WordComment comment={comment} loginSessionInfo={loginSessionInfo} />
+                    <WordComment comment={comment}
+                                 loginSessionInfo={loginSessionInfo}
+                                 resetCommentList={getWordComment}
+                                 wordName={wordName}
+                    />
                 </Fragment>
             ))}
+            <NewWordComment loginSessionInfo={loginSessionInfo}
+                            resetCommentList={getWordComment}
+                            wordName={wordName}
+            />
         </Fragment>
     )
 }

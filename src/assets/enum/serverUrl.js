@@ -104,6 +104,11 @@ const REQUEST_URL = {
         // 단어 댓글 관련
         comment: {
             getWordComment: (wordName) => defaultBackServerURL + word + comment + `?wordName=${wordName}`,
+            postWordComment: (wordName) =>
+                defaultBackServerURL + word + comment + `?wordName=${wordName}`,
+            patchWordComment: (wordName) => defaultBackServerURL + word + comment + `?wordName=${wordName}`,
+            deleteWordCommentByIdAndWordName : (wordName, studentId) => defaultBackServerURL + word + comment
+                + `?wordName=${wordName}&studentId=${studentId}`,
         },
     },
 

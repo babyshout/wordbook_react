@@ -106,9 +106,10 @@ const REQUEST_URL = {
             getWordComment: (wordName) => defaultBackServerURL + word + comment + `?wordName=${wordName}`,
             postWordComment: (wordName) =>
                 defaultBackServerURL + word + comment + `?wordName=${wordName}`,
-            patchWordComment: (wordName) => defaultBackServerURL + word + comment + `?wordName=${wordName}`,
-            deleteWordCommentByIdAndWordName : (wordName, studentId) => defaultBackServerURL + word + comment
-                + `?wordName=${wordName}&studentId=${studentId}`,
+            patchWordComment: (wordName, wordCommentSeq) =>
+                defaultBackServerURL + word + comment + `?wordName=${wordName}&wordCommentSeq=${wordCommentSeq}`,
+            deleteWordCommentByIdAndWordName : (wordName, studentId, wordCommentSeq) => defaultBackServerURL + word + comment
+                + `?wordName=${wordName}&studentId=${studentId}&wordCommentSeq=${wordCommentSeq}`,
         },
     },
 

@@ -48,15 +48,17 @@ function WordComment({
                          wordName
                      }) {
     const [content, setContent] = useState(comment.content)
-    const [isEditable, setIsEditable] = useState(true);
+    const [isEditable, setIsEditable] = useState(false);
+
+    const wordCommentSeq = comment.wordCommentSeq;
+
 
     const isSameRegister = comment.regId === studentId
 
-    console.log(isSameRegister)
 
     const handleDelete = () => {
         axios.delete(
-            serverUrl.word.comment.deleteWordCommentByIdAndWordName(wordName, studentId),
+            serverUrl.word.comment.deleteWordCommentByIdAndWordName(wordName, studentId, wordCommentSeq),
             {
                 withCredentials: true,
             }
@@ -73,14 +75,18 @@ function WordComment({
 
     const handlePatch = () => {
         axios.patch(
-            serverUrl.word.comment.patchWordComment(wordName),
+            serverUrl.word.comment.patchWordComment(wordName, wordCommentSeq),
             JSON.stringify({content: content}),
             {
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 withCredentials: true,
             }
         ).then(response => {
             console.log(response)
             resetCommentList()
+            setIsEditable(false);
         }).catch(reason => {
             console.log(reason)
             resetCommentList()
@@ -107,7 +113,7 @@ function WordComment({
                     id={'content'}
                     required
                     fullWidth
-                    disabled={isEditable}
+                    disabled={!isEditable}
                     multiline
                     value={content}
                     onChange={(event) => setContent(event.target.value)}
@@ -118,7 +124,7 @@ function WordComment({
                     type={'button'}
                     color={'warning'}
                     variant="contained"
-                    disabled={isEditable}
+                    disabled={!isEditable}
                     sx={{mt: 3, mb: 2}}
                     onClick={(event) => handleDelete()}
                 >
@@ -130,20 +136,20 @@ function WordComment({
                     disabled={!isSameRegister}
                     onClick={(event) => {
                         setIsEditable(!isEditable)
-                        if (!isEditable) {
+                        if (isEditable) {
                             resetCommentList();
                         }
                     }}
                     variant="contained"
                     sx={{mt: 3, mb: 2}}
                 >
-                    {isEditable ? "수정하기" : "취소하기"}
+                    {isEditable ? "취소하기" : "수정하기"}
                 </Button>
                 <Button
                     type={'submit'}
                     color={'primary'}
                     variant="contained"
-                    disabled={isEditable}
+                    disabled={!isEditable}
                     sx={{mt: 3, mb: 2}}
                     onClick={(event) => {
                         event.preventDefault()
@@ -187,6 +193,9 @@ function NewWordComment({
             serverUrl.word.comment.postWordComment(wordName),
             JSON.stringify({content: content, wordName: wordName}),
             {
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 withCredentials: true,
             }
         ).then(response => {
@@ -249,7 +258,7 @@ export default function WordCommentLayout({wordName = "주식", loginSessionInfo
 
     // TODO 백엔드작업 후 useState([]) 로 변경하기
     // const [commentList, setCommentList] = useState([])
-    const [commentList, setCommentList] = useState(commentMock)
+    const [commentList, setCommentList] = useState([])
 
     const getWordComment = () => {
         axios.get(
@@ -264,7 +273,8 @@ export default function WordCommentLayout({wordName = "주식", loginSessionInfo
             console.log(response)
             const data = response.data;
 
-            setCommentList(data)
+            // setCommentList(data)
+            setCommentList(response.data);
         }).catch(reason => {
             console.log(reason)
             alert("문제발생!!");
@@ -273,7 +283,7 @@ export default function WordCommentLayout({wordName = "주식", loginSessionInfo
 
     // TODO 백엔드 작업 후 활성화 하기
     useEffect(() => {
-        // getWordComment()
+        getWordComment()
     }, [])
 
     return (
@@ -283,7 +293,11 @@ export default function WordCommentLayout({wordName = "주식", loginSessionInfo
             <p>wordName : {wordName}</p>
             {/*{commentList}*/}
             {commentList && commentList.map((comment, index) => (
-                <Fragment key={index}>
+                <Fragment
+                    // NOTE wordCommentSeq, Math.random() 둘중에 하나로 키값 잡기
+                    key={comment.wordCommentSeq}
+                    // key={Math.random()}
+                >
                     <Divider/>
                     <WordComment comment={comment}
                                  loginSessionInfo={loginSessionInfo}

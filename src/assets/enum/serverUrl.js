@@ -4,10 +4,10 @@
 // const defaultBackServerURL = "http://localhost:11000";
 // const defaultBackServerURL = "http://www.sumin.site:11000";
 //TODO 아래 주석 해제하고 배포할것
-// const defaultBackServerURL = "https://www.sumin.site";
+const defaultBackServerURL = "https://www.sumin.site";
 
 // 로컬 개발용
-const defaultBackServerURL = "http://localhost:11000";
+// const defaultBackServerURL = "http://localhost:11000";
 
 const notepad = "/api/notepads/v1"
 
